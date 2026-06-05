@@ -297,7 +297,7 @@ Since $\Sigma_{\lambda,II} \succeq Q_0$, Douglas range inclusion \cite{douglas19
 \[
   \|\Sigma_{\lambda,II}^{-1/2} v\|_{\mathcal{H}_I} \le \|Q_0^{-1/2} v\|_{\mathcal{H}_I} \quad \text{for all } v \in \operatorname{Range}(Q_0^{1/2}).
 \]
-Hence, $\Sigma_{\lambda,Ik} \in H_{C_\lambda}$ and the energy norm bound follows directly from \eqref{eq:cross_energy}.
+Hence, $\Sigma_{\lambda,Ik} \in H_{C_\lambda}$ and the norm bound follows directly from \eqref{eq:cross_energy}.
 The range inclusion $\Sigma_{\lambda,Ik} \in \operatorname{Range}(\Sigma_{\lambda,II}^{1/2})$ guarantees that the Wiener functional $W_{\Sigma_{\lambda,Ik}}$ is well-defined as a measurable function on $(\mathcal{H}_I, \mu_{\lambda,I})$ \cite{bogachev1998gaussian}. The conditional variance is the projection residual. By Theorem~\ref{thm:inf_cancellation},
 \[
   S_{k,\lambda}
@@ -448,7 +448,7 @@ This appendix presents arbitrary-precision numerical validations of the variance
 \subsection{Truncation Convergence}
 \label{app:experiments:truncation}
 
-We illustrate the Galerkin convergence of Proposition~\ref{prop:galerkin_consistency} against a finite reference on an admissible model. The Hilbert space is $\ell^2(\mathbb{N})$ with coordinate basis $\{\phi_j\}$. The drift is $\mathcal{A} = \mathcal{A}_0 + \mathcal{K}$, where $\mathcal{A}_0 \phi_j = -(1 + 0.01 j^2)\phi_j$ and $\mathcal{K}\phi_1 = \sum_{j \ge 2} 12\,j^{-3}\phi_j$ (nilpotent, compact Volterra with $\rho(\mathcal{K})=0$). The noise is $\mathcal{D}\phi_j = j^{-3/2}\phi_j$, which is trace-class. The regularized conditioning acts at $k=1$ with $\varepsilon_0 = 1$. Truncated covariances are compared against a finite reference $N_{\text{ref}} = 1500$.
+We illustrate the Galerkin convergence of Proposition~\ref{prop:galerkin_consistency} against a finite reference on an admissible model. The Hilbert space is $\ell^2(\mathbb{N})$ with coordinate basis $\{\phi_j\}$. The drift is $\mathcal{A} = \mathcal{A}_0 + \mathcal{K}$, where $\mathcal{A}_0 \phi_j = -(1 + 0.01 j^2)\phi_j$ and $\mathcal{K}\phi_1 = \sum_{j \ge 2} 12\,j^{-3}\phi_j$ is a bounded rank-one nilpotent perturbation. The noise is $\mathcal{D}\phi_j = j^{-3/2}\phi_j$, which is trace-class. The regularized conditioning acts at $k=1$ with $\varepsilon_0 = 1$. Truncated covariances are compared against a finite reference $N_{\text{ref}} = 1500$.
 
 \begin{table}[htbp]
   \centering
@@ -481,10 +481,10 @@ We illustrate the Galerkin convergence of Proposition~\ref{prop:galerkin_consist
 
 
 
-\subsection{Asymptotic Balancing Diagnostic}
+\subsection{Canonical Scaling Diagnostic}
 \label{app:experiments:ablation}
 
-We validate the asymptotic balancing normalization of Proposition~\ref{prop:exact_calibration} in its decoupled reference channel. With incoming target-coordinate blocks and off-diagonal drift coupling set to zero, the target covariance is exactly $\Sigma_{\lambda,22} = d_\lambda / (2\lambda)$. Four candidate target-diffusion families are tested:
+We validate the canonical normalization of Proposition~\ref{prop:exact_calibration} in its decoupled reference channel. With incoming target-coordinate blocks and off-diagonal drift coupling set to zero, the target covariance is exactly $\Sigma_{\lambda,22} = d_\lambda / (2\lambda)$. Four candidate target-diffusion families are tested:
 \begin{enumerate}
   \item \textbf{Canonical:} $d_\lambda=\varepsilon_0/\lambda$.
   \item \textbf{Slow:} $d_\lambda=\varepsilon_0$.
@@ -594,7 +594,7 @@ The sub-machine-epsilon agreement between \texttt{Float64} and \texttt{BigFloat}
 so the operator Lyapunov equation decomposes into three sub-problems:
 \begin{enumerate}
   \item The target block $\Sigma_{\lambda,kk}=d_\lambda/(2\lambda)$ is solved by a single scalar division, incurring at most $\frac{1}{2}\epsilon_{\mathrm{machine}}$ relative rounding error (IEEE~754 round-to-nearest).
-  \item The cross-covariance $\Sigma_{\lambda,Ik}$ satisfies $|\Sigma_{\lambda,Ik}|_{Q_0}=O(\lambda^{-3})$ by \eqref{eq:cross_energy_bound}, so the absolute rounding error in the cross block is $O(\lambda^{-3}\epsilon_{\mathrm{machine}})$.
+  \item The cross-covariance $\Sigma_{\lambda,Ik}$ satisfies $|\Sigma_{\lambda,Ik}|_{Q_0}=O(\lambda^{-3})$ by \eqref{eq:cross_norm_bound}, so the absolute rounding error in the cross block is $O(\lambda^{-3}\epsilon_{\mathrm{machine}})$.
   \item The free block $\Sigma_{\lambda,II}$ is a standard Lyapunov solution with absolute error $O(\epsilon_{\mathrm{machine}}\|\Sigma_{\lambda,II}\|)$.
 \end{enumerate}
 When the Schur complement is assembled as $S_{k,\lambda}=\Sigma_{\lambda,kk}-R_\lambda$, the subtracted variational term satisfies $R_\lambda=O(\lambda^{-6})$ (Theorem~\ref{thm:inf_cancellation}), which is negligible compared to $\Sigma_{\lambda,kk}=O(\lambda^{-2})$. The rounding error in $S_{k,\lambda}$ is therefore dominated by the error in $\Sigma_{\lambda,kk}$ alone, yielding a Schur-level rounding budget of $O(\epsilon_{\mathrm{machine}}\cdot\Sigma_{\lambda,kk})$ rather than the na\"ive $O(\epsilon_{\mathrm{machine}}\cdot\|\Sigma_{\lambda,II}^{-1}\|\cdot\|\Sigma_{\lambda,Ik}\|^2)$ that one would expect without block decoupling.

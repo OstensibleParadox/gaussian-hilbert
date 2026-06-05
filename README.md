@@ -1,7 +1,7 @@
-# Singular Gaussian Conditioning in Hilbert Space: Schur Residuals, Fisher Scaling, and Cameron--Martin Energy
+# Singular Gaussian Conditioning in Hilbert Space: Schur Residuals, Fisher Scaling, and Cameron--Martin Norms
 
 This repository contains the LaTeX source code and numerical experiments for the paper:
-**"Singular Gaussian Conditioning in Hilbert Space: Schur Residuals, Fisher Scaling, and Cameron--Martin Energy"**
+**"Singular Gaussian Conditioning in Hilbert Space: Schur Residuals, Fisher Scaling, and Cameron--Martin Norms"**
 
 Author: **Lucia Yizi Zhang** (Independent Researcher)
 Email: [lucia.zhang.research@outlook.com](mailto:lucia.zhang.research@outlook.com)
@@ -66,7 +66,7 @@ paper1_pr_it/
 The unified manuscript also incorporates:
 * **Appendix D.4: Numerical Precision Audit:** Compares IEEE 754 `Float64` and 256-bit Julia `BigFloat` arithmetic, showing that block-decoupling suppresses roundoff propagation down to $10^{-17}$ relative error.
 * **Appendix D.5: Dichotomy of Dual Geometries:** Validates the simultaneous boundary survival of the 0th-order flat metric and the $O(\lambda^{-2})$ collapse of the unrescaled horizontal metric (Figure: `dichotomy_geometries.png`).
-* **Appendix D.6: Orthogonal Independence:** Numerically verifies that the 0th-order normal geometry (unperturbed noise scale) and 1st-order horizontal lift (off-diagonal Cameron--Martin energy) vary independently.
+* **Appendix D.6: Orthogonal Independence:** Numerically verifies that the 0th-order normal geometry (unperturbed noise scale) and 1st-order horizontal lift (off-diagonal Cameron--Martin norm) vary independently.
 * **Appendix D.7: Convergence to the Mahalanobis Normal Well:** Tracks the $O(\lambda^{-4})$ convergence of the blow-up geometry contours to the limiting Mahalanobis well (Figure: `mahalanobis_well_convergence.png`).
 
 ---

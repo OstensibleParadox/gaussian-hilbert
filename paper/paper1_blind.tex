@@ -83,7 +83,7 @@
 %  ABSTRACT
 % ============================================================
 \begin{abstract}
-We study singular coordinate conditioning for Gaussian measures on separable Hilbert spaces. Since trace-class covariance blocks are compact, the usual Schur-complement formula cannot be implemented through a bounded inverse. We introduce an inverse-free variational Schur projection on the Cameron--Martin range, derive the canonical $\lambda^{-2}$ target-variance scale by asymptotic balancing, and prove an $O(\lambda^{-6})$ residual estimate. The construction is stable under Galerkin truncation and applies to elliptic Gaussian fields.
+We study singular coordinate conditioning for Gaussian measures on separable Hilbert spaces. Since trace-class covariance blocks are compact, the usual Schur-complement formula cannot be implemented through a bounded inverse. We introduce an inverse-free variational Schur projection on the Cameron--Martin range, derive the canonical $\lambda^{-2}$ target-variance scale by canonical scaling, and prove an $O(\lambda^{-6})$ residual estimate. The construction is stable under Galerkin truncation for exponentially stable analytic semigroup dynamics and applies to sectorial elliptic Gaussian fields.
 \end{abstract}
 
 \keywords{Singular conditioning; Gaussian measures; Cameron--Martin space; Schur complement; Hilbert-space covariance operators; trace-class covariance; Radon Gaussian conditioning; Galerkin approximation; stochastic evolution equations}
@@ -112,27 +112,27 @@ Consequently,
 \[
   S_{k,\lambda}^{-1}=\frac{2}{\varepsilon_0}\lambda^2+O(\lambda^{-2}).
 \]
-The proof uses covariance-energy forms, shorting, Douglas range inclusion, Lyapunov block identities, and trace-ideal convergence. These are standard inputs in operator and SPDE analysis \cite{krein1947selfadjoint,anderson1975shorted,douglas1966majorization} \cite{simon2005trace,daprato2014stochastic}. The Cameron--Martin space is used only as a Hilbert subspace equipped with its covariance norm; no differentiable statistical or geometric structure is assumed \cite{bogachev1998gaussian}.
+The proof uses covariance-energy forms, shorting, Douglas range inclusion, Lyapunov block identities, and trace-ideal convergence. These are standard inputs in operator and SPDE analysis \cite{krein1947selfadjoint,anderson1975shorted,douglas1966majorization} \cite{simon2005trace,daprato2014stochastic}. The Cameron--Martin space is used only as a Hilbert subspace equipped with its covariance norm; no differentiable statistical or geometric structure is assumed \cite{bogachev1998gaussian}. The operator base is an exponentially stable analytic semigroup with bounded drift perturbations, so dissipative sectorial generators such as $-(-\Delta+\kappa^2)$ fall inside the abstract setup.
 
 The paper has four main contributions:
 \begin{enumerate}
-  \item \textbf{Asymptotic balancing normalization.} We identify the block-Lyapunov mechanism that fixes the observed coordinate variance at the unique finite-part scale $\Sigma_{\lambda,kk}=\varepsilon_0/(2\lambda^2)$.
+  \item \textbf{Canonical normalization.} We identify the block-Lyapunov mechanism that fixes the observed coordinate variance at the unique finite-part scale $\Sigma_{\lambda,kk}=\varepsilon_0/(2\lambda^2)$.
   \item \textbf{Inverse-free Schur projection.} We identify the residual subtraction with the target-coordinate quadratic form of the shorted-operator variational formula, then prove the $O(\lambda^{-6})$ residual estimate in the same operator-theoretic regime where compact covariance blocks preclude a bounded Schur inverse.
-  \item \textbf{Galerkin stability.} We prove that finite-dimensional truncations converge to the Hilbert-space residual in trace ideal norm, matching the discretization-independent perspective used in Hilbert-space Gaussian inverse problems \cite{stuart2010inverse,carerelie2024optimal,carerelie2025posterior}.
+  \item \textbf{Analytic-semigroup and Galerkin stability.} We work with an analytic semigroup drift base plus bounded perturbations, and prove that finite-dimensional truncations converge to the Hilbert-space residual in trace ideal norm, matching the discretization-independent perspective used in Hilbert-space Gaussian inverse problems \cite{stuart2010inverse,carerelie2024optimal,carerelie2025posterior}.
   \item \textbf{Radon Gaussian conditioning.} For Radon Gaussian laws, we construct the conditional predictor as a measurable Cameron--Martin projection and show that the associated renormalized conditioning functional remains bounded, using regular conditional probabilities and continuous Gaussian disintegration \cite{bogachev1998gaussian,lagatta2013continuous,steinwart2024conditioning}.
 \end{enumerate}
 
 \subsection{Positioning in the literature}
 \label{sec:related}
 
-The paper is closest to four bodies of work.  First, it uses the classical measure-class structure of Gaussian measures, especially the Cameron--Martin theorem and the Feldman--H\'{a}jek dichotomy, as presented in standard references on Gaussian measures \cite{feldman1958equivalence,hajek1958property,bogachev1998gaussian}.  Second, it is adjacent to Bayesian inverse problems and Hilbert-space Gaussian conditioning, including the shorted-operator description of Gaussian conditioning on closed subspaces, positive-noise posterior formulas, low-rank posterior approximations, and nonlinear observation maps \cite{owhadi2015conditioning,stuart2010inverse,chen2024gaussian,steinwart2024conditioning,carerelie2024optimal,carerelie2025posterior}.  Third, the variational residual is informed by Schur complements, shorted operators, Douglas range inclusion, and modern complementability theory for block operators \cite{krein1947selfadjoint,anderson1975shorted,douglas1966majorization,tretter2008spectral,contino2018schur,friedrich2017generalized,hassi2023complementation}.  Fourth, the motivating examples come from stochastic evolution equations and elliptic Gaussian fields, whose stationary covariance operators are compact, trace class, and naturally approximated by Galerkin truncation \cite{daprato2014stochastic,lord2014introduction,simon2005trace}.
+The paper is closest to four bodies of work.  First, it uses the classical measure-class structure of Gaussian measures, especially the Cameron--Martin theorem and the Feldman--H\'{a}jek dichotomy, as presented in standard references on Gaussian measures \cite{feldman1958equivalence,hajek1958property,bogachev1998gaussian}.  Second, it is adjacent to Bayesian inverse problems and Hilbert-space Gaussian conditioning, including the shorted-operator description of Gaussian conditioning on closed subspaces, positive-noise posterior formulas, low-rank posterior approximations, and nonlinear observation maps \cite{owhadi2015conditioning,stuart2010inverse,chen2024gaussian,steinwart2024conditioning,carerelie2024optimal,carerelie2025posterior}.  Third, the variational residual is informed by Schur complements, shorted operators, Douglas range inclusion, and modern complementability theory for block operators \cite{krein1947selfadjoint,anderson1975shorted,douglas1966majorization,tretter2008spectral,contino2018schur,friedrich2017generalized,hassi2023complementation}.  Fourth, the motivating examples come from stochastic evolution equations and elliptic Gaussian fields, where dissipative sectorial generators produce compact trace-class stationary covariances that are naturally approximated by Galerkin truncation \cite{daprato2014stochastic,lord2014introduction,simon2005trace}.
 
 \subsection{Organization of the paper}
 \label{sec:organization}
 
-\Cref{sec:setup} defines the operator model and derives the asymptotic balancing normalization. \Cref{sec:infdim} establishes the Hilbert-space variational Schur residual. \Cref{sec:gaussian_zero} gives the Radon Gaussian conditional extension and the renormalized conditioning functional. \Cref{sec:spde} gives an elliptic Gaussian-field example. \Cref{sec:discussion} records limitations and extensions, and \Cref{sec:conclusion} concludes. Proofs are given in \Cref{app:block_cumulant_analysis,app:gaussian_lift}; numerical diagnostics and Galerkin verification are given in \Cref{app:experiments}.
+\Cref{sec:setup} defines the operator model and establishes the canonical normalization. \Cref{sec:infdim} establishes the Hilbert-space variational Schur residual. \Cref{sec:gaussian_zero} gives the Radon Gaussian conditional extension and the renormalized conditioning functional. \Cref{sec:spde} gives an elliptic Gaussian-field example. \Cref{sec:discussion} records limitations and extensions, and \Cref{sec:conclusion} concludes. Proofs are given in \Cref{app:block_cumulant_analysis,app:gaussian_lift}; numerical diagnostics and Galerkin verification are given in \Cref{app:experiments}.
 
-\section{Operator Model and Asymptotic Balancing}
+\section{Operator Model and Canonical Normalization}
 \label{sec:setup}
 
 \subsection{Operator Dynamics and Regularized Conditioning}
@@ -162,7 +162,7 @@ To approximate the exact point conditioning $X_k = x_k^*$, we set the incoming t
   \end{equation}
 \end{definition}
 
-\subsection{Asymptotic Balancing Normalization}
+\subsection{Canonical Normalization}
 \label{sec:setup:calibration}
 
 The block-decoupled structure under the regularized dynamics yields:
@@ -187,7 +187,7 @@ The target block $kk$ decouples completely from the free coordinates, yielding t
   \Sigma_{\lambda,kk} = \frac{d_\lambda}{2\lambda}.
 \end{equation}
 
-The normalization is fixed by asymptotic balancing, not by a free modeling convention.  In the Gaussian finite-part extension below, a constant forcing $b_k$ produces the deterministic target offset
+The normalization is fixed by canonical scaling, not by a free modeling convention.  In the Gaussian finite-part extension below, a constant forcing $b_k$ produces the deterministic target offset
 \begin{equation}
   \label{eq:target_offset_balancing}
   \Delta_\lambda \coloneqq m_{\lambda,k}-x_k^* = \frac{b_k}{\lambda}=O(\lambda^{-1}),
@@ -205,7 +205,7 @@ Consequently the target covariance must decay at the same order as the squared d
   \Sigma_{\lambda,kk}\asymp\lambda^{-2}.
 \end{equation}
 
-\begin{proposition}[Asymptotic Balancing Normalization]
+\begin{proposition}[Canonical Scaling]
   \label{prop:exact_calibration}
   The unique target-diffusion scaling that makes the deterministic offset and target variance balance at a finite nonzero scale is
   \begin{equation}
@@ -233,7 +233,7 @@ Consequently the target covariance must decay at the same order as the squared d
   \end{equation}
 \end{proposition}
 
-All subsequent results are stated for this canonically balanced family.
+All subsequent results are stated for this canonical scaling family.
 
 \begin{definition}[Schur LMMSE Invariant]
   \label{def:schur_invariant}
@@ -249,15 +249,15 @@ All subsequent results are stated for this canonically balanced family.
 
 We state the operator-theoretic assumptions that make the limit passage independent of the Galerkin dimension.
 
-\begin{definition}[Drift Operator with Volterra Perturbation]
+\begin{definition}[Drift Operator with Analytic Base]
   \label{def:drift_operator}
   A drift operator on a separable Hilbert space $\mathcal{H}$ is an operator of the form $\mathcal{A} = \mathcal{A}_0 + \mathcal{K}$, where:
   \begin{enumerate}
-    \item[(i)] $\mathcal{A}_0: \operatorname{dom}(\mathcal{A}_0) \subset \mathcal{H} \to \mathcal{H}$ is a closed, densely defined, dissipative operator that generates a strongly continuous contraction semigroup $(e^{t\mathcal{A}_0})_{t \ge 0}$ on $\mathcal{H}$, satisfying $\|e^{t\mathcal{A}_0}\| \le e^{-\alpha t}$ for some spectral gap $\alpha > 0$.
-    \item[(ii)] $\mathcal{K}: \mathcal{H} \to \mathcal{H}$ is a compact Volterra operator with spectral radius $\rho(\mathcal{K}) = 0$.
-    \item[(iii)] The full operator $\mathcal{A} = \mathcal{A}_0 + \mathcal{K}$ generates a strongly continuous semigroup $(e^{t\mathcal{A}})_{t \ge 0}$ by the bounded perturbation theorem, and this semigroup remains exponentially stable: $\|e^{t\mathcal{A}}\| \le M e^{-\beta t}$ for some $M \ge 1$, $\beta > 0$.
+    \item[(i)] $\mathcal{A}_0: \operatorname{dom}(\mathcal{A}_0) \subset \mathcal{H} \to \mathcal{H}$ is closed, densely defined, and dissipative, and it generates a strongly continuous analytic contraction semigroup $(e^{t\mathcal{A}_0})_{t \ge 0}$ on $\mathcal{H}$ satisfying $\|e^{t\mathcal{A}_0}\| \le e^{-\alpha t}$ for some spectral gap $\alpha > 0$; equivalently, the base operator $-\mathcal{A}_0$ is sectorial of angle $<\pi/2$ in this exponentially stable contraction setting.
+    \item[(ii)] $\mathcal{K}: \mathcal{H} \to \mathcal{H}$ is a bounded linear operator.
+    \item[(iii)] The full operator $\mathcal{A} = \mathcal{A}_0 + \mathcal{K}$, with $\operatorname{dom}(\mathcal{A})=\operatorname{dom}(\mathcal{A}_0)$, generates a strongly continuous analytic semigroup $(e^{t\mathcal{A}})_{t \ge 0}$ by the bounded perturbation theorem, and this semigroup remains exponentially stable: $\|e^{t\mathcal{A}}\| \le M e^{-\beta t}$ for some $M \ge 1$, $\beta > 0$.
   \end{enumerate}
-  In finite dimensions ($\mathcal{H} = \mathbb{R}^n$), $\mathcal{A}_0$ reduces to the Hurwitz drift matrix $A$ and $\mathcal{K} = 0$.
+  In finite dimensions ($\mathcal{H} = \mathbb{R}^n$), this reduces to a decomposition of a Hurwitz drift matrix into an exponentially stable analytic base plus a bounded perturbation.
 \end{definition}
 
 \begin{definition}[Trace-Class Noise and Covariance]
@@ -280,7 +280,7 @@ We state the operator-theoretic assumptions that make the limit passage independ
 \begin{assumption}[Core Analytical Assumptions for Singular Hyperplane Conditioning]
   This work relies on two core analytical assumptions regarding the target-coordinate block decoupling and the outgoing coupling:
   \begin{enumerate}
-    \item[(i)] \textbf{Linear Second-Moment Channel:} \label{assum:linear_second_moment} A centered linear stationary process on $\mathcal{H}=\mathcal{H}_k\oplus \mathcal{H}_I$ has finite second moments and covariance solving \Cref{eq:op_lyapunov}. The block-decoupling constraint zeroes all incoming target drift and cross-noise, so that $\mathcal{A}_{kI}=\mathcal{D}_{kI}=\mathcal{D}_{Ik}=0$ and $\mathcal{A}_{kk}=-\lambda$. The target diffusion $\mathcal{D}_{kk}=\varepsilon_0/\lambda$ is the unique scaling determined by the asymptotic balancing normalization (Proposition~\ref{prop:exact_calibration}). The free noise is independent of the local target noise. (Gaussianity is not assumed).
+    \item[(i)] \textbf{Linear Second-Moment Channel:} \label{assum:linear_second_moment} A centered linear stationary process on $\mathcal{H}=\mathcal{H}_k\oplus \mathcal{H}_I$ has finite second moments and covariance solving \Cref{eq:op_lyapunov}. The block-decoupling constraint zeroes all incoming target drift and cross-noise, so that $\mathcal{A}_{kI}=\mathcal{D}_{kI}=\mathcal{D}_{Ik}=0$ and $\mathcal{A}_{kk}=-\lambda$. The target diffusion $\mathcal{D}_{kk}=\varepsilon_0/\lambda$ is the unique scaling determined by the canonical normalization (Proposition~\ref{prop:exact_calibration}). The free noise is independent of the local target noise. (Gaussianity is not assumed).
     \item[(ii)] \textbf{Cameron--Martin Stability of Off-Diagonal Drift Coupling:} \label{assum:cm_stability} Let $Q_0\coloneqq\Sigma_{II}^{(0)}$ denote the free-block covariance produced by the free noise under block decoupling, and let $H_{Q_0}\coloneqq\operatorname{Range}(Q_0^{1/2})$ with the energy norm $|u|_{Q_0}\coloneqq\|Q_0^{-1/2}u\|_{\mathcal{H}_I}$. The outgoing vector $a_{Ik}\coloneqq\mathcal{A}_{Ik}\phi_k$ belongs to $H_{Q_0}$, and $e^{t\mathcal{A}_{II}}$ restricts to a strongly continuous exponentially stable semigroup on $H_{Q_0}$:
     \begin{equation}
       \|e^{t\mathcal{A}_{II}}\|_{\mathcal{L}(H_{Q_0})} \le M e^{-\omega t},\qquad t\ge0,
@@ -348,7 +348,7 @@ Under this assumption, the exact cross-covariance resolvent formula (derived in 
 \end{equation}
 This resolvent response yields the Cameron--Martin energy bound on the cross-covariance block:
 \begin{equation}
-  \label{eq:cross_energy_bound}
+  \label{eq:cross_norm_bound}
   |\Sigma_{\lambda,Ik}|_{Q_0} = O(\lambda^{-3}) \quad \text{as } \lambda \to \infty.
 \end{equation}
 
@@ -597,7 +597,7 @@ Let
 \[
   L=-\frac{d^2}{dx^2}+\kappa^2
 \]
-on $L^2(0,1)$ with Dirichlet boundary conditions and $\kappa>0$. The inverse covariance
+on $L^2(0,1)$ with Dirichlet boundary conditions and $\kappa>0$. Then $\mathcal{A}_0=-L$ with domain $H^2(0,1)\cap H_0^1(0,1)$ is dissipative, $L$ is positive self-adjoint and sectorial, and $e^{-tL}$ is an exponentially stable analytic contraction semigroup. The inverse covariance
 \[
   Q_0=L^{-1}
 \]
@@ -719,7 +719,7 @@ The result is therefore deliberately limited to covariance and Gaussian-conditio
 \section{Conclusion}
 \label{sec:conclusion}
 
-We established a Hilbert-space framework for singular coordinate conditioning of Gaussian measures. The central object is an inverse-free variational Schur projection on the Cameron--Martin range, equivalently the one-dimensional target-coordinate form of the shorted-operator subtraction. It gives asymptotic balancing normalization, an $O(\lambda^{-6})$ residual estimate, Galerkin stability, and a Radon Gaussian conditioning statement. The elliptic field example shows that the assumptions are natural for trace-class covariance operators arising from stochastic evolution equations and elliptic Gaussian priors \cite{daprato2014stochastic,lord2014introduction,stuart2010inverse}.
+We established a Hilbert-space framework for singular coordinate conditioning of Gaussian measures. The central object is an inverse-free variational Schur projection on the Cameron--Martin range, equivalently the one-dimensional target-coordinate form of the shorted-operator subtraction. It gives canonical normalization, an $O(\lambda^{-6})$ residual estimate, Galerkin stability, and a Radon Gaussian conditioning statement. The elliptic field example shows that the assumptions are natural for trace-class covariance operators arising from stochastic evolution equations and elliptic Gaussian priors \cite{daprato2014stochastic,lord2014introduction,stuart2010inverse}.
 
 \section*{Declaration of Generative AI and AI-Assisted Technologies in the Manuscript Preparation Process}
 

@@ -84,7 +84,7 @@
 %  ABSTRACT
 % ============================================================
 \begin{abstract}
-We study singular coordinate conditioning for Gaussian measures on separable Hilbert spaces. Since trace-class covariance blocks are compact, the usual Schur-complement formula cannot be implemented through a bounded inverse. We introduce an inverse-free variational Schur projection on the Cameron--Martin range and prove exact variance normalization together with an $O(\lambda^{-6})$ residual estimate. The construction is stable under Galerkin truncation and applies to elliptic Gaussian fields.
+We study singular coordinate conditioning for Gaussian measures on separable Hilbert spaces. Since trace-class covariance blocks are compact, the usual Schur-complement formula cannot be implemented through a bounded inverse. We introduce an inverse-free variational Schur projection on the Cameron--Martin range and prove canonical normalization together with an $O(\lambda^{-6})$ residual estimate. The construction is stable under Galerkin truncation for exponentially stable analytic semigroup dynamics and applies to sectorial elliptic Gaussian fields.
 \end{abstract}
 
 \keywords{Singular conditioning; Gaussian measures; Cameron--Martin space; Schur complement; Hilbert-space covariance operators; trace-class covariance; Radon Gaussian conditioning; Galerkin approximation; stochastic evolution equations}
@@ -97,9 +97,9 @@ We study singular coordinate conditioning for Gaussian measures on separable Hil
 \section{Introduction}
 \label{sec:intro}
 
-Singular coordinate conditioning arises when an exact constraint $X_k=x_k^*$ is reached as a zero-noise or infinite-precision limit of Gaussian conditioning problems.  Finite-dimensional Gaussian conditioning is governed by the ordinary Schur complement of a covariance matrix \cite{horn2012matrix,rasmussen2006gaussian}.  Infinite-dimensional Gaussian conditioning is subtler: Radon Gaussian measures on separable Hilbert or Banach spaces have compact covariance operators, and their Cameron--Martin spaces are covariance-energy domains rather than ambient statistical parameter spaces \cite{bogachev1998gaussian,daprato2014stochastic,steinwart2024conditioning}.  Recent work on Gaussian conditioning and inverse problems emphasizes that finite-dimensional observation formulas must be interpreted through approximation, disintegration, or Hilbert-space posterior equivalence rather than through a global covariance inverse \cite{stuart2010inverse,chen2024gaussian,carerelie2024optimal,carerelie2025posterior}.
+Singular coordinate conditioning arises when an exact constraint $X_k=x_k^*$ is reached as a zero-noise or infinite-precision limit of Gaussian conditioning problems.  Finite-dimensional Gaussian conditioning is governed by the ordinary Schur complement of a covariance matrix \cite{horn2012matrix,rasmussen2006gaussian}.  Infinite-dimensional Gaussian conditioning is subtler: Radon Gaussian measures on separable Hilbert or Banach spaces have compact covariance operators, and their Cameron--Martin spaces are covariance-norm domains rather than ambient statistical parameter spaces \cite{bogachev1998gaussian,daprato2014stochastic,steinwart2024conditioning}.  In Hilbert-space Gaussian conditioning, shorted operators give the covariance of conditioning on closed subspaces, while recent inverse-problem work emphasizes that positive-noise posterior formulas must be interpreted through approximation, disintegration, or Hilbert-space posterior equivalence rather than through a global covariance inverse \cite{owhadi2015conditioning,stuart2010inverse,chen2024gaussian,carerelie2024optimal,carerelie2025posterior}.
 
-The obstruction studied here is the covariance-block obstruction behind that phenomenon.  In a finite-dimensional model, the conditional variance of a coordinate can be written as $A-BD^{-1}B^*$ after a block decomposition.  In a separable Hilbert space the corresponding block $D$ is typically compact and trace class, hence $D^{-1}$ is not a bounded operator on the ambient space \cite{bogachev1998gaussian,simon2005trace,daprato2014stochastic}.  Classical Schur-complement and shorted-operator theory provides variational tools for positive block operators, but it does not by itself give the scaling law for a singular Gaussian conditioning residual \cite{anderson1975shorted,douglas1966majorization,tretter2008spectral,contino2018schur,friedrich2017generalized,hassi2023complementation}.  This paper formulates the residual directly as a Cameron--Martin energy projection and never invokes a pseudoinverse or an ambient precision operator.
+The obstruction studied here is the covariance-block obstruction behind that phenomenon.  In a finite-dimensional model, the conditional variance of a coordinate can be written as $A-BD^{-1}B^*$ after a block decomposition.  In a separable Hilbert space the corresponding block $D$ is typically compact and trace class, hence $D^{-1}$ is not a bounded operator on the ambient space \cite{bogachev1998gaussian,simon2005trace,daprato2014stochastic}.  Classical Schur-complement and shorted-operator theory, originating in Krein's theory of non-negative extensions and developed systematically by Anderson and Trapp, provides variational tools for positive block operators \cite{krein1947selfadjoint,anderson1975shorted,douglas1966majorization}.  However, this theory does not by itself give the scaling law for a singular Gaussian conditioning residual \cite{tretter2008spectral,contino2018schur,friedrich2017generalized,hassi2023complementation}.  This paper formulates the residual directly as a Cameron--Martin norm projection and never invokes a pseudoinverse or an ambient precision operator.
 
 The hard-conditioning limit also reaches the Feldman--H\'{a}jek measure-class boundary.  With positive observational noise, Gaussian Bayesian inverse problems may remain in the equivalent-measure regime \cite{stuart2010inverse,carerelie2024optimal,carerelie2025posterior}.  Under an exact coordinate constraint, the limiting conditional law is supported on a hyperplane of prior measure zero, so the equivalent-measure regime is left \cite{feldman1958equivalence,hajek1958property,bogachev1998gaussian}.  A useful theory must therefore separate the diverging joint divergence caused by exact evidence from the finite covariance residual that remains visible in the block structure.
 
@@ -113,27 +113,28 @@ Consequently,
 \[
   S_{k,\lambda}^{-1}=\frac{2}{\varepsilon_0}\lambda^2+O(\lambda^{-2}).
 \]
-The proof uses covariance-energy forms, Douglas range inclusion, Lyapunov block identities, and trace-ideal convergence \cite{douglas1966majorization,simon2005trace,daprato2014stochastic}.  The Cameron--Martin space is used only as a Hilbert subspace equipped with its covariance norm; no differentiable statistical or geometric structure is assumed \cite{bogachev1998gaussian}.
+The proof uses covariance-norm forms, shorting, Douglas range inclusion, Lyapunov block identities, and trace-ideal convergence. These are standard inputs in operator and SPDE analysis \cite{krein1947selfadjoint,anderson1975shorted,douglas1966majorization} \cite{simon2005trace,daprato2014stochastic}. The Cameron--Martin space is used only as a Hilbert subspace equipped with its covariance norm; no differentiable statistical or geometric structure is assumed \cite{bogachev1998gaussian}.
+The operator base is an exponentially stable analytic semigroup with bounded drift perturbations, so dissipative sectorial generators such as $-(-\Delta+\kappa^2)$ fall inside the abstract setup.
 
 The paper has four main contributions:
 \begin{enumerate}
-  \item \textbf{Exact variance normalization.} We identify the block-Lyapunov mechanism that fixes the observed coordinate variance at order $\lambda^{-2}$ with explicit coefficient $\varepsilon_0/2$.
-  \item \textbf{Inverse-free Schur projection.} We define the Schur residual through a variational Cameron--Martin energy problem and prove the $O(\lambda^{-6})$ residual estimate, in the same operator-theoretic regime where compact covariance blocks preclude a bounded Schur inverse.
-  \item \textbf{Galerkin stability.} We prove that finite-dimensional truncations converge to the Hilbert-space residual in trace ideal norm, matching the discretization-independent perspective used in Hilbert-space Gaussian inverse problems \cite{stuart2010inverse,carerelie2024optimal,carerelie2025posterior}.
+  \item \textbf{Canonical normalization.} We identify the block-Lyapunov mechanism that fixes the observed coordinate variance at order $\lambda^{-2}$ with explicit coefficient $\varepsilon_0/2$.
+  \item \textbf{Inverse-free Schur projection.} We identify the residual subtraction with the target-coordinate quadratic form of the shorted-operator variational formula, then prove the $O(\lambda^{-6})$ residual estimate in the same operator-theoretic regime where compact covariance blocks preclude a bounded Schur inverse.
+  \item \textbf{Analytic-semigroup and Galerkin stability.} We work with an analytic semigroup drift base plus bounded perturbations, and prove that finite-dimensional truncations converge to the Hilbert-space residual in trace ideal norm, matching the discretization-independent perspective used in Hilbert-space Gaussian inverse problems \cite{stuart2010inverse,carerelie2024optimal,carerelie2025posterior}.
   \item \textbf{Radon Gaussian conditioning.} For Radon Gaussian laws, we construct the conditional predictor as a measurable Cameron--Martin projection and show that the associated renormalized conditioning functional remains bounded, using regular conditional probabilities and continuous Gaussian disintegration \cite{bogachev1998gaussian,lagatta2013continuous,steinwart2024conditioning}.
 \end{enumerate}
 
 \subsection{Positioning in the literature}
 \label{sec:related}
 
-The paper is closest to four bodies of work.  First, it uses the classical measure-class structure of Gaussian measures, especially the Cameron--Martin theorem and the Feldman--H\'{a}jek dichotomy, as presented in standard references on Gaussian measures \cite{feldman1958equivalence,hajek1958property,bogachev1998gaussian}.  Second, it is adjacent to Bayesian inverse problems and Hilbert-space Gaussian conditioning, where positive-noise posterior formulas, low-rank posterior approximations, and nonlinear observation maps have recently been analyzed without reducing the problem to a finite-dimensional inverse covariance \cite{stuart2010inverse,chen2024gaussian,steinwart2024conditioning,carerelie2024optimal,carerelie2025posterior}.  Third, the variational residual is informed by Schur complements, shorted operators, Douglas range inclusion, and modern complementability theory for block operators \cite{anderson1975shorted,douglas1966majorization,tretter2008spectral,contino2018schur,friedrich2017generalized,hassi2023complementation}.  Fourth, the motivating examples come from stochastic evolution equations and elliptic Gaussian fields, whose stationary covariance operators are compact, trace class, and naturally approximated by Galerkin truncation \cite{daprato2014stochastic,lord2014introduction,simon2005trace}.
+The paper is closest to four bodies of work.  First, it uses the classical measure-class structure of Gaussian measures, especially the Cameron--Martin theorem and the Feldman--H\'{a}jek dichotomy, as presented in standard references on Gaussian measures \cite{feldman1958equivalence,hajek1958property,bogachev1998gaussian}.  Second, it is adjacent to Bayesian inverse problems and Hilbert-space Gaussian conditioning, including the shorted-operator description of Gaussian conditioning on closed subspaces, positive-noise posterior formulas, low-rank posterior approximations, and nonlinear observation maps \cite{owhadi2015conditioning,stuart2010inverse,chen2024gaussian,steinwart2024conditioning,carerelie2024optimal,carerelie2025posterior}.  Third, the variational residual is informed by Schur complements, shorted operators, Douglas range inclusion, and modern complementability theory for block operators \cite{krein1947selfadjoint,anderson1975shorted,douglas1966majorization,tretter2008spectral,contino2018schur,friedrich2017generalized,hassi2023complementation}.  Fourth, the motivating examples come from stochastic evolution equations and elliptic Gaussian fields, where dissipative sectorial generators produce compact trace-class stationary covariances that are naturally approximated by Galerkin truncation \cite{daprato2014stochastic,lord2014introduction,simon2005trace}.
 
 \subsection{Organization of the paper}
 \label{sec:organization}
 
-\Cref{sec:setup} defines the operator model and proves exact variance normalization. \Cref{sec:infdim} establishes the Hilbert-space variational Schur residual. \Cref{sec:gaussian_zero} gives the Radon Gaussian conditional extension and the renormalized conditioning functional. \Cref{sec:spde} gives an elliptic Gaussian-field example. \Cref{sec:discussion} records limitations and extensions, and \Cref{sec:conclusion} concludes. Proofs are given in \Cref{app:block_cumulant_analysis,app:gaussian_lift}; numerical diagnostics and Galerkin verification are given in \Cref{app:experiments}.
+\Cref{sec:setup} defines the operator model and establishes the canonical normalization. \Cref{sec:infdim} establishes the Hilbert-space variational Schur residual. \Cref{sec:gaussian_zero} gives the Radon Gaussian conditional extension and the renormalized conditioning functional. \Cref{sec:spde} gives an elliptic Gaussian-field example. \Cref{sec:discussion} records limitations and extensions, and \Cref{sec:conclusion} concludes. Proofs are given in \Cref{app:block_cumulant_analysis,app:gaussian_lift}; numerical diagnostics and Galerkin verification are given in \Cref{app:experiments}.
 
-\section{Operator Model and Exact Variance Normalization}
+\section{Operator Model and Canonical Normalization}
 \label{sec:setup}
 
 \subsection{Operator Dynamics and Regularized Conditioning}
@@ -163,7 +164,7 @@ To approximate the exact point conditioning $X_k = x_k^*$, we set the incoming t
   \end{equation}
 \end{definition}
 
-\subsection{Exact Variance Normalization}
+\subsection{Canonical Normalization}
 \label{sec:setup:calibration}
 
 The block-decoupled structure under the regularized dynamics yields:
@@ -183,9 +184,9 @@ The target block $kk$ decouples completely from the free coordinates, yielding t
   -2\lambda\Sigma_{\lambda,kk} + d_\lambda = 0 \quad \Longrightarrow \quad \Sigma_{\lambda,kk} = \frac{d_\lambda}{2\lambda}.
 \end{equation}
 
-\begin{proposition}[Exact Variance Normalization]
+\begin{proposition}[Canonical Scaling]
   \label{prop:exact_calibration}
-  To maintain a physical target noise scale $\varepsilon_0 > 0$ independent of the auxiliary parameter $\lambda$ under the singular limit, we define the exact variance normalization condition:
+  To maintain a target noise scale $\varepsilon_0 > 0$ independent of the auxiliary parameter $\lambda$ under the singular limit, we define the canonical scaling condition:
   \begin{equation}
     \lambda^2 \Sigma_{\lambda,kk} \equiv \frac{\varepsilon_0}{2} \quad \text{for all } \lambda > 0,
   \end{equation}
@@ -215,15 +216,15 @@ All subsequent results are stated for this calibrated family.
 
 We state the operator-theoretic assumptions that make the limit passage independent of the Galerkin dimension.
 
-\begin{definition}[Drift Operator with Volterra Perturbation]
+\begin{definition}[Drift Operator with Analytic Base]
   \label{def:drift_operator}
   A drift operator on a separable Hilbert space $\mathcal{H}$ is an operator of the form $\mathcal{A} = \mathcal{A}_0 + \mathcal{K}$, where:
   \begin{enumerate}
-    \item[(i)] $\mathcal{A}_0: \operatorname{dom}(\mathcal{A}_0) \subset \mathcal{H} \to \mathcal{H}$ is a closed, densely defined, dissipative operator that generates a strongly continuous contraction semigroup $(e^{t\mathcal{A}_0})_{t \ge 0}$ on $\mathcal{H}$, satisfying $\|e^{t\mathcal{A}_0}\| \le e^{-\alpha t}$ for some spectral gap $\alpha > 0$.
-    \item[(ii)] $\mathcal{K}: \mathcal{H} \to \mathcal{H}$ is a compact Volterra operator with spectral radius $\rho(\mathcal{K}) = 0$.
-    \item[(iii)] The full operator $\mathcal{A} = \mathcal{A}_0 + \mathcal{K}$ generates a strongly continuous semigroup $(e^{t\mathcal{A}})_{t \ge 0}$ by the bounded perturbation theorem, and this semigroup remains exponentially stable: $\|e^{t\mathcal{A}}\| \le M e^{-\beta t}$ for some $M \ge 1$, $\beta > 0$.
+    \item[(i)] $\mathcal{A}_0: \operatorname{dom}(\mathcal{A}_0) \subset \mathcal{H} \to \mathcal{H}$ is closed, densely defined, and dissipative, and it generates a strongly continuous analytic contraction semigroup $(e^{t\mathcal{A}_0})_{t \ge 0}$ on $\mathcal{H}$ satisfying $\|e^{t\mathcal{A}_0}\| \le e^{-\alpha t}$ for some spectral gap $\alpha > 0$; equivalently, the base operator $-\mathcal{A}_0$ is sectorial of angle $<\pi/2$ in this exponentially stable contraction setting.
+    \item[(ii)] $\mathcal{K}: \mathcal{H} \to \mathcal{H}$ is a bounded linear operator.
+    \item[(iii)] The full operator $\mathcal{A} = \mathcal{A}_0 + \mathcal{K}$, with $\operatorname{dom}(\mathcal{A})=\operatorname{dom}(\mathcal{A}_0)$, generates a strongly continuous analytic semigroup $(e^{t\mathcal{A}})_{t \ge 0}$ by the bounded perturbation theorem, and this semigroup remains exponentially stable: $\|e^{t\mathcal{A}}\| \le M e^{-\beta t}$ for some $M \ge 1$, $\beta > 0$.
   \end{enumerate}
-  In finite dimensions ($\mathcal{H} = \mathbb{R}^n$), $\mathcal{A}_0$ reduces to the Hurwitz drift matrix $A$ and $\mathcal{K} = 0$.
+  In finite dimensions ($\mathcal{H} = \mathbb{R}^n$), this reduces to a decomposition of a Hurwitz drift matrix into an exponentially stable analytic base plus a bounded perturbation.
 \end{definition}
 
 \begin{definition}[Trace-Class Noise and Covariance]
@@ -246,31 +247,31 @@ We state the operator-theoretic assumptions that make the limit passage independ
 \begin{assumption}[Core Analytical Assumptions for Singular Hyperplane Conditioning]
   This work relies on two core analytical assumptions regarding the target-coordinate block decoupling and the outgoing coupling:
   \begin{enumerate}
-    \item[(i)] \textbf{Linear Second-Moment Channel:} \label{assum:linear_second_moment} A centered linear stationary process on $\mathcal{H}=\mathcal{H}_k\oplus \mathcal{H}_I$ has finite second moments and covariance solving \Cref{eq:op_lyapunov}. The block-decoupling constraint zeroes all incoming target drift and cross-noise, so that $\mathcal{A}_{kI}=\mathcal{D}_{kI}=\mathcal{D}_{Ik}=0$ and $\mathcal{A}_{kk}=-\lambda$. The target diffusion $\mathcal{D}_{kk}=\varepsilon_0/\lambda$ is the unique scaling determined by the exact variance normalization (Proposition~\ref{prop:exact_calibration}). The free noise is independent of the local target noise. (Gaussianity is not assumed).
-    \item[(ii)] \textbf{Cameron--Martin Stability of Off-Diagonal Drift Coupling:} \label{assum:cm_stability} Let $Q_0\coloneqq\Sigma_{II}^{(0)}$ denote the free-block covariance produced by the free noise under block decoupling, and let $H_{Q_0}\coloneqq\operatorname{Range}(Q_0^{1/2})$ with the energy norm $|u|_{Q_0}\coloneqq\|Q_0^{-1/2}u\|_{\mathcal{H}_I}$. The outgoing vector $a_{Ik}\coloneqq\mathcal{A}_{Ik}\phi_k$ belongs to $H_{Q_0}$, and $e^{t\mathcal{A}_{II}}$ restricts to a strongly continuous exponentially stable semigroup on $H_{Q_0}$:
+    \item[(i)] \textbf{Linear Second-Moment Channel:} \label{assum:linear_second_moment} A centered linear stationary process on $\mathcal{H}=\mathcal{H}_k\oplus \mathcal{H}_I$ has finite second moments and covariance solving \Cref{eq:op_lyapunov}. The block-decoupling constraint zeroes all incoming target drift and cross-noise, so that $\mathcal{A}_{kI}=\mathcal{D}_{kI}=\mathcal{D}_{Ik}=0$ and $\mathcal{A}_{kk}=-\lambda$. The target diffusion $\mathcal{D}_{kk}=\varepsilon_0/\lambda$ is the unique scaling determined by the canonical normalization (Proposition~\ref{prop:exact_calibration}). The free noise is independent of the local target noise. (Gaussianity is not assumed).
+    \item[(ii)] \textbf{Cameron--Martin Stability of Off-Diagonal Drift Coupling:} \label{assum:cm_stability} Let $Q_0\coloneqq\Sigma_{II}^{(0)}$ denote the free-block covariance produced by the free noise under block decoupling, and let $H_{Q_0}\coloneqq\operatorname{Range}(Q_0^{1/2})$ with the covariance norm $|u|_{Q_0}\coloneqq\|Q_0^{-1/2}u\|_{\mathcal{H}_I}$. The outgoing vector $a_{Ik}\coloneqq\mathcal{A}_{Ik}\phi_k$ belongs to $H_{Q_0}$, and $e^{t\mathcal{A}_{II}}$ restricts to a strongly continuous exponentially stable semigroup on $H_{Q_0}$:
     \begin{equation}
       \|e^{t\mathcal{A}_{II}}\|_{\mathcal{L}(H_{Q_0})} \le M e^{-\omega t},\qquad t\ge0,
     \end{equation}
     for constants $M\ge1$ and $\omega>0$ independent of $\lambda$.
   \end{enumerate}
   \vspace{1mm}
-  \noindent\textit{Intuitive Explanation:} Part (i) states that the regularized dynamics act as a strong localized drift penalization on the target coordinate $X_k$ while isolating it from incoming influences, representing a physical realization of the block-decoupling constraint. Part (ii) requires that the off-diagonal drift coupling $a_{Ik}$ from the target coordinate has finite energy relative to the background fluctuations of the free coordinates. This ensures that target fluctuations propagating downstream do not overload the variance of the infinite-dimensional system.
+  \noindent\textit{Intuitive Explanation:} Part (i) states that the regularized dynamics act as a strong localized drift penalization on the target coordinate $X_k$ while isolating it from incoming influences, giving an operator implementation of the block-decoupling constraint. Part (ii) requires that the off-diagonal drift coupling $a_{Ik}$ from the target coordinate has finite covariance norm relative to the background fluctuations of the free coordinates. This ensures that target fluctuations propagating downstream do not overload the variance of the infinite-dimensional system.
 \end{assumption}
 
-\begin{remark}[Finite-Energy Outgoing Covariance Coupling and Finite-Dimensional Calibration]
+\begin{remark}[Finite-Norm Outgoing Covariance Coupling and Finite-Dimensional Calibration]
   \label{rem:cm_information_flow}
   The membership $a_{Ik}\in H_{Q_0}$ is an admissibility condition,
   not a consequence of the free-block Lyapunov equation alone: an arbitrary
   outgoing vector need not lie in
   $\operatorname{Range}((\Sigma_{II}^{(0)})^{1/2})$.  It says that the
   deterministic channel carrying target fluctuations into the free-block has
-  finite covariance energy relative to the free-noise background.
+  finite covariance norm relative to the free-noise background.
   
-  To understand this condition intuitively, consider a finite-dimensional setting where the free-block state space is $\mathcal{H}_I = \mathbb{R}^{d-1}$ and the free stationary covariance $Q_0 \coloneqq \Sigma_{II}^{(0)}$ is strictly positive-definite. Since $Q_0 \succ 0$, its square root $Q_0^{1/2}$ is invertible, and its range is the entire space $\mathbb{R}^{d-1}$. In this case, the Cameron--Martin space is the full space $H_{Q_0} = \operatorname{Range}(Q_0^{1/2}) = \mathbb{R}^{d-1}$, and the Cameron--Martin energy norm $|u|_{Q_0} = \|Q_0^{-1/2} u\|_2$ is equivalent to the standard Euclidean norm. Consequently, the admissibility condition $a_{Ik} \in H_{Q_0}$ is trivially satisfied for any outgoing vector $a_{Ik} \in \mathbb{R}^{d-1}$.
+  To understand this condition intuitively, consider a finite-dimensional setting where the free-block state space is $\mathcal{H}_I = \mathbb{R}^{d-1}$ and the free stationary covariance $Q_0 \coloneqq \Sigma_{II}^{(0)}$ is strictly positive-definite. Since $Q_0 \succ 0$, its square root $Q_0^{1/2}$ is invertible, and its range is the entire space $\mathbb{R}^{d-1}$. In this case, the Cameron--Martin space is the full space $H_{Q_0} = \operatorname{Range}(Q_0^{1/2}) = \mathbb{R}^{d-1}$, and the Cameron--Martin norm $|u|_{Q_0} = \|Q_0^{-1/2} u\|_2$ is equivalent to the standard Euclidean norm. Consequently, the admissibility condition $a_{Ik} \in H_{Q_0}$ is trivially satisfied for any outgoing vector $a_{Ik} \in \mathbb{R}^{d-1}$.
   
-  However, if some direction in the free coordinates is noise-free under block decoupling (meaning $Q_0$ is positive semidefinite but singular), $H_{Q_0}$ becomes a proper subspace of $\mathbb{R}^{d-1}$. In this case, the condition $a_{Ik} \in H_{Q_0}$ requires that the leakage vector $a_{Ik}$ has no component in the null space of $Q_0$. Physically, it prevents the target coordinate from leaking fluctuations into a downstream coordinate that has zero background noise, which would otherwise result in infinite relative covariance energy.
+  However, if some direction in the free coordinates is noise-free under block decoupling (meaning $Q_0$ is positive semidefinite but singular), $H_{Q_0}$ becomes a proper subspace of $\mathbb{R}^{d-1}$. In this case, the condition $a_{Ik} \in H_{Q_0}$ requires that the leakage vector $a_{Ik}$ has no component in the null space of $Q_0$. Equivalently, it prevents the target coordinate from leaking fluctuations into a downstream coordinate that has zero background noise, which would otherwise result in an infinite relative covariance norm.
   
-  In infinite dimensions, $\Sigma_{II}^{(0)}$ is trace-class and compact, so its eigenvalues decay to zero, making $\operatorname{Range}((\Sigma_{II}^{(0)})^{1/2})$ a dense but strictly proper subspace of $\mathcal{H}_I$. The condition $a_{Ik} \in H_{Q_0}$ requires the off-diagonal drift coupling coefficients to decay sufficiently fast relative to the background noise eigenvalues to keep the relative energy finite.
+  In infinite dimensions, $\Sigma_{II}^{(0)}$ is trace-class and compact, so its eigenvalues decay to zero, making $\operatorname{Range}((\Sigma_{II}^{(0)})^{1/2})$ a dense but strictly proper subspace of $\mathcal{H}_I$. The condition $a_{Ik} \in H_{Q_0}$ requires the off-diagonal drift coupling coefficients to decay sufficiently fast relative to the background noise eigenvalues to keep the relative covariance norm finite.
   
   Under this assumption, invariance and exponential stability on $H_{Q_0}$ imply:
   \begin{equation}
@@ -285,9 +286,9 @@ We state the operator-theoretic assumptions that make the limit passage independ
 
 \begin{remark}[Constant Dependency in LMMSE Expansion]
   Consequently, the exact leakage cross-covariance
-  $\Sigma_{\lambda,Ik}$ has finite Cameron--Martin energy norm and is
+  $\Sigma_{\lambda,Ik}$ has finite Cameron--Martin norm and is
   $O(\lambda^{-3})$ in that norm.  This is a condition on the deterministic
-  response and covariance energy; it does not assert that infinite-dimensional
+  response in the covariance norm; it does not assert that infinite-dimensional
   Gaussian sample paths lie in $H_{Q_0}$ almost surely.
 \end{remark}
 
@@ -297,12 +298,12 @@ We state the operator-theoretic assumptions that make the limit passage independ
 \section{Hilbert-Space Variational Schur Residual}
 \label{sec:infdim}
 
-\subsection{Variational Schur Subtraction and Energy Bounds}
+\subsection{Variational Schur Subtraction and Norm Bounds}
 \label{sec:infdim:variational}
 
-In finite dimensions, the Schur complement of the bulk covariance block $\Sigma_{II}$ is defined as $S_k \coloneqq \Sigma_{kk} - \Sigma_{kI} \Sigma_{II}^{-1} \Sigma_{Ik}$. Under stable and controllable dynamics, the bulk covariance $\Sigma_{II}$ is positive-definite and invertible, so the subtraction is well-defined. However, in infinite dimensions, the stationary covariance operator is trace-class and compact, meaning its restriction $\Sigma_{\lambda,II}$ lacks a bounded global inverse. To lift the Schur complement to infinite dimensions, we formulate the projection residual directly using covariance-energy forms.
+In finite dimensions, the Schur complement of the bulk covariance block $\Sigma_{II}$ is defined as $S_k \coloneqq \Sigma_{kk} - \Sigma_{kI} \Sigma_{II}^{-1} \Sigma_{Ik}$. Under stable and controllable dynamics, the bulk covariance $\Sigma_{II}$ is positive-definite and invertible, so the subtraction is well-defined. However, in infinite dimensions, the stationary covariance operator is trace-class and compact, meaning its restriction $\Sigma_{\lambda,II}$ lacks a bounded global inverse. The appropriate operator-theoretic replacement is the shorted operator: for a non-negative block operator, the Schur complement is recovered as the quadratic form of the short to the target subspace, with the inverse term replaced by a variational supremum \cite{krein1947selfadjoint,anderson1975shorted}. To lift the Schur complement to infinite dimensions in the present singular-conditioning problem, we formulate the projection residual directly using covariance-norm forms.
 
-Let $Q_0 \coloneqq \Sigma_{II}^{(0)}$ denote the fixed background bulk covariance under full decoupling ($\lambda = \infty$). We define the core Cameron--Martin space $H_{Q_0} \coloneqq \operatorname{Range}(Q_0^{1/2})$ and the core energy norm:
+Let $Q_0 \coloneqq \Sigma_{II}^{(0)}$ denote the fixed background bulk covariance under full decoupling ($\lambda = \infty$). We define the core Cameron--Martin space $H_{Q_0} \coloneqq \operatorname{Range}(Q_0^{1/2})$ and the core covariance norm:
 \begin{equation}
   |u|_{Q_0} \coloneqq \|Q_0^{-1/2} u\| \quad \text{for all } u \in H_{Q_0}.
 \end{equation}
@@ -312,9 +313,9 @@ Under this assumption, the exact cross-covariance resolvent formula (derived in 
 \begin{equation}
   \Sigma_{\lambda,Ik} = \frac{\varepsilon_0}{2\lambda^2} (\lambda I - \mathcal{A}_{II})^{-1} a_{Ik}.
 \end{equation}
-This resolvent response yields the Cameron--Martin energy bound on the cross-covariance block:
+This resolvent response yields the Cameron--Martin norm bound on the cross-covariance block:
 \begin{equation}
-  \label{eq:cross_energy_bound}
+  \label{eq:cross_norm_bound}
   |\Sigma_{\lambda,Ik}|_{Q_0} = O(\lambda^{-3}) \quad \text{as } \lambda \to \infty.
 \end{equation}
 
@@ -323,6 +324,14 @@ To define the infinite-dimensional projection residual, we introduce the variati
   \label{eq:variational_schur_subtraction}
   R_\lambda \coloneqq \sup_{\langle u, \Sigma_{\lambda,II} u \rangle > 0} \frac{|\langle u, \Sigma_{\lambda,Ik} \rangle|^2}{\langle u, \Sigma_{\lambda,II} u \rangle}.
 \end{equation}
+Equivalently, if $\Sigma_\lambda$ is viewed as a non-negative block operator on $\mathbb{C}\phi_k\oplus\mathcal{H}_I$, then \eqref{eq:variational_schur_subtraction} is the one-dimensional Anderson--Trapp shorted-operator subtraction, namely
+\begin{equation}
+  \label{eq:shorted_operator_scalar}
+  \big\langle \phi_k,\mathcal{S}_{\mathbb{C}\phi_k}(\Sigma_\lambda)\phi_k\big\rangle
+  =\Sigma_{\lambda,kk}-R_\lambda.
+\end{equation}
+The restriction to vectors with $\langle u,\Sigma_{\lambda,II}u\rangle>0$ simply removes null directions of the denominator; for a non-negative block operator, such directions do not change the supremum. Thus $R_\lambda$ is not an ambient inverse computation but the covariance-norm contribution removed by shorting to the target coordinate \cite{anderson1975shorted,owhadi2015conditioning}.
+
 Since the target noise channel and bulk noise channel are independent, the bulk state decomposes into independent background and target-driven components, meaning the bulk covariance dominates the background covariance ($\Sigma_{\lambda,II} = Q_0 + \operatorname{Cov}(Y_I) \succeq Q_0$). Douglas range inclusion then guarantees that the variational subtraction is bounded:
 \begin{equation}
   0 \le R_\lambda \le |\Sigma_{\lambda,Ik}|_{Q_0}^2 = O(\lambda^{-6}).
@@ -414,9 +423,9 @@ By selecting the weakly continuous version of the conditional law at the single 
 \subsection{Global-Inverse-Free Measurable Predictor}
 \label{sec:gaussian:predictor}
 
-Let $C_\lambda \coloneqq \Sigma_{\lambda,II}$ denote the Gaussian bulk covariance operator on $\mathcal{H}_I$. Because $C_\lambda$ is trace-class and compact, it lacks a bounded global inverse. We define the bulk Cameron--Martin space $H_{C_\lambda} \coloneqq \operatorname{Range}(C_\lambda^{1/2})$ and the corresponding energy norm.
+Let $C_\lambda \coloneqq \Sigma_{\lambda,II}$ denote the Gaussian bulk covariance operator on $\mathcal{H}_I$. Because $C_\lambda$ is trace-class and compact, it lacks a bounded global inverse. We define the bulk Cameron--Martin space $H_{C_\lambda} \coloneqq \operatorname{Range}(C_\lambda^{1/2})$ and the corresponding covariance norm.
 
-The leakage cross-covariance vector satisfies $\Sigma_{\lambda,Ik} \in H_{C_\lambda}$ with energy norm $\|\Sigma_{\lambda,Ik}\|_{H_{C_\lambda}} = O(\lambda^{-3})$. This range inclusion allows us to define the conditional predictor $\mu_{k|I}(X_I) \coloneqq \E[X_k \mid X_I]$ as a measurable Wiener functional:
+The leakage cross-covariance vector satisfies $\Sigma_{\lambda,Ik} \in H_{C_\lambda}$ with norm $\|\Sigma_{\lambda,Ik}\|_{H_{C_\lambda}} = O(\lambda^{-3})$. This range inclusion allows us to define the conditional predictor $\mu_{k|I}(X_I) \coloneqq \E[X_k \mid X_I]$ as a measurable Wiener functional:
 \begin{equation}
   \mu_{k|I}(X_I) = m_{\lambda,k} + W_{\Sigma_{\lambda,Ik}}(X_I - m_{\lambda,I}),
 \end{equation}
@@ -555,7 +564,7 @@ Let
 \[
   L=-\frac{d^2}{dx^2}+\kappa^2
 \]
-on $L^2(0,1)$ with Dirichlet boundary conditions and $\kappa>0$. The inverse covariance
+on $L^2(0,1)$ with Dirichlet boundary conditions and $\kappa>0$. Then $\mathcal{A}_0=-L$ with domain $H^2(0,1)\cap H_0^1(0,1)$ is dissipative, $L$ is positive self-adjoint and sectorial, and $e^{-tL}$ is an exponentially stable analytic contraction semigroup. The inverse covariance
 \[
   Q_0=L^{-1}
 \]
@@ -563,21 +572,21 @@ is compact, positive, self-adjoint, and trace class. With eigenfunctions $e_j(x)
 \[
   q_j=(\pi^2j^2+\kappa^2)^{-1}.
 \]
-Thus $Q_0$ is a typical infinite-dimensional covariance operator: it is compact and trace class, has no bounded inverse on the ambient space, and carries its inverse only as a Cameron--Martin energy form \cite{bogachev1998gaussian,simon2005trace}.
+Thus $Q_0$ is a typical infinite-dimensional covariance operator: it is compact and trace class, has no bounded inverse on the ambient space, and carries its inverse only as a Cameron--Martin quadratic form \cite{bogachev1998gaussian,simon2005trace}.
 
-\subsection{Cameron--Martin range and covariance energy}
+\subsection{Cameron--Martin range and covariance norm}
 
 The Cameron--Martin space associated with $Q_0$ is
 \[
   H_{Q_0}=\operatorname{Range}(Q_0^{1/2})=H_0^1(0,1),
 \]
-with equivalent energy norm
+with equivalent covariance norm
 \[
   \|h\|_{Q_0}^2
   =\langle h,Lh\rangle_{L^2}
   =\int_0^1 \bigl(|h'(x)|^2+\kappa^2|h(x)|^2\bigr)\,dx.
 \]
-This identifies the variational Schur projection in a familiar Sobolev-energy form, as in the standard covariance-energy representation of Gaussian Hilbert priors \cite{bogachev1998gaussian,stuart2010inverse}. The covariance inverse does not act as a bounded operator on $L^2(0,1)$; it acts only through the energy form on its Cameron--Martin domain.
+This identifies the variational Schur projection in a Sobolev quadratic form, as in the standard covariance-norm representation of Gaussian Hilbert priors \cite{bogachev1998gaussian,stuart2010inverse}. The covariance inverse does not act as a bounded operator on $L^2(0,1)$; it acts only through this quadratic form on its Cameron--Martin domain.
 
 \subsection{Spectral sensor conditioning}
 
@@ -594,14 +603,14 @@ A regularized restoring drift on this coordinate produces the exact normalizatio
   \Sigma_{\lambda,kk}=\frac{\varepsilon_0}{2\lambda^2}-R_\lambda,
   \qquad R_\lambda=O(\lambda^{-6}),
 \]
-under the block assumptions of \Cref{sec:infdim}. Off-diagonal bounded perturbations of the drift operator generate the cross-covariance vector entering the variational Schur residual. The resulting subtraction is evaluated by the Cameron--Martin energy form above, not by a global inverse on $L^2(0,1)$.
+under the block assumptions of \Cref{sec:infdim}. Off-diagonal bounded perturbations of the drift operator generate the cross-covariance vector entering the variational Schur residual. The resulting subtraction is evaluated by the Cameron--Martin quadratic form above, not by a global inverse on $L^2(0,1)$.
 
-This example shows that the abstract theorem applies to a genuine infinite-dimensional Gaussian field: the residual is controlled by a Sobolev energy on $H_0^1(0,1)$ while the ambient covariance remains compact and non-invertible.
+This example shows that the abstract theorem applies to an infinite-dimensional Gaussian field: the residual is controlled by a Sobolev norm on $H_0^1(0,1)$ while the ambient covariance remains compact and non-invertible.
 
 \section{Discussion}
 \label{sec:discussion}
 
-We have shown that singular Gaussian coordinate conditioning in a separable Hilbert space admits an inverse-free Schur normal form.  The main obstruction is the absence of a bounded inverse for compact covariance blocks.  The variational Cameron--Martin projection is the target-coordinate shorted-operator subtraction evaluated in the covariance-energy scale, and it yields the residual estimate needed for the hard-conditioning limit.  The scalar nature of the target coordinate is essential to the present proof.  Three extensions mark the boundary between the theorem proved here and a genuinely finite-rank conditioning theory.
+We have shown that singular Gaussian coordinate conditioning in a separable Hilbert space admits an inverse-free Schur normal form.  The main obstruction is the absence of a bounded inverse for compact covariance blocks.  The variational Cameron--Martin projection is the target-coordinate shorted-operator subtraction evaluated in the covariance-norm scale, and it yields the residual estimate needed for the hard-conditioning limit.  The scalar nature of the target coordinate is essential to the present proof.  Three extensions mark the boundary between the theorem proved here and a genuinely finite-rank conditioning theory.
 
 \subsection{Matrix algebraic extension}
 \label{sec:discussion:matrix-extension}
@@ -667,7 +676,7 @@ The natural formulation is to replace the coordinate projection $\Pi_k$ by a fin
 \[
   \mathcal H=E\oplus E^\perp,
 \]
-rather than relative to a prior eigenbasis.  Misalignment affects both sides of the analysis.  On the algebraic side, the target Lyapunov block becomes an $m\times m$ equation with nontrivial cross-channel covariance.  On the analytic side, the outgoing coupling from $E$ into $E^\perp$ must satisfy a Cameron--Martin admissibility condition relative to the free covariance on $E^\perp$.  The present theorem treats the aligned rank-one case in which these conditions collapse to a scalar normalization and a single covariance-energy supremum.  The general misaligned finite-rank case should be viewed as a shorted-operator and matrix-Lyapunov extension of the same mechanism, not as a separate finite-dimensional Schur-complement calculation.
+rather than relative to a prior eigenbasis.  Misalignment affects both sides of the analysis.  On the algebraic side, the target Lyapunov block becomes an $m\times m$ equation with nontrivial cross-channel covariance.  On the analytic side, the outgoing coupling from $E$ into $E^\perp$ must satisfy a Cameron--Martin admissibility condition relative to the free covariance on $E^\perp$.  The present theorem treats the aligned rank-one case in which these conditions collapse to a scalar normalization and a single covariance-norm supremum.  The general misaligned finite-rank case should be viewed as a shorted-operator and matrix-Lyapunov extension of the same mechanism, not as a separate finite-dimensional Schur-complement calculation.
 
 The result is therefore deliberately limited to covariance and Gaussian-conditioning questions in the rank-one aligned setting.  It does not assert a general non-Gaussian conditioning theory.  For non-Gaussian stationary processes, the projection residual $S_{k,\lambda}=\varepsilon_0/(2\lambda^2)-R_\lambda$ still has a second-moment interpretation, but Radon disintegration, finite-part functionals, and measure-class behavior require separate hypotheses \cite{bogachev2007measure,kallenberg2021foundations}.  Dynamical relaxation after conditioning, or transport distances between post-conditioning laws, belongs to a different problem.  The present contribution is the operator-theoretic construction of the singular Gaussian conditioning residual itself.
 
@@ -677,7 +686,7 @@ The result is therefore deliberately limited to covariance and Gaussian-conditio
 \section{Conclusion}
 \label{sec:conclusion}
 
-We established a Hilbert-space framework for singular coordinate conditioning of Gaussian measures. The central object is an inverse-free variational Schur projection on the Cameron--Martin range. It gives exact variance normalization, an $O(\lambda^{-6})$ residual estimate, Galerkin stability, and a Radon Gaussian conditioning statement. The elliptic field example shows that the assumptions are natural for trace-class covariance operators arising from stochastic evolution equations and elliptic Gaussian priors \cite{daprato2014stochastic,lord2014introduction,stuart2010inverse}.
+We established a Hilbert-space framework for singular coordinate conditioning of Gaussian measures. The central object is an inverse-free variational Schur projection on the Cameron--Martin range, equivalently the one-dimensional target-coordinate form of the shorted-operator subtraction. It gives canonical normalization, an $O(\lambda^{-6})$ residual estimate, Galerkin stability, and a Radon Gaussian conditioning statement. The elliptic field example shows that the assumptions are natural for trace-class covariance operators arising from stochastic evolution equations and elliptic Gaussian priors \cite{daprato2014stochastic,lord2014introduction,stuart2010inverse}.
 
 \section*{Declaration of Generative AI and AI-Assisted Technologies in the Manuscript Preparation Process}
 

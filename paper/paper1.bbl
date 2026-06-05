@@ -120,6 +120,11 @@ O. Kallenberg.
 \newblock \emph{Foundations of Modern Probability}.
 \newblock 3rd ed., Springer, 2021.
 
+\bibitem{krein1947selfadjoint}
+M. G. Krein.
+\newblock The theory of self-adjoint extensions of semi-bounded Hermitian transformations and its applications. I.
+\newblock \emph{Matematicheskii Sbornik}, 20(62):431--495, 1947.
+
 \bibitem{kolesnikov2006mosco}
 A. V. Kolesnikov.
 \newblock Mosco convergence of Dirichlet forms in infinite-dimensional spaces.
@@ -134,6 +139,11 @@ T. LaGatta.
 G. J. Lord, C. E. Powell, and T. Shardlow.
 \newblock \emph{An Introduction to Computational Stochastic PDEs}.
 \newblock Cambridge University Press, 2014.
+
+\bibitem{owhadi2015conditioning}
+H. Owhadi and C. Scovel.
+\newblock Conditioning Gaussian measure on Hilbert space.
+\newblock arXiv:1506.04208, 2015.
 
 \bibitem{otto2001geometry}
 F. Otto.
