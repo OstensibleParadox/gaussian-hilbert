@@ -443,7 +443,71 @@ Although the joint KL divergence diverges under the exact conditioning, we can d
   This represents the finite part of the joint KL divergence under the conditional normalization scheme, where the Dirac and Gaussian normalization singularities are subtracted.
 \end{definition}
 
-The finite part is not claimed to be a canonical KL divergence between mutually singular measures; it is the finite part associated with the Dirac-mollification and conditional-normalization scheme above.
+\paragraph{Weak scheme-independence.}
+For an evidence level $t\in\mathbb{R}$, write $\mu_\lambda^t$ for the weakly continuous conditional law from \Cref{app:gaussian_lift} and set
+\[
+  \mathfrak{J}_\lambda(t)\coloneqq
+  \mathfrak{J}_\lambda(\mu_\lambda^t;\mu_\lambda).
+\]
+Then, for any two evidence levels $t_1,t_2$ for which the finite part is defined,
+\begin{equation}
+  \label{eq:weak_scheme_independence}
+  \mathfrak{J}_\lambda(t_2)-\mathfrak{J}_\lambda(t_1)
+  =
+  \frac{(t_2-m_{\lambda,k})^2-(t_1-m_{\lambda,k})^2}
+       {2\Sigma_{\lambda,kk}}.
+\end{equation}
+In the calibrated scaling $\Sigma_{\lambda,kk}=\varepsilon_0/(2\lambda^2)$, if
+$b_i=\lambda(m_{\lambda,k}-t_i)$, this becomes
+\[
+  \mathfrak{J}_\lambda(t_2)-\mathfrak{J}_\lambda(t_1)
+  =
+  \frac{b_2^2-b_1^2}{\varepsilon_0}.
+\]
+\begin{proof}
+Let $\Delta_t\coloneqq t-m_{\lambda,k}$ and
+\[
+  \rho_\lambda
+  \coloneqq
+  \frac{\|\Sigma_{\lambda,Ik}\|_{H_{C_\lambda}}^2}{\Sigma_{\lambda,kk}}
+  =
+  1-\frac{S_{k,\lambda}}{\Sigma_{\lambda,kk}}.
+\]
+The Gaussian entropy computation in \Cref{app:gaussian_lift} gives
+\[
+  \KL(\mu_{\lambda,I}^t\parallel\mu_{\lambda,I})
+  =
+  \frac{1}{2}\frac{\Delta_t^2}{\Sigma_{\lambda,kk}}\rho_\lambda
+  -\frac{1}{2}\log(1-\rho_\lambda)-\frac{1}{2}\rho_\lambda .
+\]
+The conditional-residual term in \eqref{eq:unified_action} is
+\[
+  \frac{1}{2S_{k,\lambda}}
+  \E_{\mu_\lambda^t}\!\left[
+    (X_k-\mu_{k|I}(X_I))^2
+  \right]
+  =
+  \frac{1}{2}\rho_\lambda
+  +
+  \frac{1}{2}\frac{\Delta_t^2}{\Sigma_{\lambda,kk}}(1-\rho_\lambda).
+\]
+Adding these two identities cancels the $\rho_\lambda/2$ terms and yields
+\[
+  \mathfrak{J}_\lambda(t)
+  =
+  \frac{(t-m_{\lambda,k})^2}{2\Sigma_{\lambda,kk}}
+  -\frac{1}{2}\log(1-\rho_\lambda).
+\]
+The logarithmic term depends on the reference covariance and the conditioning
+scale, but not on the evidence value $t$. Hence it cancels in the difference
+between $t_2$ and $t_1$, proving \eqref{eq:weak_scheme_independence}. The same
+argument shows weak independence from the mollifying kernel: replacing the
+Gaussian Dirac mollifier in \Cref{prop:mollification_limit} by any centered
+approximate identity with finite second moment changes the extracted finite
+part only by an additive term depending on the kernel, $\lambda$, and
+$S_{k,\lambda}$, not on $t$. Therefore all evidence differences
+$\Delta\mathfrak{J}_\lambda$ are kernel-independent.
+\end{proof}
 
 \subsection{Gaussian Main Theorem}
 \label{sec:gaussian:theorem}
@@ -537,11 +601,75 @@ This example shows that the abstract theorem applies to a genuine infinite-dimen
 \section{Discussion}
 \label{sec:discussion}
 
-We have shown that singular Gaussian coordinate conditioning in a separable Hilbert space admits an inverse-free Schur normal form. The main obstruction is the absence of a bounded inverse for compact covariance blocks. The variational Cameron--Martin projection replaces that inverse and yields the residual estimate needed for the hard-conditioning limit.
+We have shown that singular Gaussian coordinate conditioning in a separable Hilbert space admits an inverse-free Schur normal form.  The main obstruction is the absence of a bounded inverse for compact covariance blocks.  The variational Cameron--Martin projection is the target-coordinate shorted-operator subtraction evaluated in the covariance-energy scale, and it yields the residual estimate needed for the hard-conditioning limit.  The scalar nature of the target coordinate is essential to the present proof.  Three extensions mark the boundary between the theorem proved here and a genuinely finite-rank conditioning theory.
 
-The result is deliberately limited to covariance and Gaussian-conditioning questions. It does not assert a general non-Gaussian conditioning theory. For non-Gaussian stationary processes, the projection residual $S_{k,\lambda}=\varepsilon_0/(2\lambda^2)-R_\lambda$ still has a second-moment interpretation, but Radon disintegration, finite-part functionals, and measure-class behavior require separate hypotheses \cite{bogachev2007measure,kallenberg2021foundations}.
+\subsection{Matrix algebraic extension}
+\label{sec:discussion:matrix-extension}
 
-A second limitation is that the paper studies a static conditioning limit. Dynamical relaxation after conditioning, or transport distances between post-conditioning laws, belongs to a different problem. The present contribution is the operator-theoretic construction of the singular Gaussian conditioning residual itself.
+For an $m$-dimensional observed subspace $E=\operatorname{span}\{\phi_1,\ldots,\phi_m\}$, the scalar target block $\Sigma_{\lambda,kk}$ is replaced by the covariance matrix $\Sigma_{\lambda,EE}\in\mathbb{R}^{m\times m}$.  The scalar identity
+\[
+  -2\lambda\Sigma_{\lambda,kk}+d_\lambda=0
+\]
+then becomes a finite-dimensional Lyapunov sub-problem
+\begin{equation}
+  \label{eq:discussion_matrix_lyapunov}
+  A_{\lambda,E}\Sigma_{\lambda,EE}
+  +\Sigma_{\lambda,EE}A_{\lambda,E}^{*}
+  +D_{\lambda,E}=0,
+\end{equation}
+where $A_{\lambda,E}$ is the regularized drift restricted to the observed channels and $D_{\lambda,E}\ge0$ is the corresponding local diffusion matrix.  In the isotropic case $A_{\lambda,E}=-\lambda I_E$ and $D_{\lambda,E}=(\varepsilon_0/\lambda)I_E$, this reduces to
+\[
+  \Sigma_{\lambda,EE}=\frac{\varepsilon_0}{2\lambda^2}I_E,
+\]
+which is the direct matrix analogue of the scalar normalization in \Cref{prop:exact_calibration}.
+
+The anisotropic case is not a notational variant.  If the channels have rates $\lambda_1,\ldots,\lambda_m$, or if $A_{\lambda,E}$ has non-normal off-diagonal structure, then \eqref{eq:discussion_matrix_lyapunov} couples the target variances and cross-covariances.  A finite nonzero Gaussian finite-part limit no longer requires a single scalar relation $d_\lambda=\varepsilon_0/\lambda$; it requires the matrix signal covariance of the deterministic displacement to balance $\Sigma_{\lambda,EE}$ as a positive definite quadratic form.  Thus the scalar calibration becomes a matrix Lyapunov balancing problem, with possible channel-dependent diffusion rates and orientation-dependent limiting residuals.
+
+\subsection{Operator-valued residuals}
+\label{sec:discussion:operator-valued-residuals}
+
+In the scalar theorem, the Schur subtraction is the number
+\[
+  R_\lambda
+  =\sup_{\langle u,\Sigma_{\lambda,II}u\rangle>0}
+  \frac{|\langle u,\Sigma_{\lambda,Ik}\rangle|^2}
+       {\langle u,\Sigma_{\lambda,II}u\rangle},
+\]
+and the target-coordinate shorted form is
+\[
+  \langle \phi_k,\mathcal S_{\mathbb C\phi_k}(\Sigma_\lambda)\phi_k\rangle
+  =\Sigma_{\lambda,kk}-R_\lambda.
+\]
+For an $m$-dimensional target space $E$, the residual must instead be a positive-semidefinite matrix or, intrinsically, a positive operator on $E$.  Formally the finite-dimensional expression is
+\begin{equation}
+  \label{eq:discussion_matrix_residual}
+  R_{\lambda,E}
+  =\Sigma_{\lambda,EI}\Sigma_{\lambda,II}^{\dagger}\Sigma_{\lambda,IE},
+\end{equation}
+where the dagger is only mnemonic in the infinite-dimensional setting.  Since $\Sigma_{\lambda,II}$ is compact and has no bounded global inverse, \eqref{eq:discussion_matrix_residual} must be replaced by the shorted-operator construction on the subspace $E$.  Equivalently, $R_{\lambda,E}$ is the positive-semidefinite operator determined by the quadratic forms
+\begin{equation}
+  \label{eq:discussion_operator_residual_form}
+  \langle v,R_{\lambda,E}v\rangle_E
+  =
+  \sup_{\langle u,\Sigma_{\lambda,II}u\rangle>0}
+  \frac{|\langle u,\Sigma_{\lambda,IE}v\rangle|^2}
+       {\langle u,\Sigma_{\lambda,II}u\rangle},
+  \qquad v\in E.
+\end{equation}
+The scalar Eq.~\eqref{eq:variational_schur_subtraction} is the case $E=\mathbb C\phi_k$.  A full finite-rank extension must prove convergence of the operator-valued residual $R_{\lambda,E}$ in a matrix norm or in the Loewner order, not merely convergence of a single quadratic form.  This is precisely where shorted-operator theory supplies the correct replacement for the inverse Schur complement \cite{krein1947selfadjoint,anderson1975shorted,owhadi2015conditioning}.
+
+\subsection{General observation operators and misalignment}
+\label{sec:discussion:misalignment}
+
+The proof in this paper uses a block decomposition aligned with a single observed coordinate.  Many observation models are not aligned with the eigenfunctions of the prior covariance.  A finite-rank observation operator $L:\mathcal H\to\mathbb R^m$ selects the subspace generated by the representers of the observation functionals, while the prior covariance diagonalizes in its own spectral basis.  Unless these two structures commute, the target--free split is not an eigenbasis split, and the covariance blocks acquire additional off-diagonal terms.
+
+The natural formulation is to replace the coordinate projection $\Pi_k$ by a finite-rank observation projection $P_E$, where $E$ is the closed span of the covariance representers associated with $L$.  The regularized drift and diffusion should then be written relative to
+\[
+  \mathcal H=E\oplus E^\perp,
+\]
+rather than relative to a prior eigenbasis.  Misalignment affects both sides of the analysis.  On the algebraic side, the target Lyapunov block becomes an $m\times m$ equation with nontrivial cross-channel covariance.  On the analytic side, the outgoing coupling from $E$ into $E^\perp$ must satisfy a Cameron--Martin admissibility condition relative to the free covariance on $E^\perp$.  The present theorem treats the aligned rank-one case in which these conditions collapse to a scalar normalization and a single covariance-energy supremum.  The general misaligned finite-rank case should be viewed as a shorted-operator and matrix-Lyapunov extension of the same mechanism, not as a separate finite-dimensional Schur-complement calculation.
+
+The result is therefore deliberately limited to covariance and Gaussian-conditioning questions in the rank-one aligned setting.  It does not assert a general non-Gaussian conditioning theory.  For non-Gaussian stationary processes, the projection residual $S_{k,\lambda}=\varepsilon_0/(2\lambda^2)-R_\lambda$ still has a second-moment interpretation, but Radon disintegration, finite-part functionals, and measure-class behavior require separate hypotheses \cite{bogachev2007measure,kallenberg2021foundations}.  Dynamical relaxation after conditioning, or transport distances between post-conditioning laws, belongs to a different problem.  The present contribution is the operator-theoretic construction of the singular Gaussian conditioning residual itself.
 
 % ============================================================
 %  \S6  CONCLUSION
@@ -559,14 +687,12 @@ During the preparation of this work, the author(s) used Google DeepMind's Antigr
 %  REFERENCES
 % ============================================================
 \bibliographystyle{amsplain}
-% For arXiv: include .bbl directly; for local builds, uncomment the next line and comment out \input
-\bibliography{references}
-% \input{paper1.bbl}  % For arXiv: comment out \bibliography and uncomment this
+\input{paper1.bbl}
 
 % ============================================================
 %  APPENDIX
 % ============================================================
 \appendix
 
-\input{appendix_merged_hard_analysis}
+\input{paper1_appendix}
 \end{document}
