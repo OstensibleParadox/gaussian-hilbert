@@ -1,7 +1,9 @@
-\section{Exact Block and Variational Schur Analysis}
+\section{Exact Block and Variational Shorting Analysis}
 \label{app:block_cumulant_analysis}
 
-This appendix derives the linear invariants from the block Lyapunov equation and proves the strong convergence of Galerkin truncations. We do not use Laurent series or covariance inverses.
+This appendix derives the linear invariants from the block Lyapunov equation
+and proves convergence of the variational Galerkin shorting scheme. We do not
+use Laurent series or bounded ambient covariance inverses.
 
 \subsection{Exact Target Covariance Block}
 
@@ -47,9 +49,9 @@ for all $u \in H_{Q_0}$. It follows from \eqref{eq:SigmaIk_exact_vector} that th
  \label{eq:cross_energy}
 \end{equation}
 
-\subsection{Variational Schur Residual Proof}
+\subsection{Variational Shorted Residual Proof}
 
-We define the variational Schur subtraction $R_\lambda$:
+We define the Anderson--Trapp variational shorted subtraction $R_\lambda$:
 \begin{equation}
  R_\lambda = \sup_{\langle u,\Sigma_{\lambda,II}u\rangle>0} \frac{1}{\langle u,\Sigma_{\lambda,II}u\rangle} |\langle u,\Sigma_{\lambda,Ik}\rangle|^2.
  \label{eq:schur_variational}
@@ -63,14 +65,17 @@ The projection residual satisfies $S_{k,\lambda} = \Sigma_{\lambda,kk} - R_\lamb
  S_{k,\lambda} = \frac{\varepsilon_0}{2\lambda^2} - O(\lambda^{-6}),\qquad m_2^{\mathrm{Schur}}=\frac{\varepsilon_0}{2},
  \label{eq:Schur_asympt}
 \end{equation}
-which implies the inverse scaling:
+which implies the reciprocal scaling:
 \begin{equation}
   S_{k,\lambda}^{-1} = \frac{2}{\varepsilon_0}\lambda^2 + O(\lambda^{-2}).
 \end{equation}
 
-\subsection{Galerkin Truncation Convergence}
+\subsection{Galerkin Variational Truncation Convergence}
 
-Here we prove Proposition~\ref{prop:galerkin_consistency}.  The proof has two layers: a dynamic Bochner-integral argument that gives trace-norm convergence of the truncated covariance operators, followed by a spectral Schur approximation that yields monotone convergence and an explicit rate.
+Here we prove Proposition~\ref{prop:galerkin_consistency}.  The proof has two
+layers: a dynamic Bochner-integral argument that gives trace-norm convergence
+of the truncated covariance operators, followed by variational shorting over
+nested Galerkin test spaces.
 
 \begin{proposition}[Exact Dynamic Galerkin Convergence Support]
 \label{prop:dynamic_galerkin}
@@ -182,13 +187,13 @@ and hence
 Multiplying by $\lambda^2$ and letting $\lambda\to\infty$ gives $m_2^{\mathrm{Schur},(n)}=\varepsilon_0/2$.
 \end{proof}
 
-\begin{lemma}[Spectral Schur Compression Support]
+\begin{lemma}[Spectral Rayleigh--Ritz Shorting Support]
 \label{lem:spectral_schur_support}
 Fix $\lambda>0$ and let $C_\lambda:=\Sigma_{\lambda,II}$ denote the bulk covariance operator on $\mathcal{H}_I$.  Let $\{(\sigma_j,e_j)\}_{j=1}^\infty$ be the eigenpairs of $C_\lambda$ with $\sigma_1\ge\sigma_2\ge\dots>0$.  Define the spectral compression projectors
 \begin{equation}
   P_n^\lambda:=\sum_{j=1}^{n}e_j\otimes e_j,\qquad n\ge1.
 \end{equation}
-Under Assumption~\ref{assum:cm_stability} (Cameron--Martin stability), the leakage vector satisfies $\Sigma_{\lambda,Ik}\in\Range(C_\lambda^{1/2})$, so the spectral Schur compression
+Under Assumption~\ref{assum:cm_stability} (Cameron--Martin stability), the leakage vector satisfies $\Sigma_{\lambda,Ik}\in\Range(C_\lambda^{1/2})$, so the spectral Rayleigh--Ritz shorting compression
 \begin{equation}
   R_\lambda^{[n]}:=\sum_{j=1}^{n}\frac{|\langle\Sigma_{\lambda,Ik},e_j\rangle|^2}{\sigma_j}
 \end{equation}
@@ -235,10 +240,13 @@ which gives the asserted rate.
 
 
 
-\section{Gaussian Conditional Finite-Part Analysis}
+\section{Gaussian Fredholm Finite-Part Analysis}
 \label{app:gaussian_lift}
 
-This appendix derives the Radon Gaussian conditioning, measurable conditional predictor, bulk relative entropy bounds, and the finite-part regularization theorem via Dirac mollification.
+This appendix derives the Radon Gaussian application of the block-operator
+result: pointwise disintegration, measurable Cameron--Martin energy projection,
+bulk Fredholm trace-anomaly bounds, and the finite-part regularization theorem
+via Dirac mollification.
 
 \subsection{Radon Gaussian Setup and Pointwise Disintegration}
 
@@ -273,17 +281,17 @@ Under the conditioned law $\mu_{\mathrm{obs}} \coloneqq \mu_\lambda^{x_k^*}$, th
 Since $\mathcal{H}$ is Polish, regular conditional probabilities exist. The stated Gaussian family is the continuous disintegration along the scalar observation map; its pointwise continuous version is unique \cite{lagatta2013continuous}. The continuity of $t \mapsto m_\lambda^t$ in $\mathcal{H}$ and constancy of $\Sigma_\lambda^t$ yield weak continuity of this family (see also \cite{bogachev1998gaussian}). Evaluating at $t=x_k^*$ gives $\mu_{\mathrm{obs}} = \mu_\lambda^{x_k^*}$, which has target component fixed at $x_k^*$ almost surely.
 \end{proof}
 
-\subsection{Measurable Conditional Predictor}
+\subsection{Measurable Cameron--Martin Energy Projection}
 
 Let $C_\lambda \coloneqq \Sigma_{\lambda,II}$ be the bulk covariance on $\mathcal{H}_I$. Since $C_\lambda$ is trace-class, it lacks a bounded global inverse. We define the bulk Cameron--Martin space $H_{C_\lambda} \coloneqq \operatorname{Range}(C_\lambda^{1/2})$.
 
-\begin{lemma}[Measurable Conditional Predictor]
+\begin{lemma}[Measurable Cameron--Martin Energy Projection]
 \label{lem:conditional_predictor}
 The cross-covariance vector satisfies $\Sigma_{\lambda,Ik} \in H_{C_\lambda}$ with energy norm:
 \begin{equation}
   \|\Sigma_{\lambda,Ik}\|_{H_{C_\lambda}} \le |\Sigma_{\lambda,Ik}|_{Q_0} = O(\lambda^{-3}).
 \end{equation}
-Furthermore, the conditional mean predictor $\mu_{k|I}(X_I) \coloneqq \mathbb{E}_{\mu_\lambda}[X_k \mid X_I]$ is represented by the measurable Wiener functional:
+Furthermore, the conditional mean energy projection $\mu_{k|I}(X_I) \coloneqq \mathbb{E}_{\mu_\lambda}[X_k \mid X_I]$ is represented by the measurable Wiener functional:
 \begin{equation}
   \mu_{k|I}(X_I) = m_{\lambda,k} + W_{\Sigma_{\lambda,Ik}}(X_I - m_{\lambda,I}),
 \end{equation}
@@ -306,9 +314,9 @@ The range inclusion $\Sigma_{\lambda,Ik} \in \operatorname{Range}(\Sigma_{\lambd
 for all sufficiently large $\lambda$.
 \end{proof}
 
-\subsection{Bulk Relative-Entropy Estimate}
+\subsection{Bulk Fredholm Trace-Anomaly Estimate}
 
-\begin{lemma}[Feldman--H\'ajek Equivalence and Entropy Decay]
+\begin{lemma}[Feldman--H\'ajek Equivalence and Trace-Anomaly Decay]
 \label{lem:feldman_hajek}
 There exists $\lambda_0>0$ such that, for every $\lambda\ge\lambda_0$, the bulk marginals $\mu_{\mathrm{obs},I}$ and $\mu_{\lambda,I}$ are equivalent Gaussian Radon measures on $\mathcal{H}_I$, with relative entropy:
 \begin{equation}
@@ -348,7 +356,7 @@ $O(\lambda^{-4})$. Finally,
 which proves the asserted entropy decay.
 \end{proof}
 
-\subsection{Mollified Divergence and Finite-Part Regularization Proof}
+\subsection{Mollified Divergence and Fredholm Finite-Part Proof}
 
 To regularize the singular joint KL divergence, define a law with
 bulk marginal $\mu_{\mathrm{obs},I}$ and an independent mollified
@@ -440,10 +448,14 @@ $\lambda>0$.
 
 
 
-\section{Numerical Diagnostics and Galerkin Verification}
+\section{Numerical Diagnostics for Block Shorting and Galerkin Verification}
 \label{app:experiments}
 
-This appendix presents arbitrary-precision numerical validations of the variance normalization, Schur residual scaling, finite-part asymptotics, and Galerkin convergence rates, computed in 256-bit \texttt{BigFloat} to isolate the structural invariants from floating-point collapse.
+This appendix presents arbitrary-precision numerical validations of block
+normalization, shorted Schur residual scaling, Fredholm finite-part
+asymptotics, and Galerkin convergence rates, computed in 256-bit
+\texttt{BigFloat} to isolate the structural invariants from floating-point
+collapse.
 
 \subsection{Truncation Convergence}
 \label{app:experiments:truncation}
@@ -523,10 +535,10 @@ All evaluations are performed in Julia using 256-bit \texttt{BigFloat} arithmeti
 
 
 
-\subsection{Gaussian Finite-Part Functional in a Three-Node Chain}
+\subsection{Fredholm Finite-Part Functional in a Three-Node Chain}
 \label{app:experiments:three_node}
 
-We evaluate the Gaussian renormalized finite-part functional $\mathfrak{J}_\lambda$ on a three-node linear Ornstein--Uhlenbeck SDE:
+We evaluate the Gaussian Fredholm finite-part functional $\mathfrak{J}_\lambda$ on a three-node linear Ornstein--Uhlenbeck SDE:
 \begin{equation}
   X_1 \to X_2 \to X_3,
 \end{equation}
@@ -559,7 +571,7 @@ All evaluations are performed in Julia using 256-bit \texttt{BigFloat} arithmeti
 \subsection{Numerical Precision Audit}
 \label{app:numerical_precision}
 
-At $n=256$, we recompute representative C.1 Schur residuals using IEEE 754 \texttt{Float64} and 256-bit Julia \texttt{BigFloat} arithmetic with the same covariance equation and Schur solve.
+At $n=256$, we recompute representative C.1 Schur residuals using IEEE 754 \texttt{Float64} and 256-bit Julia \texttt{BigFloat} arithmetic with the same covariance equation and Schur assembly.
 
 \begin{table}[htbp]
   \centering
