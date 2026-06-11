@@ -221,14 +221,20 @@
     \subsection{Organization of the paper}
     \label{sec:organization}
 
-    \Cref{sec:setup} defines the block operator model and canonical
-    normalization. \Cref{sec:infdim} establishes the Hilbert-space
-    shorted-operator construction. \Cref{sec:gaussian_zero} applies the operator
-    result to Radon Gaussian disintegration and Fredholm finite parts.
-    \Cref{sec:spde} gives an elliptic Gaussian-field example.
-    \Cref{sec:conclusion} concludes. Proofs are given in
-    \Cref{app:block_cumulant_analysis,app:gaussian_lift}; numerical diagnostics
-    and Galerkin verification are given in \Cref{app:experiments}.
+    \Cref{sec:setup} sets the operator model and canonical normalization.
+    \Cref{sec:triple_inversion_obstruction} explains why direct inversion cannot
+    govern the limit. \Cref{sec:shorting_principle} gives the
+    Anderson--Trapp shorting construction and its finite-dimensional shadow.
+    \Cref{sec:gaussian_zero} uses this shorted residual in Gaussian
+    disintegration and the finite-part functional. \Cref{sec:spde} closes with an
+    elliptic benchmark. \Cref{sec:conclusion} concludes. Appendix proofs are
+    organized as: calibrated block identities and exact-resolvent formulas
+    (\Cref{app:shorting_foundation}), bounded-inverse Schur shadows
+    (\Cref{app:shorting_variational}), Galerkin shorting consistency
+    (\Cref{app:galerkin_shorting}), Gaussian Fredholm analysis
+    (\Cref{app:gaussian_fredholm}), and admissibility geometry
+    (\Cref{app:admissibility_benchmark}). Numerical diagnostics are collected
+    in the supplementary material and are not proof dependencies.
 
     % ============================================================
     %  \S2 Operator Model and Canonical Normalization
@@ -301,7 +307,7 @@
         =
         \frac{b_k^2/\lambda^2}{2\Sigma_{\lambda,kk}}.
     \end{equation}
-    Consequently the target covariance must decay at the same order as the squared deterministic displacement.  If $\Sigma_{\lambda,kk}=O(\lambda^{-1})$, as for the slow family $d_\lambda=\varepsilon_0$, then \eqref{eq:snr_balancing} is $O(\lambda^{-1})$ and the finite target contribution collapses to zero.  If $\Sigma_{\lambda,kk}=O(\lambda^{-3})$, as for the fast family $d_\lambda=\varepsilon_0/\lambda^2$, then \eqref{eq:snr_balancing} is $O(\lambda)$ and the target contribution diverges.  These two failures are the slow and fast ablations reported in \Cref{app:experiments:ablation}.  A nonzero finite limit therefore forces the critical covariance scale
+    Consequently the target covariance must decay at the same order as the squared deterministic displacement.  If $\Sigma_{\lambda,kk}=O(\lambda^{-1})$, as for the slow family $d_\lambda=\varepsilon_0$, then \eqref{eq:snr_balancing} is $O(\lambda^{-1})$ and the finite target contribution collapses to zero.  If $\Sigma_{\lambda,kk}=O(\lambda^{-3})$, as for the fast family $d_\lambda=\varepsilon_0/\lambda^2$, then \eqref{eq:snr_balancing} is $O(\lambda)$ and the target contribution diverges.  The numerical supplement reports these slow and fast scaling diagnostics, but the conclusion already follows from the exact scalar identity.  A nonzero finite limit therefore forces the critical covariance scale
     \begin{equation}
         \label{eq:critical_covariance_scale}
         \Sigma_{\lambda,kk}\asymp\lambda^{-2}.
@@ -349,48 +355,32 @@
     \subsection{Operator Setup and Assumptions}
     \label{sec:setup:assumptions}
 
-    We state the operator-theoretic assumptions that make the limit passage independent of the Galerkin dimension.
-
-    \begin{definition}[Drift Operator with Analytic Base]
-        \label{def:drift_operator}
-        A drift operator on a separable Hilbert space $\mathcal{H}$ is an operator of the form $\mathcal{A} = \mathcal{A}_0 + \mathcal{K}$, where:
-        \begin{enumerate}
-            \item[(i)] $\mathcal{A}_0: \operatorname{dom}(\mathcal{A}_0) \subset \mathcal{H} \to \mathcal{H}$ is closed, densely defined, and dissipative, and it generates a strongly continuous analytic contraction semigroup $(e^{t\mathcal{A}_0})_{t \ge 0}$ on $\mathcal{H}$ satisfying $\|e^{t\mathcal{A}_0}\| \le e^{-\alpha t}$ for some spectral gap $\alpha > 0$; equivalently, the base operator $-\mathcal{A}_0$ is sectorial of angle $<\pi/2$ in this exponentially stable contraction setting.
-            \item[(ii)] $\mathcal{K}: \mathcal{H} \to \mathcal{H}$ is a bounded linear operator.
-            \item[(iii)] The full operator $\mathcal{A} = \mathcal{A}_0 + \mathcal{K}$, with $\operatorname{dom}(\mathcal{A})=\operatorname{dom}(\mathcal{A}_0)$, generates a strongly continuous analytic semigroup $(e^{t\mathcal{A}})_{t \ge 0}$ by the bounded perturbation theorem, and this semigroup remains exponentially stable: $\|e^{t\mathcal{A}}\| \le M e^{-\beta t}$ for some $M \ge 1$, $\beta > 0$.
-        \end{enumerate}
-        In finite dimensions ($\mathcal{H} = \mathbb{R}^n$), this reduces to a decomposition of a Hurwitz drift matrix into an exponentially stable analytic base plus a bounded perturbation.
-    \end{definition}
-
-    \begin{definition}[Trace-Class Noise and Covariance]
-        \label{def:trace_class}
-        Let $\mathcal{S}_1(\mathcal{H})$ denote the Banach space of trace-class (nuclear) operators on $\mathcal{H}$ equipped with the trace norm $\|T\|_{\mathcal{S}_1} \coloneqq \tr(|T|) = \sum_{i=1}^\infty \langle \phi_i, (T^*T)^{1/2} \phi_i \rangle < \infty$.
-        \begin{enumerate}
-            \item[(i)] The diffusion operator $\mathcal{D}: \mathcal{H} \to \mathcal{H}$ is positive, self-adjoint, and belongs to $\mathcal{S}_1(\mathcal{H})$.
-            \item[(ii)] Assuming the pair $(\mathcal{A}, \mathcal{D}^{1/2})$ is controllable, the stationary covariance operator $\Sigma: \mathcal{H} \to \mathcal{H}$ is the unique strictly positive, self-adjoint, trace-class solution to the operator Lyapunov equation:
-            \begin{equation}
-                \label{eq:op_lyapunov}
-                \mathcal{A}\Sigma + \Sigma\mathcal{A}^* + \mathcal{D} = 0
-            \end{equation}
-            which is given by the convergent Bochner integral
-            \[
-            \Sigma = \int_0^\infty e^{t\mathcal{A}} \mathcal{D} e^{t\mathcal{A}^*} dt.
-            \]
-        \end{enumerate}
-    \end{definition}
+    We use one core assumption package for the shorting limit:
 
     \begin{assumption}[Core Analytical Assumptions for Singular Hyperplane Conditioning]
-        This work relies on two core analytical assumptions regarding the target-coordinate block decoupling and the outgoing coupling:
-        \begin{enumerate}
-            \item[(i)] \textbf{Linear Second-Moment Channel:} \label{assum:linear_second_moment} A centered linear stationary process on $\mathcal{H}=\mathcal{H}_k\oplus \mathcal{H}_I$ has finite second moments and covariance solving \Cref{eq:op_lyapunov}. The block-decoupling constraint zeroes all incoming target drift and cross-noise, so that $\mathcal{A}_{kI}=\mathcal{D}_{kI}=\mathcal{D}_{Ik}=0$ and $\mathcal{A}_{kk}=-\lambda$. The target diffusion $\mathcal{D}_{kk}=\varepsilon_0/\lambda$ is the unique scaling determined by the canonical normalization (Proposition~\ref{prop:exact_calibration}). The free noise is independent of the local target noise. (Gaussianity is not assumed).
-            \item[(ii)] \textbf{Cameron--Martin Stability of Off-Diagonal Drift Coupling:} \label{assum:cm_stability} Let $Q_0\coloneqq\Sigma_{II}^{(0)}$ denote the free-block covariance produced by the free noise under block decoupling, and let $H_{Q_0}\coloneqq\operatorname{Range}(Q_0^{1/2})$ with the energy norm $|u|_{Q_0}\coloneqq\|Q_0^{-1/2}u\|_{\mathcal{H}_I}$. The outgoing vector $a_{Ik}\coloneqq\mathcal{A}_{Ik}\phi_k$ belongs to $H_{Q_0}$, and $e^{t\mathcal{A}_{II}}$ restricts to a strongly continuous exponentially stable semigroup on $H_{Q_0}$:
+        \begin{enumerate}[label=(\roman*)]
+            \item[(i)] \textbf{Trace-Class Lyapunov framework:} \label{assum:linear_second_moment}
+            For each $\lambda>0$, the stationary covariance $\Sigma_\lambda$ is the unique strictly positive solution to the trace-class Lyapunov equation
+            \begin{equation}
+                \label{eq:op_lyapunov}
+                \mathcal{A}^{(\lambda)}\Sigma_\lambda + \Sigma_\lambda\mathcal{A}^{(\lambda)*} + \mathcal{D}^{(\lambda)} = 0.
+            \end{equation}
+            The free-block covariance under full decoupling is
+            $Q_0\coloneqq\Sigma_{II}^{(0)}$, assumed compact, injective, trace-class,
+            and positive.
+
+            \item[(ii)] \textbf{Cameron--Martin admissibility of coupling:} \label{assum:cm_stability}
+            The block-decupled coefficients satisfy $\mathcal{A}_{kI}=\mathcal{D}_{kI}=\mathcal{D}_{Ik}=0$ and $\mathcal{A}_{kk}=-\lambda$.
+            Let
+            $H_{Q_0}=\operatorname{Range}(Q_0^{1/2})$ and
+            $|u|_{Q_0}=\|Q_0^{-1/2}u\|_{\mathcal{H}_I}$. The leakage vector
+            $a_{Ik}=\mathcal{A}_{Ik}\phi_k$ belongs to $H_{Q_0}$, and
+            on $H_{Q_0}$ the restricted drift semigroup is exponentially stable:
             \begin{equation}
                 \|e^{t\mathcal{A}_{II}}\|_{\mathcal{L}(H_{Q_0})} \le M e^{-\omega t},\qquad t\ge0,
             \end{equation}
-            for constants $M\ge1$ and $\omega>0$ independent of $\lambda$.
+            for some $M\ge1$ and $\omega>0$ independent of $\lambda$.
         \end{enumerate}
-        \vspace{1mm}
-        \noindent\textit{Intuitive Explanation:} Part (i) states that the regularized operator family act as a strong localized drift penalization on the target coordinate $X_k$ while isolating it from incoming influences, giving an operator implementation of the block-decoupling constraint. Part (ii) requires that the off-diagonal drift coupling $a_{Ik}$ from the target coordinate has finite energy relative to the background fluctuations of the free coordinates. This ensures that target fluctuations propagating downstream do not overload the variance of the infinite-dimensional system.
     \end{assumption}
 
     \begin{remark}[Finite-Energy Outgoing Covariance Coupling and Finite-Dimensional Calibration]
@@ -458,7 +448,7 @@
     \end{equation}
     By Assumption~\ref{assum:cm_stability}, the off-diagonal drift coupling vector satisfies $a_{Ik} \in H_{Q_0}$, and the restricted drift generator $\mathcal{A}_{II}$ generates an exponentially stable semigroup on $H_{Q_0}$.
 
-    Under this assumption, the exact cross-covariance resolvent formula (derived in \Cref{app:block_cumulant_analysis}) satisfies:
+    Under this assumption, the exact cross-covariance resolvent formula (derived in \Cref{app:block_identities}) satisfies:
     \begin{equation}
         \Sigma_{\lambda,Ik} = \frac{\varepsilon_0}{2\lambda^2} (\lambda I - \mathcal{A}_{II})^{-1} a_{Ik}.
     \end{equation}
@@ -511,7 +501,7 @@
         This result depends only on covariance and orthogonal projection; it holds for any linear stationary model satisfying these assumptions, without Gaussianity.
     \end{theorem}
     \begin{proof}
-        See \Cref{app:block_cumulant_analysis} for the full derivation.
+        See \Cref{app:shorting_residual} for the full derivation.
     \end{proof}
 
     \subsection{Convergence of Finite-Dimensional Truncations}
@@ -525,7 +515,7 @@
         \begin{equation}
             \Pi_n\phi_k=\phi_k,\qquad \Pi_n\mathcal{H}_I\subset\mathcal{H}_I,\qquad \Pi_n\to I\ \text{strongly on }\mathcal{H}.
         \end{equation}
-        Assume the truncated regularized operator family satisfies the uniform exponential stability and trace-class conditions stated in Proposition~\ref{prop:exact_galerkin} of \Cref{app:block_cumulant_analysis}.  Then the truncated covariance operators converge in trace norm:
+        Assume the truncated regularized operator family satisfies the uniform exponential stability and trace-class conditions stated in \Cref{lem:galerkin_trace_norm}.  Then the truncated covariance operators converge in trace norm:
         \begin{equation}
             \|\Sigma_{n,\lambda}-\Sigma_\lambda\|_{\mathcal{S}_1}\to0\quad\text{as }n\to\infty,
         \end{equation}
@@ -535,7 +525,7 @@
         \end{equation}
     \end{proposition}
     \begin{proof}
-        See \Cref{app:block_cumulant_analysis} for the operator and spectral support.
+        See \Cref{lem:galerkin_trace_norm,lem:galerkin_variational_shorting} for the operator and variational shorting support.
     \end{proof}
 
     % ============================================================
@@ -656,17 +646,12 @@
 
     \begin{remark}[On the necessity of extended precision]
         \label{rem:extended_precision}
-        In the numerical verification reported in \Cref{app:experiments}, the
-        quantity $\lambda^{4}\tr(\rho_{\lambda,E})$ at $\lambda\sim10^{5}$ is of
-        order $10^{-20}$.  Double-precision arithmetic ($\sim10^{-16}$ relative
-        accuracy) cannot resolve this residual against numerical noise.  Combined
-        with the condition-number amplification $\kappa\sim10^{6}$ from
-        \eqref{eq:spectral_ill_conditioning}, the effective signal-to-noise
-        ratio is below unity.  Extraction of the true $O(\lambda^{-4})$ rate
-        therefore required quadruple-precision (256-bit) arithmetic---a
-        computational necessity that confirms, rather than refutes, the
-        numerical impossibility claim in
-        Theorem~\ref{thm:triple_impossibility}\ref{item:numerical_impossibility}.
+        The supplementary numerical diagnostics report regimes where
+        $\lambda^{4}\tr(\rho_{\lambda,E})$ is far below double-precision
+        resolution after condition-number amplification.  Those computations
+        illustrate the numerical impossibility claim in
+        Theorem~\ref{thm:triple_impossibility}\ref{item:numerical_impossibility};
+        they are not used in the proof.
     \end{remark}
 
     % ============================================================
@@ -699,7 +684,7 @@
     \end{assumption}
 
     Under the Gaussian Radon law, the coordinate projection $\pi_k: \mathcal{H} \to \mathbb{R}$ is continuous, so the target variable $X_k$ is a well-defined Borel random variable. The Polish structure of the Hilbert space guarantees the existence of a regular conditional probability distribution. 
-    By selecting the weakly continuous version of the conditional law at the single point $t = x_k^*$ (as detailed in \Cref{app:gaussian_lift}), we obtain the unique pointwise disintegration member $\mu_{\mathrm{obs}}$. Under this measure, the target coordinate satisfies the exact target zeros:
+    By selecting the weakly continuous version of the conditional law at the single point $t = x_k^*$ (as detailed in \Cref{app:gaussian_fredholm}), we obtain the unique pointwise disintegration member $\mu_{\mathrm{obs}}$. Under this measure, the target coordinate satisfies the exact target zeros:
     \begin{equation}
         \label{eq:exact_target_zeros}
         m_{\text{obs},k} - x_k^* = 0, \quad \Var_{\text{obs}}(X_k) = 0 \quad (\text{exact}).
@@ -714,7 +699,7 @@
     \begin{equation}
         \mu_{k|I}(X_I) = m_{\lambda,k} + W_{\Sigma_{\lambda,Ik}}(X_I - m_{\lambda,I}),
     \end{equation}
-    which is the unique linear $L^2$ predictor. The estimates in \Cref{app:gaussian_lift} imply that, for all sufficiently large $\lambda$, the bulk marginals $\mu_{\text{obs},I}$ and $\mu_{\lambda,I}$ are equivalent and have finite bulk relative entropy:
+    which is the unique linear $L^2$ predictor. The estimates in \Cref{app:gaussian_fredholm} imply that, for all sufficiently large $\lambda$, the bulk marginals $\mu_{\text{obs},I}$ and $\mu_{\lambda,I}$ are equivalent and have finite bulk relative entropy:
     \begin{equation}
         \KL(\mu_{\text{obs},I} \parallel \mu_{\lambda,I}) = O(\lambda^{-4}) \to 0 \quad \text{as } \lambda \to \infty.
     \end{equation}
@@ -740,7 +725,7 @@
     \end{definition}
 
     \paragraph{Weak scheme-independence.}
-    For an evidence level $t\in\mathbb{R}$, write $\mu_\lambda^t$ for the weakly continuous conditional law from \Cref{app:gaussian_lift} and set
+    For an evidence level $t\in\mathbb{R}$, write $\mu_\lambda^t$ for the weakly continuous conditional law from \Cref{app:gaussian_fredholm} and set
     \[
     \mathfrak{J}_\lambda(t)\coloneqq
     \mathfrak{J}_\lambda(\mu_\lambda^t;\mu_\lambda).
@@ -769,7 +754,7 @@
         =
         1-\frac{S_{k,\lambda}}{\Sigma_{\lambda,kk}}.
         \]
-        The Gaussian entropy computation in \Cref{app:gaussian_lift} gives
+        The Gaussian entropy computation in \Cref{app:gaussian_fredholm} gives
         \[
         \KL(\mu_{\lambda,I}^t\parallel\mu_{\lambda,I})
         =
@@ -823,7 +808,7 @@
         \end{equation}
     \end{theorem}
     \begin{proof}
-        See \Cref{app:gaussian_lift} for the full derivation.
+        See \Cref{app:gaussian_fredholm} for the full derivation.
     \end{proof}
 
     \begin{corollary}[Exact Decoupled-Centered Cancellation]

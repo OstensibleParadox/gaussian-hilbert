@@ -1,679 +1,589 @@
-\section{Exact Block and Variational Shorting Analysis}
-\label{app:block_cumulant_analysis}
+\section{Block Lyapunov Identities for the Calibrated Clamp}
+\label{app:block_identities}
 
-This appendix derives the linear invariants from the block Lyapunov equation
-and proves convergence of the variational Galerkin shorting scheme. We do not
-use Laurent series or bounded ambient covariance inverses.
+This appendix isolates the algebra used in the paper's shorting argument.  The
+only inputs are the block-triangular calibrated operator family, the trace-class
+stationary covariance, and the Cameron--Martin finite-energy assumption on the
+outgoing drift channel.
 
-\subsection{Exact Target Covariance Block}
+\subsection{Block identities}
 
-Write $\mathcal{H}=\mathcal{H}_k\oplus\mathcal{H}_I$ with $\mathcal{H}_k=\mathbb{R}\phi_k$. The incoming target-coordinate block decoupling and the calibrated noise scale give the block operators:
+Write $\mathcal{H}=\mathcal{H}_k\oplus\mathcal{H}_I$ with
+$\mathcal{H}_k=\mathbb{R}\phi_k$.  Under the calibrated clamp,
 \begin{equation}
  \mathcal{A}^{(\lambda)}=
- \begin{pmatrix}-\lambda&0\\a_{Ik}&\mathcal{A}_{II}\end{pmatrix},\qquad
+ \begin{pmatrix}-\lambda&0\\a_{Ik}&\mathcal{A}_{II}\end{pmatrix},
+ \qquad
  \mathcal{D}^{(\lambda)}=
  \begin{pmatrix}\varepsilon_0/\lambda&0\\0&D_{II}\end{pmatrix}.
  \label{eq:exact_blocks}
 \end{equation}
-The block $\Sigma_{\lambda,Ik}\in\mathcal{H}_I$ denotes the vector representation of the target-to-bulk cross-covariance.
-The $kk$ block of the Lyapunov equation is the scalar equation:
+Let $\Sigma_\lambda$ be the stationary covariance solving
+\[
+  \mathcal{A}^{(\lambda)}\Sigma_\lambda
+  +\Sigma_\lambda(\mathcal{A}^{(\lambda)})^*
+  +\mathcal{D}^{(\lambda)}=0.
+\]
+
+\begin{lemma}[Block Lyapunov identities]
+\label{lem:block_lyapunov_identities}
+For every $\lambda>0$,
 \begin{equation}
-  -2\lambda\Sigma_{\lambda,kk}+\frac{\varepsilon_0}{\lambda}=0 \quad \Longrightarrow \quad \Sigma_{\lambda,kk}=\frac{\varepsilon_0}{2\lambda^2}.
+  \Sigma_{\lambda,kk}=\frac{\varepsilon_0}{2\lambda^2},
   \label{eq:Sigmakk_exact}
 \end{equation}
-This equality holds exactly for all $\lambda > 0$.
-
-\subsection{Exact Cross-Covariance Resolvent Formula}
-
-The $Ik$ block of the Lyapunov equation reduces to:
+and the target-to-bulk cross covariance is
 \begin{equation}
-  (\mathcal{A}_{II}-\lambda I)\Sigma_{\lambda,Ik}+a_{Ik}\Sigma_{\lambda,kk}=0.
+  \Sigma_{\lambda,Ik}
+  =\frac{\varepsilon_0}{2\lambda^2}
+    (\lambda I-\mathcal{A}_{II})^{-1}a_{Ik}.
+  \label{eq:SigmaIk_exact_vector}
 \end{equation}
-This yields the exact cross-covariance resolvent formula:
-\begin{equation}
- \Sigma_{\lambda,Ik}=\frac{\varepsilon_0}{2\lambda^2} (\lambda I-\mathcal{A}_{II})^{-1}a_{Ik}.
- \label{eq:SigmaIk_exact_vector}
-\end{equation}
+\end{lemma}
 
-\subsection{Cameron--Martin Energy Bound}
+\begin{proof}
+The $kk$ block of the Lyapunov equation is
+\[
+  -2\lambda\Sigma_{\lambda,kk}+\frac{\varepsilon_0}{\lambda}=0,
+\]
+which gives \eqref{eq:Sigmakk_exact}.  The $Ik$ block is
+\[
+  (\mathcal{A}_{II}-\lambda I)\Sigma_{\lambda,Ik}
+  +a_{Ik}\Sigma_{\lambda,kk}=0.
+\]
+Substituting \eqref{eq:Sigmakk_exact} gives
+\eqref{eq:SigmaIk_exact_vector}.
+\end{proof}
 
-Let $Q_0\coloneqq\Sigma_{II}^{(0)}$ be the background bulk covariance. The Cameron--Martin space $H_{Q_0}\coloneqq\operatorname{Range}(Q_0^{1/2})$ has energy norm $|u|_{Q_0}\coloneqq\|Q_0^{-1/2} u\|_{\mathcal{H}_I}$.
-Under Assumption~\ref{assum:cm_stability}, the restricted resolvent satisfies the energy bound:
+\subsection{Cameron--Martin energy}
+
+Let $Q_0\coloneqq\Sigma_{II}^{(0)}$ be the background bulk covariance and
+$H_{Q_0}\coloneqq\Range(Q_0^{1/2})$ with energy norm
+$|u|_{Q_0}=\|Q_0^{-1/2}u\|_{\mathcal{H}_I}$.  Assumption~\ref{assum:cm_stability}
+states that $a_{Ik}\in H_{Q_0}$ and that the bulk resolvent is bounded on this
+energy space:
 \begin{equation}
-  |(\lambda I - \mathcal{A}_{II})^{-1} u|_{Q_0} \le \frac{M}{\lambda+\omega} |u|_{Q_0}
+  |(\lambda I-\mathcal{A}_{II})^{-1}u|_{Q_0}
+  \le \frac{M}{\lambda+\omega}|u|_{Q_0}.
   \label{eq:cm_resolvent}
 \end{equation}
-for all $u \in H_{Q_0}$. It follows from \eqref{eq:SigmaIk_exact_vector} that the cross-covariance has finite energy norm and decays as:
+
+\begin{lemma}[Finite-energy leakage]
+\label{lem:finite_energy_leakage}
+The cross covariance belongs to $H_{Q_0}$ and satisfies
 \begin{equation}
- |\Sigma_{\lambda,Ik}|_{Q_0} \le \frac{\varepsilon_0 M}{2\lambda^2(\lambda+\omega)} |a_{Ik}|_{Q_0} = O(\lambda^{-3}).
+ |\Sigma_{\lambda,Ik}|_{Q_0}
+ \le
+ \frac{\varepsilon_0M}{2\lambda^2(\lambda+\omega)}
+ |a_{Ik}|_{Q_0}
+ =O(\lambda^{-3}).
  \label{eq:cross_energy}
 \end{equation}
+\end{lemma}
 
-\subsection{Variational Shorted Residual Proof}
+\begin{proof}
+Apply \eqref{eq:cm_resolvent} to
+\eqref{eq:SigmaIk_exact_vector}.  This proves both the range statement and the
+energy bound.
+\end{proof}
 
-We define the Anderson--Trapp variational shorted subtraction $R_\lambda$:
+\section{Anderson--Trapp Shorting and the Rank-One Residual}
+\label{app:shorting_residual}
+
+The Schur complement formula used in finite dimensions is only the
+bounded-inverse coordinate shadow of Anderson--Trapp shorting.  The Hilbert
+space argument therefore starts from shorting and recovers the Schur expression
+only when the complementary block is boundedly invertible.
+
+\begin{lemma}[Schur complement as the bounded-inverse shadow of shorting]
+\label{lem:schur_shadow_shorting}
+Let $\mathcal{E}$ and $\mathcal{F}$ be Hilbert spaces and let
+\[
+  T=\begin{pmatrix}A&B^*\\B&D\end{pmatrix}\ge0
+\]
+act on $\mathcal{E}\oplus\mathcal{F}$.  If $D$ is boundedly invertible on
+$\mathcal{F}$, then the Anderson--Trapp short of $T$ to $\mathcal{E}$ has the
+quadratic form
 \begin{equation}
- R_\lambda = \sup_{\langle u,\Sigma_{\lambda,II}u\rangle>0} \frac{1}{\langle u,\Sigma_{\lambda,II}u\rangle} |\langle u,\Sigma_{\lambda,Ik}\rangle|^2.
+  \langle x,\mathcal{S}_{\mathcal{E}}(T)x\rangle
+  =
+  \langle x,Ax\rangle-\langle Bx,D^{-1}Bx\rangle.
+  \label{eq:short_shadow}
+\end{equation}
+Thus $B^*D^{-1}B$ is exactly the variational shorting subtraction in the special
+case where $D^{-1}$ is a bounded operator.
+\end{lemma}
+
+\begin{proof}
+By the variational definition of the shorted operator,
+\[
+  \langle x,\mathcal{S}_{\mathcal{E}}(T)x\rangle
+  =
+  \inf_{y\in\mathcal{F}}
+  \left\langle
+  \begin{pmatrix}x\\y\end{pmatrix},
+  T
+  \begin{pmatrix}x\\y\end{pmatrix}
+  \right\rangle .
+\]
+The displayed quadratic form equals
+$\langle x,Ax\rangle+2\operatorname{Re}\langle Bx,y\rangle+\langle y,Dy\rangle$.
+Since $D$ is boundedly invertible and positive, the unique minimizer is
+$y=-D^{-1}Bx$.  Substitution gives \eqref{eq:short_shadow}.
+\end{proof}
+
+For the covariance block $\Sigma_\lambda$ on
+$\mathbb{C}\phi_k\oplus\mathcal{H}_I$, the shorting subtraction is the
+variational quantity
+\begin{equation}
+ R_\lambda
+ =
+ \sup_{\langle u,\Sigma_{\lambda,II}u\rangle>0}
+ \frac{|\langle u,\Sigma_{\lambda,Ik}\rangle|^2}
+      {\langle u,\Sigma_{\lambda,II}u\rangle}.
  \label{eq:schur_variational}
 \end{equation}
-Because the target and bulk noise channels are independent, the bulk covariance dominates the background covariance ($\Sigma_{\lambda,II} = Q_0 + \operatorname{Cov}(Y_I) \succeq Q_0$). We then have:
-\begin{equation}
- 0\le R_\lambda\le|\Sigma_{\lambda,Ik}|_{Q_0}^2 \le \frac{\varepsilon_0^2 M^2 |a_{Ik}|_{Q_0}^2}{4 \lambda^4 (\lambda+\omega)^2} = O(\lambda^{-6}).
-\end{equation}
-The projection residual satisfies $S_{k,\lambda} = \Sigma_{\lambda,kk} - R_\lambda$, so substituting the exact target block and variational remainder bound yields:
-\begin{equation}
- S_{k,\lambda} = \frac{\varepsilon_0}{2\lambda^2} - O(\lambda^{-6}),\qquad m_2^{\mathrm{Schur}}=\frac{\varepsilon_0}{2},
- \label{eq:Schur_asympt}
-\end{equation}
-which implies the reciprocal scaling:
-\begin{equation}
-  S_{k,\lambda}^{-1} = \frac{2}{\varepsilon_0}\lambda^2 + O(\lambda^{-2}).
-\end{equation}
+The null directions of the denominator do not change the supremum for a
+non-negative block operator.
 
-\subsection{Galerkin Variational Truncation Convergence}
-
-Here we prove Proposition~\ref{prop:galerkin_consistency}.  The proof has two
-layers: a Bochner-integral argument that gives trace-norm convergence
-of the truncated covariance operators, followed by variational shorting over
-nested Galerkin test spaces.
-
-\begin{proposition}[Exact Galerkin Convergence Support]
-\label{prop:exact_galerkin}
-Let $\Pi_n:\mathcal{H}\to\mathcal{H}_n$ be finite-rank orthogonal Galerkin projections such that
+\begin{proposition}[Rank-one shorted residual]
+\label{prop:rank_one_shorted_residual}
+Under Assumptions~\ref{assum:linear_second_moment} and
+\ref{assum:cm_stability},
 \begin{equation}
-  \Pi_n\phi_k=\phi_k,\qquad \Pi_n\mathcal{H}_I\subset\mathcal{H}_I,\qquad \Pi_n\to I
-\end{equation}
-strongly on $\mathcal{H}$.  For each $\lambda>0$, define the truncated regularized operators by
-\begin{equation}
-  \mathcal{A}_n^{(\lambda)}\coloneqq\Pi_n\mathcal{A}^{(\lambda)}|_{\mathcal{H}_n},
-  \qquad
-  \mathcal{D}_n^{(\lambda)}\coloneqq\Pi_n\mathcal{D}^{(\lambda)}\Pi_n.
-\end{equation}
-Assume that $e^{t\mathcal{A}_n^{(\lambda)}}x\to e^{t\mathcal{A}^{(\lambda)}}x$ for every $x\in\mathcal{H}$, uniformly for $t$ in compact intervals, and that the semigroups are uniformly exponentially stable:
-\begin{equation}
-  \|e^{t\mathcal{A}_n^{(\lambda)}}\|\le Me^{-\beta t},
-  \qquad
-  \|e^{t\mathcal{A}^{(\lambda)}}\|\le Me^{-\beta t},
-\end{equation}
-with $M\ge1$, $\beta>0$ independent of $n$.  Assume also
-\begin{equation}
-  \mathcal{D}_n^{(\lambda)}\to\mathcal{D}^{(\lambda)}\quad\text{in }\mathcal{S}_1(\mathcal{H}).
-\end{equation}
-Then the Galerkin stationary covariance operators
-\begin{equation}
-  \Sigma_{n,\lambda}=\int_0^\infty e^{t\mathcal{A}_n^{(\lambda)}}\mathcal{D}_n^{(\lambda)}e^{t\mathcal{A}_n^{(\lambda)*}}\,dt
-\end{equation}
-converge in trace norm:
-\begin{equation}
-  \Sigma_{n,\lambda}\to\Sigma_\lambda\quad\text{in }\mathcal{S}_1(\mathcal{H}).
-\end{equation}
-Because the Galerkin scheme preserves the target-bulk block decomposition, the exact finite-$n$ target calibration reads
-\begin{equation}
-  \Sigma_{n,\lambda,kk}=\frac{\varepsilon_0}{2\lambda^2}
-\end{equation}
-for every $n\ge k$.  If the off-diagonal drift coupling satisfies the uniform finite-energy condition
-\begin{equation}
-  a_{Ik}^{(n)}\in H_{Q_0^{(n)}},\qquad \sup_n|a_{Ik}^{(n)}|_{Q_0^{(n)}}<\infty,
-\end{equation}
-where $Q_0^{(n)}\coloneqq\Sigma_{n,II}^{(0)}$ is the truncated background covariance, then the truncated Schur residual satisfies
-\begin{equation}
-  S_{k,\lambda}^{(n)}=\frac{\varepsilon_0}{2\lambda^2}-R_{n,\lambda},
-  \qquad 0\le R_{n,\lambda}\le C\lambda^{-6}.
-\end{equation}
-Consequently,
-\begin{equation}
-  m_2^{\mathrm{Schur},(n)}\coloneqq\lim_{\lambda\to\infty}\lambda^2S_{k,\lambda}^{(n)}=\frac{\varepsilon_0}{2}
-\end{equation}
-for every admissible Galerkin truncation $n\ge k$.
-\end{proposition}
-
-\begin{proof}
-Write the difference of covariances as the Bochner integral
-\begin{equation}
-  \Sigma_{n,\lambda}-\Sigma_\lambda
-  =\int_0^\infty\Bigl(e^{t\mathcal{A}_n^{(\lambda)}}\mathcal{D}_n^{(\lambda)}e^{t\mathcal{A}_n^{(\lambda)*}}
-    -e^{t\mathcal{A}^{(\lambda)}}\mathcal{D}^{(\lambda)}e^{t\mathcal{A}^{(\lambda)*}}\Bigr)\,dt.
-\end{equation}
-Split the integrand in the trace norm:
-\begin{multline}
-  \bigl\|e^{t\mathcal{A}_n}\mathcal{D}_ne^{t\mathcal{A}_n^*}
-    -e^{t\mathcal{A}}\mathcal{D}e^{t\mathcal{A}^*}\bigr\|_{\mathcal{S}_1}
-  \le\bigl\|e^{t\mathcal{A}_n}(\mathcal{D}_n-\mathcal{D})e^{t\mathcal{A}_n^*}\bigr\|_{\mathcal{S}_1}\\
-  +\bigl\|e^{t\mathcal{A}_n}\mathcal{D}e^{t\mathcal{A}_n^*}
-    -e^{t\mathcal{A}}\mathcal{D}e^{t\mathcal{A}^*}\bigr\|_{\mathcal{S}_1}.
-\end{multline}
-(We omit the superscript $(\lambda)$ for readability.)
-
-The first term is bounded by $M^2e^{-2\beta t}\|\mathcal{D}_n-\mathcal{D}\|_{\mathcal{S}_1}$, which tends to zero by assumption.  For the second term, we use the two-sided ideal convergence property of $\mathcal{S}_1(\mathcal{H})$ (Gr\"umm's theorem; see \cite{simon2005trace}): if $L_n\to L$ strongly, $R_n^*\to R^*$ strongly, the two sequences are uniformly bounded, and $K\in\mathcal{S}_1(\mathcal{H})$, then $L_nKR_n\to LKR$ in $\mathcal{S}_1(\mathcal{H})$.  Applying this with $L_n=e^{t\mathcal{A}_n}$, $R_n=e^{t\mathcal{A}_n^*}$, $L=e^{t\mathcal{A}}$, $R=e^{t\mathcal{A}^*}$, and $K=\mathcal{D}$, the second term converges to zero for each $t$.  Crucially, $R_n^*=e^{t\mathcal{A}_n}\to e^{t\mathcal{A}}=R^*$ is already covered by the same Trotter--Kato strong convergence assumption; no independent strong convergence of the adjoint semigroups is required.  The exponential stability gives the integrable dominating bound
-\begin{equation}
-  \bigl\|e^{t\mathcal{A}_n}\mathcal{D}_ne^{t\mathcal{A}_n^*}
-    -e^{t\mathcal{A}}\mathcal{D}e^{t\mathcal{A}^*}\bigr\|_{\mathcal{S}_1}
-  \le M^2e^{-2\beta t}\bigl(\|\mathcal{D}_n\|_{\mathcal{S}_1}+\|\mathcal{D}\|_{\mathcal{S}_1}\bigr)
-  \le M^2C_{\mathcal{D}}\,e^{-2\beta t},
-\end{equation}
-where $C_{\mathcal{D}}:=\sup_n\|\mathcal{D}_n\|_{\mathcal{S}_1}+\|\mathcal{D}\|_{\mathcal{S}_1}<\infty$ (the supremum is finite because $\mathcal{D}_n\to\mathcal{D}$ in trace norm).  The dominated-convergence theorem for Bochner integrals then yields
-\begin{equation}
-  \|\Sigma_{n,\lambda}-\Sigma_\lambda\|_{\mathcal{S}_1}\to0.
-\end{equation}
-
-Because $\Pi_n$ preserves $\mathcal{H}_k\oplus\mathcal{H}_I$, the truncated blocks remain
-\begin{equation}
-  \mathcal{A}_n^{(\lambda)}=
-  \begin{pmatrix}-\lambda&0\\a_{Ik}^{(n)}&\mathcal{A}_{II}^{(n)}\end{pmatrix},
-  \qquad
-  \mathcal{D}_n^{(\lambda)}=
-  \begin{pmatrix}\varepsilon_0/\lambda&0\\0&\mathcal{D}_{II}^{(n)}\end{pmatrix}.
-\end{equation}
-Thus the $(kk)$-block of the truncated Lyapunov equation is exactly
-\begin{equation}
-  -2\lambda\,\Sigma_{n,\lambda,kk}+\frac{\varepsilon_0}{\lambda}=0,
-\end{equation}
-hence $\Sigma_{n,\lambda,kk}=\varepsilon_0/(2\lambda^2)$.  The $(Ik)$-block gives
-\begin{equation}
-  (\mathcal{A}_{II}^{(n)}-\lambda I)\Sigma_{n,\lambda,Ik}+a_{Ik}^{(n)}\Sigma_{n,\lambda,kk}=0,
-\end{equation}
-so
-\begin{equation}
-  \Sigma_{n,\lambda,Ik}=\frac{\varepsilon_0}{2\lambda^2}(\lambda I-\mathcal{A}_{II}^{(n)})^{-1}a_{Ik}^{(n)}.
-\end{equation}
-Uniform Cameron--Martin stability (the finite-energy condition on $a_{Ik}^{(n)}$) gives $|\Sigma_{n,\lambda,Ik}|_{Q_0^{(n)}}=O(\lambda^{-3})$ uniformly in $n$.  Therefore the variational Schur subtraction satisfies
-\begin{equation}
-  0\le R_{n,\lambda}\le|\Sigma_{n,\lambda,Ik}|_{Q_0^{(n)}}^2=O(\lambda^{-6}),
-\end{equation}
-and hence
-\begin{equation}
-  S_{k,\lambda}^{(n)}=\frac{\varepsilon_0}{2\lambda^2}-O(\lambda^{-6}).
-\end{equation}
-Multiplying by $\lambda^2$ and letting $\lambda\to\infty$ gives $m_2^{\mathrm{Schur},(n)}=\varepsilon_0/2$.
-\end{proof}
-
-\begin{lemma}[Spectral Rayleigh--Ritz Shorting Support]
-\label{lem:spectral_schur_support}
-Fix $\lambda>0$ and let $C_\lambda:=\Sigma_{\lambda,II}$ denote the bulk covariance operator on $\mathcal{H}_I$.  Let $\{(\sigma_j,e_j)\}_{j=1}^\infty$ be the eigenpairs of $C_\lambda$ with $\sigma_1\ge\sigma_2\ge\dots>0$.  Define the spectral compression projectors
-\begin{equation}
-  P_n^\lambda:=\sum_{j=1}^{n}e_j\otimes e_j,\qquad n\ge1.
-\end{equation}
-Under Assumption~\ref{assum:cm_stability} (Cameron--Martin stability), the leakage vector satisfies $\Sigma_{\lambda,Ik}\in\Range(C_\lambda^{1/2})$, so the spectral Rayleigh--Ritz shorting compression
-\begin{equation}
-  R_\lambda^{[n]}:=\sum_{j=1}^{n}\frac{|\langle\Sigma_{\lambda,Ik},e_j\rangle|^2}{\sigma_j}
-\end{equation}
-is finite for every $n$ and monotone increasing:
-\begin{equation}
-  R_\lambda^{[n]}\uparrow R_\lambda:=\|\Sigma_{\lambda,Ik}\|_{CM}^2\quad\text{as }n\to\infty.
-\end{equation}
-Consequently the compressed Schur residuals satisfy
-\begin{equation}
-  S_{k,\lambda}^{[n]}\coloneqq\frac{\varepsilon_0}{2\lambda^2}-R_\lambda^{[n]}
-  \quad\searrow\quad
-  S_{k,\lambda}\coloneqq\frac{\varepsilon_0}{2\lambda^2}-R_\lambda
-  \quad\text{as }n\to\infty.
-\end{equation}
-If, moreover, the weighted Cameron--Martin tail condition
-\begin{equation}
-  \sum_{j\ge1}j^{\,\eta-1}\frac{|\langle\Sigma_{\lambda,Ik},e_j\rangle|^2}{\sigma_j}
-  \le C\lambda^{-6},\qquad\eta>1,
-\end{equation}
-holds, then the tail is explicitly bounded by
-\begin{equation}
-  S_{k,\lambda}^{[n]}-S_{k,\lambda}
-  =\sum_{j=n+1}^{\infty}\frac{|\langle\Sigma_{\lambda,Ik},e_j\rangle|^2}{\sigma_j}
-  \le C\,n^{1-\eta}\lambda^{-6}.
-\end{equation}
-\end{lemma}
-\begin{proof}
-By Assumption~\ref{assum:cm_stability}, $\Sigma_{\lambda,Ik}\in H_{Q_0}\subseteq\Range(C_\lambda^{1/2})$.  Hence $C_\lambda^{-1/2}\Sigma_{\lambda,Ik}\in\mathcal{H}_I$ and
-\begin{equation}
-  R_\lambda^{[n]}=\sum_{j=1}^{n}\frac{|\langle\Sigma_{\lambda,Ik},e_j\rangle|^2}{\sigma_j}
-  =\|P_n^\lambda C_\lambda^{-1/2}\Sigma_{\lambda,Ik}\|_{\mathcal{H}_I}^2
-  \le\|C_\lambda^{-1/2}\Sigma_{\lambda,Ik}\|_{\mathcal{H}_I}^2=R_\lambda.
-\end{equation}
-Since $P_n^\lambda\to I$ strongly and the terms are non-negative, $R_\lambda^{[n]}\uparrow R_\lambda$.  The exact target block \eqref{eq:Sigmakk_exact} gives $\Sigma_{\lambda,kk}=\varepsilon_0/(2\lambda^2)$, so $S_{k,\lambda}^{[n]}=\varepsilon_0/(2\lambda^2)-R_\lambda^{[n]}\searrow S_{k,\lambda}$.  Using \eqref{eq:cross_energy}, $R_\lambda=O(\lambda^{-6})$, whence $S_{k,\lambda}=\varepsilon_0/(2\lambda^2)-O(\lambda^{-6})$ and $m_2^{\mathrm{Schur}}=\varepsilon_0/2$.
-
-Under the weighted tail condition, the remainder after $n$ terms satisfies
-\begin{equation}
-  \sum_{j=n+1}^{\infty}\frac{|\langle\Sigma_{\lambda,Ik},e_j\rangle|^2}{\sigma_j}
-  \le n^{1-\eta}\sum_{j=n+1}^{\infty}j^{\,\eta-1}\frac{|\langle\Sigma_{\lambda,Ik},e_j\rangle|^2}{\sigma_j}
-  \le C\,n^{1-\eta}\lambda^{-6},
-\end{equation}
-which gives the asserted rate.
-\end{proof}
-
-
-
-\section{Gaussian Fredholm Finite-Part Analysis}
-\label{app:gaussian_lift}
-
-This appendix derives the Radon Gaussian application of the block-operator
-result: pointwise disintegration, measurable Cameron--Martin energy projection,
-bulk Fredholm trace-anomaly bounds, and the finite-part regularization theorem
-via Dirac mollification.
-
-\subsection{Radon Gaussian Setup and Pointwise Disintegration}
-
-Let $\mu_\lambda = \mathcal{N}(m_\lambda, \Sigma_\lambda)$ be a Radon Gaussian measure on the separable Hilbert space $\mathcal{H} = \mathcal{H}_k \oplus \mathcal{H}_I$. The trace-class property of $\Sigma_\lambda$ ensures its existence as a Radon measure \cite{bogachev1998gaussian}. Let $\pi_k: \mathcal{H} \to \mathbb{R}$ be the projection $\pi_k(X) = \langle X, \phi_k \rangle = X_k$.
-
-\begin{lemma}[Continuous Disintegration and Exact Target Zeros]
-\label{lem:disintegration}
-For each $t \in \mathbb{R}$, there exists a unique weakly continuous family of Gaussian Radon measures $\mu_\lambda^t = \mathcal{N}(m_\lambda^t, \Sigma_\lambda^t)$ supported on the hyperplane $X_k = t$, where:
-\begin{align}
-  m_\lambda^t
-  &\coloneqq
-  \begin{pmatrix}
-    t \\
-    m_{\lambda,I}
-    + \Sigma_{\lambda,Ik}\Sigma_{\lambda,kk}^{-1}(t-m_{\lambda,k})
-  \end{pmatrix}, \\
-  \Sigma_\lambda^t
-  &\coloneqq
-  \begin{pmatrix}
-    0 & 0 \\
-    0 &
-    \Sigma_{\lambda,II}
-    - \Sigma_{\lambda,Ik}\Sigma_{\lambda,kk}^{-1}\Sigma_{\lambda,kI}
-  \end{pmatrix}.
-\end{align}
-Under the conditioned law $\mu_{\mathrm{obs}} \coloneqq \mu_\lambda^{x_k^*}$, the target coordinate satisfies the exact target zeros:
-\begin{equation}
-  \mathbb{E}_{\mathrm{obs}}[X_k] - x_k^* = 0, \quad \operatorname{Var}_{\mathrm{obs}}(X_k) = 0.
-\end{equation}
-\end{lemma}
-\begin{proof}
-Since $\mathcal{H}$ is Polish, regular conditional probabilities exist. The stated Gaussian family is the continuous disintegration along the scalar observation map; its pointwise continuous version is unique \cite{lagatta2013continuous}. The continuity of $t \mapsto m_\lambda^t$ in $\mathcal{H}$ and constancy of $\Sigma_\lambda^t$ yield weak continuity of this family (see also \cite{bogachev1998gaussian}). Evaluating at $t=x_k^*$ gives $\mu_{\mathrm{obs}} = \mu_\lambda^{x_k^*}$, which has target component fixed at $x_k^*$ almost surely.
-\end{proof}
-
-\subsection{Measurable Cameron--Martin Energy Projection}
-
-Let $C_\lambda \coloneqq \Sigma_{\lambda,II}$ be the bulk covariance on $\mathcal{H}_I$. Since $C_\lambda$ is trace-class, it lacks a bounded global inverse. We define the bulk Cameron--Martin space $H_{C_\lambda} \coloneqq \operatorname{Range}(C_\lambda^{1/2})$.
-
-\begin{lemma}[Measurable Cameron--Martin Energy Projection]
-\label{lem:conditional_predictor}
-The cross-covariance vector satisfies $\Sigma_{\lambda,Ik} \in H_{C_\lambda}$ with energy norm:
-\begin{equation}
-  \|\Sigma_{\lambda,Ik}\|_{H_{C_\lambda}} \le |\Sigma_{\lambda,Ik}|_{Q_0} = O(\lambda^{-3}).
-\end{equation}
-The conditional mean energy projection $\mu_{k|I}(X_I) \coloneqq \mathbb{E}_{\mu_\lambda}[X_k \mid X_I]$ is represented by the measurable Wiener functional:
-\begin{equation}
-  \mu_{k|I}(X_I) = m_{\lambda,k} + W_{\Sigma_{\lambda,Ik}}(X_I - m_{\lambda,I}),
-\end{equation}
-where $W_{\Sigma_{\lambda,Ik}}$ is the $L^2(\mu_{\lambda,I})$-limit of the continuous linear functionals on $\mathcal{H}_I$. For all sufficiently large $\lambda$, the conditional variance is strictly positive:
-\begin{equation}
-  \operatorname{Var}(X_k \mid X_I) = \Sigma_{\lambda,kk} - \|\Sigma_{\lambda,Ik}\|_{H_{C_\lambda}}^2 = S_{k,\lambda} > 0.
-\end{equation}
-\end{lemma}
-\begin{proof}
-Since $\Sigma_{\lambda,II} \succeq Q_0$, Douglas range inclusion \cite{douglas1966majorization} yields $\operatorname{Range}(Q_0^{1/2}) \subseteq \operatorname{Range}(\Sigma_{\lambda,II}^{1/2}) = H_{C_\lambda}$ with the contraction inequality
-\[
-  \|\Sigma_{\lambda,II}^{-1/2} v\|_{\mathcal{H}_I} \le \|Q_0^{-1/2} v\|_{\mathcal{H}_I} \quad \text{for all } v \in \operatorname{Range}(Q_0^{1/2}).
-\]
-Hence, $\Sigma_{\lambda,Ik} \in H_{C_\lambda}$ and the norm bound follows directly from \eqref{eq:cross_energy}.
-The range inclusion $\Sigma_{\lambda,Ik} \in \operatorname{Range}(\Sigma_{\lambda,II}^{1/2})$ guarantees that the Wiener functional $W_{\Sigma_{\lambda,Ik}}$ is well-defined as a measurable function on $(\mathcal{H}_I, \mu_{\lambda,I})$ \cite{bogachev1998gaussian}. The conditional variance is the projection residual. By Theorem~\ref{thm:inf_cancellation},
-\[
   S_{k,\lambda}
-  = \frac{\varepsilon_0}{2\lambda^2}-O(\lambda^{-6})>0
-\]
-for all sufficiently large $\lambda$.
-\end{proof}
-
-\subsection{Bulk Fredholm Trace-Anomaly Estimate}
-
-\begin{lemma}[Feldman--H\'ajek Equivalence and Trace-Anomaly Decay]
-\label{lem:feldman_hajek}
-There exists $\lambda_0>0$ such that, for every $\lambda\ge\lambda_0$, the bulk marginals $\mu_{\mathrm{obs},I}$ and $\mu_{\lambda,I}$ are equivalent Gaussian Radon measures on $\mathcal{H}_I$, with relative entropy:
-\begin{equation}
-  \begin{aligned}
-  2 \KL(\mu_{\mathrm{obs},I} \parallel \mu_{\lambda,I})
-    ={}& \frac{(x_k^* - m_{\lambda,k})^2}{\Sigma_{\lambda,kk}} \rho_\lambda \\
-       &-\log(1-\rho_\lambda)-\rho_\lambda ,
-  \end{aligned}
+  =\Sigma_{\lambda,kk}-R_\lambda,
+  \qquad
+  0\le R_\lambda\le |\Sigma_{\lambda,Ik}|_{Q_0}^2=O(\lambda^{-6}).
+  \label{eq:shorted_residual_bound}
 \end{equation}
-where the eigenvalue $\rho_\lambda \coloneqq \|\Sigma_{\lambda,Ik}\|_{H_{C_\lambda}}^2 / \Sigma_{\lambda,kk} = 1 - S_{k,\lambda}/\Sigma_{\lambda,kk} < 1$. In particular, we have $\rho_\lambda = O(\lambda^{-4})$ and:
+Consequently
 \begin{equation}
-  \KL(\mu_{\mathrm{obs},I} \parallel \mu_{\lambda,I})
-  = O(\lambda^{-4}) \to 0 \quad \text{as } \lambda \to \infty.
+  S_{k,\lambda}
+  =
+  \frac{\varepsilon_0}{2\lambda^2}-O(\lambda^{-6}),
+  \qquad
+  m_2^{\mathrm{Schur}}=\frac{\varepsilon_0}{2},
+  \label{eq:Schur_asympt}
 \end{equation}
-\end{lemma}
-\begin{proof}
-Under disintegration, $\mu_{\mathrm{obs},I}$ is a Gaussian Radon law on $\mathcal{H}_I$ with mean $m_{\mathrm{obs},I} = m_{\lambda,I} + \Sigma_{\lambda,Ik} \Sigma_{\lambda,kk}^{-1}(x_k^* - m_{\lambda,k})$ and covariance $\Sigma_{\mathrm{obs},II} = C_\lambda - \Sigma_{\lambda,Ik}\Sigma_{\lambda,kk}^{-1}\Sigma_{\lambda,kI}$. The covariance operators differ by the rank-one operator $T_\lambda = \Sigma_{\lambda,Ik}\Sigma_{\lambda,kk}^{-1}\Sigma_{\lambda,kI}$.
-Since $\Sigma_{\lambda,Ik} \in H_{C_\lambda}$, the relative covariance operator is a rank-one perturbation of the identity with its only non-unit eigenvalue equal to $1-\rho_\lambda$. By Lemma~\ref{lem:conditional_predictor} and the exact target covariance, $\rho_\lambda=O(\lambda^{-4})$. Choose $\lambda_0$ so that $\rho_\lambda<1$ for $\lambda\ge\lambda_0$. The Feldman--H\'ajek theorem \cite{feldman1958equivalence,bogachev1998gaussian} then guarantees equivalence of the measures, and the relative entropy is:
-\begin{align*}
-  2 \KL(\mu_{\mathrm{obs},I} \parallel \mu_{\lambda,I})
-  ={}&\|C_\lambda^{-1/2}(m_{\mathrm{obs},I}-m_{\lambda,I})\|_{\mathcal{H}_I}^2 \\
-  &-\log(1-\rho_\lambda)-\rho_\lambda .
-\end{align*}
-The mean-shift identity in the lemma follows from
+and
 \[
-  m_{\mathrm{obs},I}-m_{\lambda,I}
-  =\Sigma_{\lambda,Ik}\Sigma_{\lambda,kk}^{-1}
-   (x_k^*-m_{\lambda,k}).
+  S_{k,\lambda}^{-1}
+  =
+  \frac{2}{\varepsilon_0}\lambda^2+O(\lambda^{-2}).
 \]
-Assumption~\ref{assum:gaussian_clamp} gives
-$m_{\lambda,k}-x_k^*=O(\lambda^{-1})$, so that term is
-$O(\lambda^{-4})$. Finally,
-\[
-  -\log(1-\rho_\lambda)-\rho_\lambda
-  =O(\rho_\lambda^2)=O(\lambda^{-8}),
-\]
-which proves the asserted entropy decay.
-\end{proof}
-
-\subsection{Mollified Divergence and Fredholm Finite-Part Proof}
-
-To regularize the singular joint KL divergence, define a law with
-bulk marginal $\mu_{\mathrm{obs},I}$ and an independent mollified
-target conditional:
-\begin{equation}
-  \nu_{\lambda,\delta} \coloneqq \mu_{\mathrm{obs},I} \otimes \mathcal{N}(x_k^*, \delta^2)
-\end{equation}
-for $\delta>0$, identifying $\mathcal{H}$ with
-$\mathcal{H}_I\times\mathcal{H}_k$ in this display.
-
-\begin{proposition}[Mollification Limit]
-\label{prop:mollification_limit}
-For $\lambda\ge\lambda_0$ as in Lemma~\ref{lem:feldman_hajek}, define
-\begin{equation}
-  C_{\lambda,\delta} \coloneqq \frac{1}{2} \left( \log \frac{S_{k,\lambda}}{\delta^2} - 1 \right),
-\end{equation}
-Then
-\begin{equation}
-  \lim_{\delta \downarrow 0}
-  \left[\KL(\nu_{\lambda,\delta} \parallel \mu_\lambda)
-  - C_{\lambda,\delta}\right]
-  = \mathfrak{J}_\lambda(\mu_{\mathrm{obs}}; \mu_\lambda).
-\end{equation}
 \end{proposition}
+
 \begin{proof}
-Put $r_\lambda(X)\coloneqq X_k-\mu_{k|I}(X_I)$. The entropy
-chain rule and the scalar Gaussian formula give
-\begin{align}
+The first identity is the scalar form of Anderson--Trapp shorting applied to
+the target coordinate.  Because the target noise and the free noise are
+independent, the bulk covariance dominates the background covariance:
+$\Sigma_{\lambda,II}=Q_0+\operatorname{Cov}(Y_I)\succeq Q_0$.  Douglas range
+inclusion gives the contraction of energy norms
+\[
+  \|\Sigma_{\lambda,II}^{-1/2}v\|
+  \le \|Q_0^{-1/2}v\|
+  \quad (v\in H_{Q_0}).
+\]
+Using this inequality in \eqref{eq:schur_variational} and then applying
+\eqref{eq:cross_energy} yields \eqref{eq:shorted_residual_bound}.  The
+asymptotic formula follows from \eqref{eq:Sigmakk_exact}, and the reciprocal
+expansion follows by expanding
+$S_{k,\lambda}^{-1}$ around $\varepsilon_0/(2\lambda^2)$.
+\end{proof}
+
+\section{Galerkin Approximation and the Failure of Direct Inversion}
+\label{app:galerkin_shorting}
+
+Galerkin approximation is used here only to approximate trace-class covariances
+and nested variational shorting problems.  It is not a license to replace the
+Hilbert-space short by a global inverse of a compact covariance block.
+
+\begin{lemma}[Trace-norm convergence of Galerkin covariances]
+\label{lem:galerkin_trace_norm}
+Let $\Pi_n:\mathcal{H}\to\mathcal{H}_n$ be finite-rank orthogonal projections
+with $\Pi_n\phi_k=\phi_k$, $\Pi_n\mathcal{H}_I\subset\mathcal{H}_I$, and
+$\Pi_n\to I$ strongly.  For fixed $\lambda>0$, set
+\[
+  \mathcal{A}_n^{(\lambda)}
+  =\Pi_n\mathcal{A}^{(\lambda)}|_{\mathcal{H}_n},
+  \qquad
+  \mathcal{D}_n^{(\lambda)}
+  =\Pi_n\mathcal{D}^{(\lambda)}\Pi_n .
+\]
+Assume that $e^{t\mathcal{A}_n^{(\lambda)}}x\to
+e^{t\mathcal{A}^{(\lambda)}}x$ for every $x$, uniformly for $t$ in compact
+intervals, that the semigroups are uniformly exponentially stable
+$\|e^{t\mathcal{A}_n^{(\lambda)}}\|,
+\|e^{t\mathcal{A}^{(\lambda)}}\|\le Me^{-\beta t}$, and that
+$\mathcal{D}_n^{(\lambda)}\to\mathcal{D}^{(\lambda)}$ in
+$\mathcal{S}_1(\mathcal{H})$.  Then
+\[
+  \Sigma_{n,\lambda}
+  =
+  \int_0^\infty
+  e^{t\mathcal{A}_n^{(\lambda)}}
+  \mathcal{D}_n^{(\lambda)}
+  e^{t\mathcal{A}_n^{(\lambda)*}}\,dt
+  \longrightarrow
+  \Sigma_\lambda
+  \quad\text{in }\mathcal{S}_1(\mathcal{H}).
+\]
+\end{lemma}
+
+\begin{proof}
+Omitting the superscript $(\lambda)$, write the difference as a Bochner
+integral and split the integrand:
+\begin{multline*}
+  \|e^{t\mathcal{A}_n}\mathcal{D}_ne^{t\mathcal{A}_n^*}
+    -e^{t\mathcal{A}}\mathcal{D}e^{t\mathcal{A}^*}\|_{\mathcal{S}_1}
+  \le
+  M^2e^{-2\beta t}\|\mathcal{D}_n-\mathcal{D}\|_{\mathcal{S}_1}\\
+  +
+  \|e^{t\mathcal{A}_n}\mathcal{D}e^{t\mathcal{A}_n^*}
+    -e^{t\mathcal{A}}\mathcal{D}e^{t\mathcal{A}^*}\|_{\mathcal{S}_1}.
+\end{multline*}
+The first term tends to zero.  For the second, Gr\"umm's theorem for trace
+ideals implies trace-norm convergence from strong convergence of the left and
+right semigroups, uniform boundedness, and $\mathcal{D}\in\mathcal{S}_1$
+\cite{simon2005trace}.  The full integrand is dominated by
+\[
+  M^2e^{-2\beta t}
+  \bigl(\|\mathcal{D}_n\|_{\mathcal{S}_1}
+        +\|\mathcal{D}\|_{\mathcal{S}_1}\bigr),
+\]
+with a finite uniform trace-norm bound because
+$\mathcal{D}_n\to\mathcal{D}$ in $\mathcal{S}_1$.  Dominated convergence for
+Bochner integrals gives the claim.
+\end{proof}
+
+\begin{lemma}[Galerkin convergence of variational shorting]
+\label{lem:galerkin_variational_shorting}
+For every block-preserving Galerkin truncation satisfying the hypotheses of
+\Cref{lem:galerkin_trace_norm} and the uniform finite-energy condition
+\[
+  a_{Ik}^{(n)}\in H_{Q_0^{(n)}},
+  \qquad
+  \sup_n |a_{Ik}^{(n)}|_{Q_0^{(n)}}<\infty,
+\]
+the truncated residual satisfies
+\[
+  S_{k,\lambda}^{(n)}
+  =
+  \frac{\varepsilon_0}{2\lambda^2}-R_{n,\lambda},
+  \qquad
+  0\le R_{n,\lambda}\le C\lambda^{-6},
+\]
+with $C$ independent of $n$.  Hence
+$m_2^{\mathrm{Schur},(n)}=\varepsilon_0/2$ for every admissible truncation.
+Moreover, for fixed $\lambda$, nested finite-dimensional test spaces in the
+bulk Cameron--Martin space give monotone Rayleigh--Ritz convergence of the
+variational subtraction to $R_\lambda$.
+\end{lemma}
+
+\begin{proof}
+The block-preserving truncation has the same triangular form as
+\eqref{eq:exact_blocks}, so the finite-dimensional Lyapunov blocks give
+\[
+  \Sigma_{n,\lambda,kk}=\frac{\varepsilon_0}{2\lambda^2},
+  \qquad
+  \Sigma_{n,\lambda,Ik}
+  =
+  \frac{\varepsilon_0}{2\lambda^2}
+  (\lambda I-\mathcal{A}_{II}^{(n)})^{-1}a_{Ik}^{(n)}.
+\]
+The uniform finite-energy assumption gives
+$|\Sigma_{n,\lambda,Ik}|_{Q_0^{(n)}}=O(\lambda^{-3})$ uniformly in $n$.
+The same Douglas domination argument used in
+\Cref{prop:rank_one_shorted_residual} then yields
+$0\le R_{n,\lambda}\le C\lambda^{-6}$ and the stated value of
+$m_2^{\mathrm{Schur},(n)}$.
+
+For the variational convergence statement, let
+$C_\lambda=\Sigma_{\lambda,II}$ and let $V_m$ be nested finite-dimensional
+subspaces whose union is dense in $H_{C_\lambda}=\Range(C_\lambda^{1/2})$.
+Then
+\[
+  R_\lambda^{[m]}
+  =
+  \sup_{\substack{u\in V_m\\ \langle u,C_\lambda u\rangle>0}}
+  \frac{|\langle u,\Sigma_{\lambda,Ik}\rangle|^2}
+       {\langle u,C_\lambda u\rangle}
+\]
+is monotone increasing in $m$ and bounded above by $R_\lambda$.  Density in the
+Cameron--Martin energy norm gives $R_\lambda^{[m]}\uparrow R_\lambda$.  In an
+eigenbasis of $C_\lambda$, this is the Rayleigh--Ritz identity
+\[
+  R_\lambda^{[m]}
+  =
+  \sum_{j=1}^m
+  \frac{|\langle\Sigma_{\lambda,Ik},e_j\rangle|^2}{\sigma_j}
+  \uparrow
+  \|\Sigma_{\lambda,Ik}\|_{H_{C_\lambda}}^2.
+\]
+\end{proof}
+
+The obstruction to direct inversion is not numerical bookkeeping.  In infinite
+dimension the compact covariance block has no bounded inverse on the ambient
+Hilbert space.  In finite-dimensional Galerkin matrices the condition number
+$\kappa(D_N)$ diverges as the smallest covariance eigenvalue tends to zero, so
+the formula $B_N^*D_N^{-1}B_N$ amplifies truncation and roundoff errors.  Even
+with exact arithmetic, the limits do not commute: fixing $N$ and then sending
+$\lambda\to\infty$ resolves a different finite matrix problem than first
+passing to the trace-class covariance and then taking the calibrated shorting
+limit.  The stable object is therefore the nested variational short, not direct
+matrix inversion.
+
+\section{Gaussian Radon Conditioning and the Fredholm Finite Part}
+\label{app:gaussian_fredholm}
+
+The Gaussian and Fredholm layer is the Radon representation of the shorted
+residual constructed above.  It is not a second mechanism: disintegration
+supplies the exact-evidence law, while the shorted covariance residual supplies
+the finite conditional variance used by the Gaussian entropy calculation.
+
+\subsection{Pointwise disintegration}
+
+Let $\mu_\lambda=\mathcal{N}(m_\lambda,\Sigma_\lambda)$ be a Radon Gaussian
+measure on $\mathcal{H}=\mathcal{H}_k\oplus\mathcal{H}_I$, and let
+$\pi_k(X)=\langle X,\phi_k\rangle$.
+
+\begin{lemma}[Continuous disintegration and exact target zeros]
+\label{lem:disintegration}
+For each $t\in\mathbb{R}$, there is a unique weakly continuous Gaussian
+disintegration member
+$\mu_\lambda^t=\mathcal{N}(m_\lambda^t,\Sigma_\lambda^t)$ supported on
+$X_k=t$, where
+\[
+  m_\lambda^t=
+  \begin{pmatrix}
+    t\\
+    m_{\lambda,I}
+    +\Sigma_{\lambda,Ik}\Sigma_{\lambda,kk}^{-1}(t-m_{\lambda,k})
+  \end{pmatrix},
+  \quad
+  \Sigma_\lambda^t=
+  \begin{pmatrix}
+    0&0\\
+    0&\Sigma_{\lambda,II}
+      -\Sigma_{\lambda,Ik}\Sigma_{\lambda,kk}^{-1}\Sigma_{\lambda,kI}
+  \end{pmatrix}.
+\]
+At $t=x_k^*$, the observed law $\mu_{\mathrm{obs}}=\mu_\lambda^{x_k^*}$
+satisfies
+\[
+  \mathbb{E}_{\mathrm{obs}}[X_k]-x_k^*=0,
+  \qquad
+  \operatorname{Var}_{\mathrm{obs}}(X_k)=0.
+\]
+\end{lemma}
+
+\begin{proof}
+Regular conditional probabilities exist because $\mathcal{H}$ is Polish.  The
+displayed family is the weakly continuous Gaussian disintegration along the
+continuous scalar observation map, and this continuous version is unique
+\cite{bogachev1998gaussian,lagatta2013continuous}.  Evaluating at $x_k^*$ fixes
+the target coordinate almost surely.
+\end{proof}
+
+\subsection{Gaussian energy projection and entropy}
+
+Let $C_\lambda=\Sigma_{\lambda,II}$.  Since $C_\lambda$ is trace-class, its
+inverse is not a bounded ambient operator; the relevant object is the
+Cameron--Martin space $H_{C_\lambda}=\Range(C_\lambda^{1/2})$.
+
+\begin{lemma}[Measurable Cameron--Martin energy projection]
+\label{lem:conditional_predictor}
+The cross covariance belongs to $H_{C_\lambda}$ and
+\[
+  \|\Sigma_{\lambda,Ik}\|_{H_{C_\lambda}}
+  \le |\Sigma_{\lambda,Ik}|_{Q_0}=O(\lambda^{-3}).
+\]
+The conditional mean projection is the measurable Wiener functional
+\[
+  \mu_{k|I}(X_I)
+  =
+  m_{\lambda,k}
+  +W_{\Sigma_{\lambda,Ik}}(X_I-m_{\lambda,I}),
+\]
+and, for all sufficiently large $\lambda$,
+\[
+  \operatorname{Var}(X_k\mid X_I)
+  =
+  \Sigma_{\lambda,kk}
+  -\|\Sigma_{\lambda,Ik}\|_{H_{C_\lambda}}^2
+  =S_{k,\lambda}>0.
+\]
+\end{lemma}
+
+\begin{proof}
+The domination $\Sigma_{\lambda,II}\succeq Q_0$ gives
+$H_{Q_0}\subseteq H_{C_\lambda}$ by Douglas range inclusion
+\cite{douglas1966majorization}.  Combining this inclusion with
+\eqref{eq:cross_energy} gives the norm bound.  The range condition is exactly
+the condition for the measurable Wiener functional associated with
+$\Sigma_{\lambda,Ik}$ to exist under the bulk Gaussian law
+\cite{bogachev1998gaussian}.  Positivity follows from
+\Cref{prop:rank_one_shorted_residual}.
+\end{proof}
+
+\begin{lemma}[Feldman--Hajek equivalence and trace-anomaly decay]
+\label{lem:feldman_hajek}
+There is $\lambda_0>0$ such that for $\lambda\ge\lambda_0$ the bulk marginals
+$\mu_{\mathrm{obs},I}$ and $\mu_{\lambda,I}$ are equivalent and
+\[
+  2\KL(\mu_{\mathrm{obs},I}\parallel\mu_{\lambda,I})
+  =
+  \frac{(x_k^*-m_{\lambda,k})^2}{\Sigma_{\lambda,kk}}\rho_\lambda
+  -\log(1-\rho_\lambda)-\rho_\lambda,
+\]
+where
+\[
+  \rho_\lambda
+  =
+  \frac{\|\Sigma_{\lambda,Ik}\|_{H_{C_\lambda}}^2}
+       {\Sigma_{\lambda,kk}}
+  =
+  1-\frac{S_{k,\lambda}}{\Sigma_{\lambda,kk}}
+  =O(\lambda^{-4}).
+\]
+In particular,
+$\KL(\mu_{\mathrm{obs},I}\parallel\mu_{\lambda,I})=O(\lambda^{-4})$.
+\end{lemma}
+
+\begin{proof}
+The covariance change under disintegration is the rank-one operator
+$\Sigma_{\lambda,Ik}\Sigma_{\lambda,kk}^{-1}\Sigma_{\lambda,kI}$.  By
+\Cref{lem:conditional_predictor}, its relative covariance perturbation has the
+single non-unit eigenvalue $1-\rho_\lambda$.  For large $\lambda$,
+$\rho_\lambda<1$, so Feldman--Hajek equivalence applies
+\cite{feldman1958equivalence,bogachev1998gaussian}.  The Gaussian relative
+entropy formula gives the displayed expression.  Assumption~\ref{assum:gaussian_clamp}
+has $m_{\lambda,k}-x_k^*=O(\lambda^{-1})$, while
+$\Sigma_{\lambda,kk}=O(\lambda^{-2})$ and $\rho_\lambda=O(\lambda^{-4})$; the
+logarithmic remainder is $O(\rho_\lambda^2)$.  Hence the entropy is
+$O(\lambda^{-4})$.
+\end{proof}
+
+\subsection{Mollified divergence and finite part}
+
+For $\delta>0$, set
+\[
+  \nu_{\lambda,\delta}
+  =
+  \mu_{\mathrm{obs},I}\otimes\mathcal{N}(x_k^*,\delta^2)
+\]
+under the product identification
+$\mathcal{H}=\mathcal{H}_I\times\mathcal{H}_k$.
+
+\begin{proposition}[Mollification limit]
+\label{prop:mollification_limit}
+For $\lambda\ge\lambda_0$ as in \Cref{lem:feldman_hajek}, define
+\[
+  C_{\lambda,\delta}
+  =
+  \frac12\left(\log\frac{S_{k,\lambda}}{\delta^2}-1\right).
+\]
+Then
+\[
+  \lim_{\delta\downarrow0}
+  \left[
+    \KL(\nu_{\lambda,\delta}\parallel\mu_\lambda)
+    -C_{\lambda,\delta}
+  \right]
+  =
+  \mathfrak{J}_\lambda(\mu_{\mathrm{obs}};\mu_\lambda).
+\]
+\end{proposition}
+
+\begin{proof}
+Let $r_\lambda(X)=X_k-\mu_{k|I}(X_I)$.  The entropy chain rule and the scalar
+Gaussian formula give
+\[
   \KL(\nu_{\lambda,\delta}\parallel\mu_\lambda)
-  ={}&\KL(\mu_{\mathrm{obs},I}\parallel\mu_{\lambda,I})
-      + C_{\lambda,\delta} \nonumber\\
-     &+\frac{\delta^2}{2S_{k,\lambda}}
-      +\frac{1}{2S_{k,\lambda}}
-       \E_{\mu_{\mathrm{obs}}}
-       [r_\lambda(X)^2].
-\end{align}
-Here $X_k=x_k^*$ under $\mu_{\mathrm{obs}}$. Since
-$S_{k,\lambda}>0$ for $\lambda\ge\lambda_0$, the term
-$\delta^2/(2S_{k,\lambda})$ vanishes as $\delta\downarrow0$.
-The remaining terms equal Definition~\ref{def:unified_action}.
+  =
+  \KL(\mu_{\mathrm{obs},I}\parallel\mu_{\lambda,I})
+  +C_{\lambda,\delta}
+  +\frac{\delta^2}{2S_{k,\lambda}}
+  +\frac{1}{2S_{k,\lambda}}
+   \mathbb{E}_{\mu_{\mathrm{obs}}}[r_\lambda(X)^2].
+\]
+The $\delta^2$ term vanishes as $\delta\downarrow0$, and the remaining terms
+are exactly Definition~\ref{def:unified_action}.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:finite_part_regularization}]
-Let $\Delta_\lambda\coloneqq x_k^*-m_{\lambda,k}$ and
-$Z_\lambda\coloneqq W_{\Sigma_{\lambda,Ik}}(X_I-m_{\lambda,I})$.
-The conditional Gaussian formulas give
-\begin{align}
-  \E_{\mathrm{obs}}[Z_\lambda]
-    &=\rho_\lambda\Delta_\lambda, \\
-  \Var_{\mathrm{obs}}(Z_\lambda)
-    &=\Sigma_{\lambda,kk}\rho_\lambda(1-\rho_\lambda).
-\end{align}
-Using $X_k=x_k^*$ under $\mu_{\mathrm{obs}}$ and
-$S_{k,\lambda}=\Sigma_{\lambda,kk}(1-\rho_\lambda)$, we obtain
-\begin{align}
-  &\frac{1}{2S_{k,\lambda}}
-   \E_{\mu_{\mathrm{obs}}}
-   [(X_k-\mu_{k|I}(X_I))^2] \nonumber\\
-  &\qquad =
-  \frac{\rho_\lambda}{2}
-  +\frac{\Delta_\lambda^2}{2\Sigma_{\lambda,kk}}
-   (1-\rho_\lambda).
-\end{align}
-Here
+Put $\Delta_\lambda=x_k^*-m_{\lambda,k}$ and
+$Z_\lambda=W_{\Sigma_{\lambda,Ik}}(X_I-m_{\lambda,I})$.  The Gaussian
+conditional formulas give
 \[
-  \frac{\Delta_\lambda^2}{2\Sigma_{\lambda,kk}}
-  =\frac{b_k^2}{\varepsilon_0},
-  \qquad \rho_\lambda=O(\lambda^{-4}).
+  \mathbb{E}_{\mathrm{obs}}[Z_\lambda]
+  =\rho_\lambda\Delta_\lambda,
+  \qquad
+  \operatorname{Var}_{\mathrm{obs}}(Z_\lambda)
+  =
+  \Sigma_{\lambda,kk}\rho_\lambda(1-\rho_\lambda).
 \]
-The conditional term is therefore
-$b_k^2/\varepsilon_0+O(\lambda^{-4})$. Adding
-Lemma~\ref{lem:feldman_hajek} proves
+Since $X_k=x_k^*$ under $\mu_{\mathrm{obs}}$ and
+$S_{k,\lambda}=\Sigma_{\lambda,kk}(1-\rho_\lambda)$,
+\[
+  \frac{1}{2S_{k,\lambda}}
+  \mathbb{E}_{\mu_{\mathrm{obs}}}
+  \bigl[(X_k-\mu_{k|I}(X_I))^2\bigr]
+  =
+  \frac{\rho_\lambda}{2}
+  +
+  \frac{\Delta_\lambda^2}{2\Sigma_{\lambda,kk}}(1-\rho_\lambda).
+\]
+The calibrated identities give
+$\Delta_\lambda^2/(2\Sigma_{\lambda,kk})=b_k^2/\varepsilon_0$ and
+$\rho_\lambda=O(\lambda^{-4})$.  Adding
+\Cref{lem:feldman_hajek} yields
 \[
   \mathfrak{J}_\lambda(\mu_{\mathrm{obs}};\mu_\lambda)
-  =\frac{b_k^2}{\varepsilon_0}+O(\lambda^{-4}),
+  =
+  \frac{b_k^2}{\varepsilon_0}+O(\lambda^{-4}).
 \]
-and hence the stated limit.
 \end{proof}
 
-\subsection{Exact Decoupled-Centered Consequence}
-
-If the target coordinate is decoupled ($a_{Ik}=0$), then
-$\Sigma_{\lambda,Ik}=0$, $S_{k,\lambda}=\Sigma_{\lambda,kk}>0$, and the
-bulk marginals coincide for every $\lambda>0$. If the evidence is also
-centered ($x_k^*=m_{\lambda,k}$), both terms in
-Definition~\ref{def:unified_action} vanish. Hence
+If $a_{Ik}=0$ and $x_k^*=m_{\lambda,k}$, then
+$\Sigma_{\lambda,Ik}=0$, the bulk marginals coincide, and the conditional
+residual term in Definition~\ref{def:unified_action} is zero.  Hence
 $\mathfrak{J}_\lambda(\mu_{\mathrm{obs}};\mu_\lambda)=0$ exactly for every
 $\lambda>0$.
 
+\section{Admissibility Boundary and Elliptic Benchmark}
+\label{app:admissibility_boundary}
 
+The finite-energy assumption is a boundary condition for the theory, not a
+technical artifact.  The off-diagonal channel must land in the Cameron--Martin
+range of the background covariance.  If it does not, the variational subtraction
+need not be finite and the $O(\lambda^{-6})$ rank-one residual estimate has no
+meaning.
 
-\section{Numerical Diagnostics for Block Shorting and Galerkin Verification}
-\label{app:experiments}
-
-This appendix presents arbitrary-precision numerical validations of block
-normalization, shorted Schur residual scaling, Fredholm finite-part
-asymptotics, and Galerkin convergence rates, computed in 256-bit
-\texttt{BigFloat} to isolate the structural invariants from floating-point
-collapse.
-
-\subsection{Galerkin Verification and Ill-Conditioning (Remark 6.1)}
-\label{app:experiments:truncation}
-
-We illustrate the Galerkin convergence of Proposition~\ref{prop:galerkin_consistency} against a finite reference on an admissible model. The Hilbert space is $\ell^2(\mathbb{N})$ with coordinate basis $\{\phi_j\}$. The drift is $\mathcal{A} = \mathcal{A}_0 + \mathcal{K}$, where $\mathcal{A}_0 \phi_j = -(1 + 0.01 j^2)\phi_j$ and $\mathcal{K}\phi_1 = \sum_{j \ge 2} 12\,j^{-3}\phi_j$ is a bounded rank-one nilpotent perturbation. The noise is $\mathcal{D}\phi_j = j^{-3/2}\phi_j$, which is trace-class. The regularized conditioning acts at $k=1$ with $\varepsilon_0 = 1$. Truncated covariances are compared against a finite reference $N_{\text{ref}} = 1500$.
-
-\begin{table}[htbp]
-  \centering
-  \caption{Truncation convergence diagnostics for Experiment~C.1.}
-  \label{tab:truncation}
-  \begin{tabular}{lrr}
-    \toprule
-    Diagnostic & Value & Expected \\
-    \midrule
-    $\|\mathcal{D} - \Pi_n \mathcal{D} \Pi_n\|_{\mathcal{S}_1}$ slope & $-0.499$ & $\to 0$ \\
-    $\|\Sigma_n - \Sigma_{\text{ref}}\|_{\mathcal{S}_1}$ slope & $-2.683$ & $\to 0$ \\
-    $\|\Sigma_{n,\lambda} - \Sigma_{\text{ref},\lambda}\|_{\mathcal{S}_1}$ slope & $-2.683$ & $\to 0$ \\
-    $|S_{1,n,\lambda} - S_{1,\text{ref},\lambda}|$ slope & $-5.504$ & $\to 0$ \\
-    $m_2^{\mathrm{Schur},(1000)}$ (extrapolated) & $0.5000000$ & $0.5$ \\
-    $|m_2^{\mathrm{Schur},(1000)} - \varepsilon_0/2|$ & $6.87 \times 10^{-14}$ & $0$ \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-\begin{figure}[htbp]
-  \centering
-  \IfFileExists{figures/truncation_convergence_validation.png}{%
-  \includegraphics[width=0.8\textwidth]{figures/truncation_convergence_validation.png}%
-}{%
-  \fbox{\parbox{0.78\textwidth}{Figure omitted in this source package; numerical values are reported in the surrounding table.}}%
-}
-  \caption{Experiment~C.1. Trace-norm and residual errors decay in $n$; the extrapolated $m_2^{\mathrm{Schur},(1000)}$ differs from $\varepsilon_0/2$ by $6.87\times10^{-14}$.}
-  \label{fig:truncation}
-\end{figure}
-
-While the variational operator sequence converges rigorously, attempting to compute the truncated Schur complement $S^{(n)} = \Sigma_{EE} - \Sigma_{EI}^{(n)} (\Sigma_{II}^{(n)})^{-1} \Sigma_{IE}^{(n)}$ via naive finite-dimensional algebraic matrix inversion fails catastrophically. Because the internal block $\Sigma_{II}$ is a trace-class operator, its truncated matrix representation $\Sigma_{II}^{(n)}$ becomes severely ill-conditioned in generic Galerkin bases. Our diagnostics show that for $n \ge 400$, the condition number $\kappa(\Sigma_{II}^{(n)})$ grows as $n^6$ and formally exceeds the $10^{16}$ IEEE 754 \texttt{Float64} precision limit. Consequently, explicit inversion or standard linear solvers introduce overwhelming numerical noise, destroying the monotonic Loewner growth and breaking the positive-definiteness of the residual. This stark contrast confirms that the inverse-free variational framework in Section~\ref{sec:infdim} is structurally necessary, and that strict Loewner growth cannot be safely assumed under finite-dimensional algebraic approximations.
-
-
-
-\subsection{Canonical Scaling Diagnostic and Trace Anomaly (Remark 6.3)}
-\label{app:experiments:ablation}
-
-We validate the canonical normalization of Proposition~\ref{prop:exact_calibration} in its decoupled reference channel. With incoming target-coordinate blocks and off-diagonal drift coupling set to zero, the target covariance is exactly $\Sigma_{\lambda,22} = d_\lambda / (2\lambda)$. Four candidate target-diffusion families are tested:
-\begin{enumerate}
-  \item \textbf{Canonical:} $d_\lambda=\varepsilon_0/\lambda$.
-  \item \textbf{Slow:} $d_\lambda=\varepsilon_0$.
-  \item \textbf{Fast:} $d_\lambda=\varepsilon_0/\lambda^2$.
-  \item \textbf{Perturbed:} $d_\lambda=(\varepsilon_0/\lambda)(1+\lambda^{-2})$.
-\end{enumerate}
-
-All evaluations are performed in Julia using 256-bit \texttt{BigFloat} arithmetic. A probe at $\lambda=2^{100}$ resolves the nonzero finite-scale defect of the perturbed family. 
-
-To confirm the finite-rank uniform positivity mechanism numerically, we simultaneously evaluate the exact trace anomaly. For the canonical family, the normalized coupling matrix $\rho_{\lambda,E}$ is evaluated in strict \texttt{BigFloat} mode-by-mode precision. Although standard Frobenius or operator norms over the entire residual matrix $\Sigma_{\lambda,EE}^{-1/2} R_{\lambda,E} \Sigma_{\lambda,EE}^{-1/2}$ may spuriously report magnitude bounds around $O(10^{-15})$ due to ambient off-diagonal accumulation, the mathematically exact trace metric required for the Fredholm cancellation is $\tr(\rho_{\lambda,E}) = 6.483 \times 10^{-25}$ at $\lambda = 2^{20}$, matching the predicted analytical scaling $\lambda^4 \tr(\rho_{\lambda,E}) = 0.78375$, confirming that the trace anomaly is cleanly isolated and uniform positivity is preserved.
-\begin{table}[htbp]
-  \centering
-  \caption{Exact-calibration ablation. Only the canonical family satisfies the exact finite-$\lambda$ covariance condition.}
-  \label{tab:ablation}
-  \begin{tabular}{lll}
-    \toprule
-    Family & $\lambda d_\lambda/\varepsilon_0$ & defect $|2\lambda^2\Sigma_{\lambda,kk}/\varepsilon_0-1|$ \\
-    \midrule
-    Canonical & $1$ & $0$ \\
-    Slow & $\lambda$ & $\lambda-1 \to \infty$ \\
-    Fast & $\lambda^{-1}$ & $|1-\lambda^{-1}| \to 1$ \\
-    Perturbed & $1+\lambda^{-2}$ & $\lambda^{-2}$ \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-\begin{figure}[htbp]
-  \centering
-  \IfFileExists{figures/ablation_combined.png}{%
-  \includegraphics[width=0.9\textwidth]{figures/ablation_combined.png}%
-}{%
-  \fbox{\parbox{0.88\textwidth}{Figure omitted in this source package; numerical values are reported in the surrounding table.}}%
-}
-  \caption{Experiment~C.2. The perturbed family has the correct limiting ratio but fails the exact finite-$\lambda$ covariance condition. Exact zero defects are displayed at $10^{-20}$.}
-  \label{fig:ablation}
-\end{figure}
-
-
-
-\subsection{Fredholm Finite-Part Functional in a Three-Node Chain}
-\label{app:experiments:three_node}
-
-We evaluate the Gaussian Fredholm finite-part functional $\mathfrak{J}_\lambda$ on a three-node linear Ornstein--Uhlenbeck SDE:
-\begin{equation}
-  X_1 \to X_2 \to X_3,
-\end{equation}
-where $X_2$ is the target coordinate subject to regularized conditioning of strength $\lambda \in \{2^1, \dots, 2^{12}\}$, with $x_2^* = 0$ and $\varepsilon_0 = 1$. The drift and diffusion operators are:
-\begin{equation}
-  A_\lambda = \begin{pmatrix} -1 & 0 & 0 \\ 0 & -\lambda & 0 \\ 0 & a_{32} & -1 \end{pmatrix}, \qquad D_\lambda = \operatorname{diag}(1, \varepsilon_0/\lambda, 1).
-\end{equation}
-The target mean forcing $b_2$ controls the target mean shift $m_{\lambda,2} = b_2/\lambda$.
-We evaluate three Gaussian cases:
-\begin{enumerate}
-  \item \textbf{Case A (Decoupled-centered):} $a_{32} = 0, b_2 = 0$. Here $\mathfrak{J}_\lambda = 0$ exactly for all $\lambda$.
-  \item \textbf{Case B (Coupled-centered):} $a_{32} = 1, b_2 = 0$. The coupling causes leakage $\Sigma_{23} \neq 0$, but the centering gives $\mathfrak{J}_\lambda = O(\lambda^{-4}) \to 0$.
-  \item \textbf{Case C (Coupled-off-centered):} $a_{32} = 1, b_2 = 1$. The deterministic forcing causes mean shift $m_{\lambda,2} = 1/\lambda$, yielding $\mathfrak{J}_\lambda \to b_2^2/\varepsilon_0 = 1$.
-\end{enumerate}
-All evaluations are performed in Julia using 256-bit \texttt{BigFloat} arithmetic, showing that the Schur residual $\lambda^2 S_{2,\lambda}$ converges to $1/2$ in all cases, while $\mathfrak{J}_\lambda$ exhibits the exact zero, $O(\lambda^{-4})$ decay, and convergence to 1 behavior respectively.
-
-\begin{figure}[htbp]
-  \centering
-  \IfFileExists{figures/three_node_gaussian_chain.png}{%
-  \includegraphics[width=0.9\textwidth]{figures/three_node_gaussian_chain.png}%
-}{%
-  \fbox{\parbox{0.88\textwidth}{Figure omitted in this source package; numerical values are reported in the surrounding text.}}%
-}
-  \caption{Experiment~C.3. The panels show $\lambda^2S_{2,\lambda}\to0.5$ and the three finite-part regimes: exact zero, $O(\lambda^{-4})$ decay, and convergence to $1$. Exact zeros are displayed at $10^{-20}$.}
-  \label{fig:three_node}
-\end{figure}
-
-
-\subsection{Failure of Cameron--Martin Admissibility (Remark 4.1)}
-\label{app:experiments:cameron_martin_failure}
-
-To illustrate the necessity of the finite-energy condition (Assumption~\ref{assum:cm_stability}), we test an observation operator that explicitly violates Cameron--Martin admissibility. Consider a 1D SPDE heat equation prior, where the target observation is approximated by a narrow Gaussian mollifier $g_\varepsilon(x) = \frac{1}{\sqrt{2\pi}\varepsilon} e^{-(x-x_0)^2/(2\varepsilon^2)}$. 
-
-For any fixed $\varepsilon > 0$, the function is smooth ($g_\varepsilon \in L^2$) and lies within the Cameron--Martin space. However, as $\varepsilon \downarrow 0$ (approaching a Dirac point-evaluation), numerical stress tests confirm that the Cameron--Martin energy norm diverges as $\varepsilon^{-1} \to \infty$. Consequently, the shorted residual upper bound $O(\lambda^{-6})$ derived in Theorem~\ref{thm:inf_cancellation} fundamentally breaks down, destroying the asymptotic trace-anomaly expansion. This confirms that pointwise evaluation without spatial smoothing is structurally incompatible with the present infinite-dimensional Gaussian conditioning theory, justifying the strict finite-energy requirements.
-
-
-
-\subsection{Sparse Precision-Operator Path and Conjugate Regularization}
-\label{app:experiments:sparse_precision}
-
-The foregoing experiments adopt the GFF framework ($\mathcal{A}_0=-L$, $Q_0=L^{-1}$) of \Cref{sec:spde}.  An alternative, numerically superior regime is the OU framework with drift $\mathcal{A}_0=-L^{-1}$ and formal covariance $Q_0=L$.  On the dual space $H^{-1}(0,1)$, $Q_0$ is trace-class and the theory of \Cref{sec:infdim} applies verbatim.  The practical advantage is spectral: the resolvent $(\lambda I+L^{-1})^{-1}$ admits a sparse realization through the conjugate map
-\begin{equation}
-    \label{eq:conjugate_map}
-    (\lambda I+L^{-1})^{-1}=L(\lambda L+I)^{-1}=\frac{1}{\lambda}L(L+\tilde{\lambda}I)^{-1},\qquad\tilde{\lambda}=\lambda^{-1}.
-\end{equation}
-Thus the resolvent is obtained by a \emph{single} sparse tridiagonal solve with the precision operator $L$ at the conjugate parameter $\tilde{\lambda}$, entirely avoiding dense covariance construction or eigenvalue decomposition.  The complexity drops from $O(N^{3})$ to $O(N)$, and the condition-number catastrophe of \Cref{thm:triple_impossibility}\ref{item:numerical_impossibility} is circumvented.
-
-\begin{table}[htbp]
-    \centering
-    \caption{Sparse precision-operator validation in the OU regime, $N=10000$, $\kappa=1$, $\Delta_E=1$.  The conjugate parameter $\tilde{\lambda}=\lambda^{-1}$ eliminates transient spectral imbalance; convergence is immediate.}
-    \label{tab:sparse_precision}
-    \begin{tabular}{ccc}
-        \toprule
-        $\lambda$ & $\tilde{\lambda}=\lambda^{-1}$ & $\lambda^{4}\tr(\rho_{\lambda,E})$ \\
-        \midrule
-        $10^{1}$ & $10^{-1}$ & $1.0263\times10^{-7}$ \\
-        $10^{2}$ & $10^{-2}$ & $1.0283\times10^{-7}$ \\
-        $10^{3}$ & $10^{-3}$ & $1.0285\times10^{-7}$ \\
-        $10^{4}$ & $10^{-4}$ & $1.0285\times10^{-7}$ \\
-        $10^{5}$ & $10^{-5}$ & $1.0285\times10^{-7}$ \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-The observed values converge to the analytical limit
-$\lim_{\lambda\to\infty}\lambda^{4}\tr(\rho_{\lambda,E})=1.02854\times10^{-7}$,
-which includes the exact projection-cancellation factor derived from the
-Woodbury subspace inversion.  The absence of transient growth confirms that
-the OU regime, combined with the conjugate regularization map
-\eqref{eq:conjugate_map}, places every $\lambda\ge10$ in the asymptotic
-regime. 
-
-\begin{figure}[htbp]
-  \centering
-  \IfFileExists{figures/gff_vs_ou_condition.png}{%
-  \includegraphics[width=0.9\textwidth]{figures/gff_vs_ou_condition.png}%
-}{%
-  \fbox{\parbox{0.88\textwidth}{Figure omitted in this source package; numerical values are reported in the surrounding text.}}%
-}
-  \caption{Trace anomaly conditioning comparison. The GFF regime ($\mathcal{A}_0=-L$) exhibits an unbounded transient condition number spike before $\lambda$ dominates the maximum eigenvalue of the finite-dimensional truncation. In stark contrast, the OU regime ($\mathcal{A}_0=-L^{-1}$) resolved via conjugate sparse regularization ($\tilde{\lambda}=\lambda^{-1}$) reaches the asymptotic limit instantly without transient divergence.}
-  \label{fig:gff_vs_ou}
-\end{figure}
-
-The computation at $N=10000$ completes in under one second on a
-standard laptop, demonstrating that the variational shorting framework is
-not only theoretically unavoidable
-(\Cref{thm:triple_impossibility}) but also numerically optimal, as visually confirmed by the stark contrast in \Cref{fig:gff_vs_ou}.
-
-
-
-\subsection{Numerical Precision Audit}
-\label{app:numerical_precision}
-
-At $n=256$, we recompute representative C.1 Schur residuals using IEEE 754 \texttt{Float64} and 256-bit Julia \texttt{BigFloat} arithmetic with the same covariance equation and Schur assembly.
-
-\begin{table}[htbp]
-  \centering
-  \caption{Precision audit at $n=256$; $S_{256}$ uses 256-bit \texttt{BigFloat}.}
-  \label{tab:precision_audit}
-  \begin{tabular}{rrrr}
-    \toprule
-    $\lambda$ & $\kappa_2(\Sigma_{II})$ &
-    $|\lambda^2 S-\tfrac12|$ &
-    $|S_{64}-S_{256}|/|S_{256}|$ \\
-    \midrule
-    $4$ & $2.97\times10^6$ & $3.45\times10^{-1}$ & $6.50\times10^{-16}$ \\
-    $64$ & $9.14\times10^5$ & $1.13\times10^{-3}$ & $3.48\times10^{-17}$ \\
-    $4096$ & $9.14\times10^5$ & $9.20\times10^{-10}$ & $5.54\times10^{-17}$ \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-For the five-point extrapolation of $m_2^{\mathrm{Schur},(256)}$,
-\texttt{Float64} and \texttt{BigFloat} differ by
-$9.98\times10^{-17}$; finite-$\lambda$ remainder, not rounding, governs
-the observed distance to the limiting constant.
-
-
-
-\begin{remark}[Block-decoupling error suppression]
-\label{rmk:block_decoupling_error}
-The sub-machine-epsilon agreement between \texttt{Float64} and \texttt{BigFloat} in Table~\ref{tab:precision_audit} is not coincidental; it is a direct consequence of the block-triangular structure established in this paper. Under the block-decoupled conditioning, the drift matrix takes the form
-\begin{equation}
-  \mathcal{A}^{(\lambda)}=\begin{pmatrix}-\lambda&0\\a_{Ik}&A_{II}\end{pmatrix},
-\end{equation}
-so the operator Lyapunov equation decomposes into three sub-problems:
-\begin{enumerate}
-  \item The target block $\Sigma_{\lambda,kk}=d_\lambda/(2\lambda)$ is solved by a single scalar division, incurring at most $\frac{1}{2}\epsilon_{\mathrm{machine}}$ relative rounding error (IEEE~754 round-to-nearest).
-  \item The cross-covariance $\Sigma_{\lambda,Ik}$ satisfies $|\Sigma_{\lambda,Ik}|_{Q_0}=O(\lambda^{-3})$ by \eqref{eq:cross_norm_bound}, so the absolute rounding error in the cross block is $O(\lambda^{-3}\epsilon_{\mathrm{machine}})$.
-  \item The free block $\Sigma_{\lambda,II}$ is a standard Lyapunov solution with absolute error $O(\epsilon_{\mathrm{machine}}\|\Sigma_{\lambda,II}\|)$.
-\end{enumerate}
-When the Schur complement is assembled as $S_{k,\lambda}=\Sigma_{\lambda,kk}-R_\lambda$, the subtracted variational term satisfies $R_\lambda=O(\lambda^{-6})$ (Theorem~\ref{thm:inf_cancellation}), which is negligible compared to $\Sigma_{\lambda,kk}=O(\lambda^{-2})$. The rounding error in $S_{k,\lambda}$ is therefore dominated by the error in $\Sigma_{\lambda,kk}$ alone, yielding a Schur-level rounding budget of $O(\epsilon_{\mathrm{machine}}\cdot\Sigma_{\lambda,kk})$ rather than the na\"ive $O(\epsilon_{\mathrm{machine}}\cdot\|\Sigma_{\lambda,II}^{-1}\|\cdot\|\Sigma_{\lambda,Ik}\|^2)$ that one would expect without block decoupling.
-
-In short, the block-triangular structure converts what would be a catastrophically ill-conditioned Schur computation into a well-conditioned scalar computation plus negligible corrections. The observed \texttt{Float64}--\texttt{BigFloat} agreement at $O(10^{-17})$ is the numerical signature of this structural decoupling.
-\end{remark}
+The elliptic example of \Cref{sec:spde} makes this boundary concrete.  For
+$L=-d^2/dx^2+\kappa^2$ on $L^2(0,1)$ with Dirichlet boundary conditions and
+$Q_0=L^{-1}$, the Cameron--Martin space is
+\[
+  H_{Q_0}=H_0^1(0,1),
+  \qquad
+  \|h\|_{Q_0}^2
+  =
+  \int_0^1\bigl(|h'(x)|^2+\kappa^2|h(x)|^2\bigr)\,dx .
+\]
+Smooth spatially averaged observations are admissible when their representing
+vectors lie in $H_0^1(0,1)$; for example, any fixed
+$g\in C_c^\infty(0,1)$ has finite energy.  A point-evaluation channel is the
+opposite limit.  If $g_\varepsilon$ is a standard compactly supported mollifier
+concentrating at $x_0\in(0,1)$, then
+\[
+  \|g_\varepsilon\|_{Q_0}^2
+  =
+  \int_0^1\bigl(|g_\varepsilon'(x)|^2+\kappa^2|g_\varepsilon(x)|^2\bigr)\,dx
+  \longrightarrow \infty
+  \qquad(\varepsilon\downarrow0).
+\]
+Thus each fixed smoothed sensor can satisfy the finite-energy condition, but
+the Dirac point-evaluation limit does not.  The shorting theorem is therefore a
+theory of admissible Cameron--Martin channels, not of unsmoothed point sensors
+outside the covariance-energy domain.
