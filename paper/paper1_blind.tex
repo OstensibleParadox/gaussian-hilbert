@@ -82,29 +82,23 @@
     % ============================================================
     %  ABSTRACT
     % ============================================================
-    \begin{abstract}
-        We show that the finite-dimensional Schur formula
-        $A-BD^{-1}B^*$ is not the primitive algebra behind singular Gaussian
-        conditioning.  It is the invertible-block coordinate expression of
-        Anderson--Trapp shorting.  In Hilbert space, compact trace-class
-        covariance blocks lack bounded ambient inverses, so singular
-        conditioning removes the finite-dimensional disguise and forces the
-        conditional covariance to be defined as the short of the ambient
-        covariance operator.  Direct inversion fails at three cumulative
-        levels---algebraic (no bounded inverse), numerical (spectral
-        ill-conditioning of order $\kappa\sim N^2$), and asymptotic
-        (transient spectral imbalance).  The shorting formulation replaces
-        inversion by a variational supremum on the Cameron--Martin range,
-        derives the canonical $\lambda^{-2}$ target-block scale from block
-        Lyapunov normalization, and gives an $O(\lambda^{-6})$ shorted-residual
-        estimate.  The same variational object extends to finite-rank targets
-        by Rayleigh--Ritz restriction, with Galerkin monotonicity following from
-        nested subspaces.  For Gaussian Radon laws, this operator-level shorting
-        is what makes the Fredholm finite part canonical: disintegration
-        supplies the exact-evidence law, while Weinstein--Aronszajn and
-        Fredholm determinant identities cancel the trace terms and reduce the
-        finite part to
-        $\frac12\delta_E^\top\widetilde\Sigma_{EE}^{-1}\delta_E$.
+\begin{abstract}
+        Singular Gaussian conditioning in Hilbert space is governed by
+        Anderson--Trapp shorting, while the finite-dimensional Schur formula
+        $A-BD^{-1}B^*$ is only its invertible-block shadow.  In trace-class
+        Hilbert problems, compact covariance blocks lack bounded ambient inverses,
+        so shorting replaces direct inversion through a variational principle on
+        the Cameron--Martin range.  The rank-one canonical scaling is
+        $\Sigma_{\lambda,kk}=\varepsilon_0/(2\lambda^2)$ and the shorting
+        subtraction gives $S_{k,\lambda}=\frac{\varepsilon_0}{2\lambda^2}-R_\lambda$
+        with $R_\lambda=O(\lambda^{-6})$.
+        For Gaussian Radon laws, this yields the finite-part functional expansion
+        \[
+        \mathfrak{J}_\lambda(\mu_{\mathrm{obs}};\mu_\lambda)
+        =
+        \frac{b_k^2}{\varepsilon_0}+O(\lambda^{-4}),
+        \]
+        with a kernel-independent limit at rank one.
     \end{abstract}
 
     \keywords{Block operators; Anderson--Trapp shorting; Schur complementation; Cameron--Martin range; trace-class covariance; Fredholm finite parts; Gaussian disintegration; Galerkin approximation}
@@ -541,7 +535,7 @@
     inversion fails at three independent and cumulative levels---algebraic,
     numerical, and asymptotic.
 
-    \begin{theorem}[Triple Impossibility]
+\begin{theorem}[Triple Impossibility]
         \label{thm:triple_impossibility}
         Let $Q_0\coloneqq\Sigma_{II}^{(0)}$ be the free-block covariance operator
         under full decoupling with eigenvalues $\{\sigma_j\}_{j=1}^\infty$.
@@ -551,9 +545,7 @@
             \item \label{item:algebraic_impossibility}
             \textbf{Algebraic impossibility.}
             In infinite dimensions, $Q_0$ is either compact with $0$ in its
-            spectrum (GFF regime, $\sigma_j\sim j^{-2}$) or unbounded with no
-            bounded global inverse (OU regime, $\sigma_j\sim j^{2}$ on the
-            appropriate dual space).  In either case, the classical Schur
+            spectrum (GFF regime, $\sigma_j\sim j^{-2}$), so the classical Schur
             expression $\Sigma_{KK}-\Sigma_{KI}\Sigma_{II}^{-1}\Sigma_{IK}$ is not
             an operator formula in the norm topology of the ambient Hilbert space.
 
@@ -568,40 +560,16 @@
                 \frac{\sigma_{\max}^{(N)}}{\sigma_{\min}^{(N)}}
                 \sim N^{2}.
             \end{equation}
-            Consequently, for $N\gtrsim10^{3}$, direct matrix inversion or
-            Cholesky decomposition in IEEE-754 double precision suffers
-            catastrophic cancellation (loss of $\sim2\log_{10}N$ significant
-            digits).  At $N=2048$, $\kappa\approx4\times10^{6}$ and the computed
-            Schur complement bears no deterministic relation to the true
-            infinite-dimensional limit.  Extraction of the correct
-            $O(\lambda^{-6})$ residual then requires quadruple-precision (256-bit)
-            arithmetic.
+            In direct finite-dimensional inversion this creates the same numerical
+            instability as direct inversion of ill-conditioned linear systems.
 
             \item \label{item:asymptotic_impossibility}
             \textbf{Asymptotic impossibility.}
-            Even with exact arithmetic, the finite-dimensional regularized Schur
-            complement exhibits a \emph{transient spectral imbalance} whose
-            severity depends critically on the spectral regime:
-            \begin{itemize}
-                \item \textbf{GFF regime} ($\mathcal{A}_0=-L$, $\sigma_j\sim j^{-2}$):
-                The resolvent $(\lambda I-\mathcal{A}_{II})^{-1}$ enters the
-                asymptotic regime only when $\lambda\gg\sigma_{\min}^{-1}\sim N^{2}$.
-                For $\lambda\ll N^{2}$, modes with $j\gtrsim\sqrt{\lambda}$ remain
-                unpenalized, producing pre-asymptotic growth
-                $\lambda^{4}\tr(\rho_E)=O(\lambda^{2})$.
-
-                \item \textbf{OU regime} ($\mathcal{A}_0=-L^{-1}$, $\sigma_j\sim j^{2}$):
-                The resolvent $(\lambda I+L^{-1})^{-1}$ is equivalent to
-                $L(L+\tilde{\lambda}I)^{-1}$ with $\tilde{\lambda}=\lambda^{-1}$.
-                The critical mode satisfies $\tilde{\lambda}\sigma_{j^{*}}\sim1$,
-                i.e., $j^{*}\sim\tilde{\lambda}^{-1/2}=\sqrt{\lambda}$.
-                Because $\tilde{\lambda}\to0$ as $\lambda\to\infty$, all modes
-                enter the asymptotic regime uniformly.  The transient growth is
-                eliminated entirely; convergence is immediate.
-            \end{itemize}
-            In the GFF regime, no fixed finite-dimensional truncation can
-            simultaneously approximate the infinite-dimensional operator and
-            capture the large-$\lambda$ limit.
+            Even with exact arithmetic, the GFF-mode resolvent
+            $(\lambda+\mu_j)^{-1}$, $\mu_j\sim j^{2}$, leaves high modes
+            unpenalized when $\lambda\ll N^{2}$, so no fixed finite-dimensional
+            truncation can uniformly capture the large-$\lambda$ limit.  In the
+            relevant range $\lambda\gg N^{2}$, the transient growth is suppressed.
         \end{enumerate}
 
         The consistent resolution in both regimes is the variational shorting
@@ -617,13 +585,9 @@
         spectrum, and an unbounded operator has no bounded global inverse.
 
         For \ref{item:numerical_impossibility}, the eigenvalue ratio
-        $\sigma_{\max}^{(N)}/\sigma_{\min}^{(N)}$ scales as $N^{2}$ in both the
-        GFF regime ($\sigma_{\max}\sim1$, $\sigma_{\min}\sim N^{-2}$) and the
-        OU regime ($\sigma_{\max}\sim N^{2}$, $\sigma_{\min}\sim1$).  In double
-        precision ($\varepsilon_{\mathrm{mach}}\approx2\times10^{-16}$), the
-        effective relative accuracy after inversion is
-        $\varepsilon_{\mathrm{mach}}\cdot\kappa\sim10^{-9}$ at $N=2048$,
-        insufficient for extracting $O(\lambda^{-6})$ residuals.
+        $\sigma_{\max}^{(N)}/\sigma_{\min}^{(N)}$ scales as $N^{2}$ in the
+        GFF regime ($\sigma_{\max}\sim1$, $\sigma_{\min}\sim N^{-2}$).  This
+        makes direct inversion an unstable route to $O(\lambda^{-6})$ residuals.
 
         For \ref{item:asymptotic_impossibility}, the GFF analysis follows from
         the resolvent diagonalization $(\lambda+\mu_j)^{-1}$ with
@@ -631,28 +595,7 @@
         $j^{*}(\lambda)\sim\pi^{-1}\sqrt{\lambda}$; modes with $j>j^{*}$ remain
         in the $\mu_j^{-1}$ regime and are unpenalized by $\lambda$, producing
         transient growth until $\lambda\gg N^{2}$.
-
-        For the OU regime, the algebraic identity
-        \[
-        (\lambda I+L^{-1})^{-1}=L(\lambda L+I)^{-1}=\frac{1}{\lambda}L(L+\tilde{\lambda}I)^{-1},
-        \qquad\tilde{\lambda}=\lambda^{-1},
-        \]
-        shows that the resolvent is realized by a \emph{sparse} linear solve
-        with the precision operator $L$ at the \emph{conjugate} regularization
-        $\tilde{\lambda}$.  Because $\tilde{\lambda}\to0$, the system
-        $(L+\tilde{\lambda}I)y=Lb$ is well-conditioned for all $\lambda\ge1$,
-        and all spectral modes converge uniformly.
     \end{proof}
-
-    \begin{remark}[On the necessity of extended precision]
-        \label{rem:extended_precision}
-        The supplementary numerical diagnostics report regimes where
-        $\lambda^{4}\tr(\rho_{\lambda,E})$ is far below double-precision
-        resolution after condition-number amplification.  Those computations
-        illustrate the numerical impossibility claim in
-        Theorem~\ref{thm:triple_impossibility}\ref{item:numerical_impossibility};
-        they are not used in the proof.
-    \end{remark}
 
     % ============================================================
     %  §4  FREDHOLM TRACE ANOMALIES AND GAUSSIAN FINITE PARTS
@@ -730,7 +673,7 @@
     \mathfrak{J}_\lambda(t)\coloneqq
     \mathfrak{J}_\lambda(\mu_\lambda^t;\mu_\lambda).
     \]
-    Then, for any two evidence levels $t_1,t_2$ for which the finite part is defined,
+    For any two evidence levels $t_1,t_2$ for which the finite part is defined,
     \begin{equation}
         \label{eq:weak_scheme_independence}
         \mathfrak{J}_\lambda(t_2)-\mathfrak{J}_\lambda(t_1)
@@ -745,50 +688,11 @@
     =
     \frac{b_2^2-b_1^2}{\varepsilon_0}.
     \]
-    \begin{proof}
-        Let $\Delta_t\coloneqq t-m_{\lambda,k}$ and
-        \[
-        \rho_\lambda
-        \coloneqq
-        \frac{\|\Sigma_{\lambda,Ik}\|_{H_{C_\lambda}}^2}{\Sigma_{\lambda,kk}}
-        =
-        1-\frac{S_{k,\lambda}}{\Sigma_{\lambda,kk}}.
-        \]
-        The Gaussian entropy computation in \Cref{app:gaussian_fredholm} gives
-        \[
-        \KL(\mu_{\lambda,I}^t\parallel\mu_{\lambda,I})
-        =
-        \frac{1}{2}\frac{\Delta_t^2}{\Sigma_{\lambda,kk}}\rho_\lambda
-        -\frac{1}{2}\log(1-\rho_\lambda)-\frac{1}{2}\rho_\lambda .
-        \]
-        The conditional-residual term in \eqref{eq:unified_action} is
-        \[
-        \frac{1}{2S_{k,\lambda}}
-        \E_{\mu_\lambda^t}\!\left[
-        (X_k-\mu_{k|I}(X_I))^2
-        \right]
-        =
-        \frac{1}{2}\rho_\lambda
-        +
-        \frac{1}{2}\frac{\Delta_t^2}{\Sigma_{\lambda,kk}}(1-\rho_\lambda).
-        \]
-        Adding these two identities cancels the $\rho_\lambda/2$ terms and yields
-        \[
-        \mathfrak{J}_\lambda(t)
-        =
-        \frac{(t-m_{\lambda,k})^2}{2\Sigma_{\lambda,kk}}
-        -\frac{1}{2}\log(1-\rho_\lambda).
-        \]
-        The logarithmic term depends on the reference covariance and the conditioning
-        scale, but not on the evidence value $t$. Hence it cancels in the difference
-        between $t_2$ and $t_1$, proving \eqref{eq:weak_scheme_independence}. The same
-        argument shows weak independence from the mollifying kernel: replacing the
-        Gaussian Dirac mollifier in \Cref{prop:mollification_limit} by any centered
-        approximate identity with finite second moment changes the extracted finite
-        part only by an additive term depending on the kernel, $\lambda$, and
-        $S_{k,\lambda}$, not on $t$. Therefore all evidence differences
-        $\Delta\mathfrak{J}_\lambda$ are kernel-independent.
-    \end{proof}
+    The full proof is in Appendix~\Cref{app:gaussian_fredholm}, and it also shows
+    weak-independence from the mollifier: replacing the Gaussian mollifier in
+    \Cref{prop:mollification_limit} by any centered approximate identity with
+    finite second moment changes the finite part only by a kernel-dependent term
+    independent of $t$.
 
     \subsection{Gaussian Main Theorem}
     \label{sec:gaussian:theorem}
@@ -872,7 +776,9 @@
     \]
     A regularized restoring drift on this coordinate produces the exact normalization
     \[
-    \Sigma_{\lambda,kk}=\frac{\varepsilon_0}{2\lambda^2}-R_\lambda,
+    \Sigma_{\lambda,kk}=\frac{\varepsilon_0}{2\lambda^2},
+    \qquad
+    S_{k,\lambda}=\frac{\varepsilon_0}{2\lambda^2}-R_\lambda,
     \qquad R_\lambda=O(\lambda^{-6}),
     \]
     under the block assumptions of \Cref{sec:infdim}. Off-diagonal bounded perturbations of the drift operator generate the cross-covariance vector entering the variational Schur residual. The resulting subtraction is evaluated by the Cameron--Martin energy form above, not by a global inverse on $L^2(0,1)$.

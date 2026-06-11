@@ -507,10 +507,69 @@ Gaussian formula give
   +\frac{\delta^2}{2S_{k,\lambda}}
   +\frac{1}{2S_{k,\lambda}}
    \mathbb{E}_{\mu_{\mathrm{obs}}}[r_\lambda(X)^2].
-\]
-The $\delta^2$ term vanishes as $\delta\downarrow0$, and the remaining terms
-are exactly Definition~\ref{def:unified_action}.
+    \]
+    The $\delta^2$ term vanishes as $\delta\downarrow0$, and the remaining terms
+    are exactly Definition~\ref{def:unified_action}.
 \end{proof}
+
+\begin{lemma}[Weak scheme-independence]
+\label{lem:weak_scheme_independence}
+For an evidence level $t\in\mathbb{R}$, let $\mu_\lambda^t$ be the weakly continuous
+Gaussian disintegration from \Cref{lem:disintegration} and define
+\[
+\mathfrak{J}_\lambda(t)\coloneqq
+\mathfrak{J}_\lambda(\mu_\lambda^t;\mu_\lambda).
+\]
+For any two evidence levels $t_1,t_2$ for which the finite part is defined,
+\begin{equation}
+    \mathfrak{J}_\lambda(t_2)-\mathfrak{J}_\lambda(t_1)
+    =
+    \frac{(t_2-m_{\lambda,k})^2-(t_1-m_{\lambda,k})^2}
+    {2\Sigma_{\lambda,kk}}.
+\end{equation}
+\begin{proof}
+Let $\Delta_t\coloneqq t-m_{\lambda,k}$ and
+\[
+    \rho_\lambda
+    \coloneqq
+    \frac{\|\Sigma_{\lambda,Ik}\|_{H_{C_\lambda}}^2}{\Sigma_{\lambda,kk}}
+    =
+    1-\frac{S_{k,\lambda}}{\Sigma_{\lambda,kk}}.
+\]
+The Gaussian entropy computation in \Cref{lem:feldman_hajek} gives
+\[
+    \KL(\mu_{\lambda,I}^t\parallel\mu_{\lambda,I})
+    =
+    \frac{1}{2}\frac{\Delta_t^2}{\Sigma_{\lambda,kk}}\rho_\lambda
+    -\frac{1}{2}\log(1-\rho_\lambda)-\frac{1}{2}\rho_\lambda .
+\]
+The conditional-residual term in \eqref{eq:unified_action} is
+\[
+    \frac{1}{2S_{k,\lambda}}
+    \E_{\mu_\lambda^t}\!\left[
+    (X_k-\mu_{k|I}(X_I))^2
+    \right]
+    =
+    \frac{1}{2}\rho_\lambda
+    +
+    \frac{1}{2}\frac{\Delta_t^2}{\Sigma_{\lambda,kk}}(1-\rho_\lambda).
+\]
+Adding these two identities cancels the $\rho_\lambda/2$ terms and yields
+\[
+    \mathfrak{J}_\lambda(t)
+    =
+    \frac{(t-m_{\lambda,k})^2}{2\Sigma_{\lambda,kk}}
+    -\frac{1}{2}\log(1-\rho_\lambda).
+\]
+The logarithmic term depends on $C_\lambda$ and $\lambda$, but not on $t$. Hence it
+ cancels in the difference between $t_2$ and $t_1$, proving
+ \eqref{eq:weak_scheme_independence}. Replacing the Gaussian Dirac mollifier in
+ \Cref{prop:mollification_limit} by any centered approximate identity with finite
+ second moment changes the extracted finite part only by an additive term depending on
+ the kernel, $\lambda$, and $S_{k,\lambda}$, not on $t$. Therefore all evidence
+ differences $\Delta\mathfrak{J}_\lambda$ are kernel-independent.
+\end{proof}
+\end{lemma}
 
 \begin{proof}[Proof of Theorem~\ref{thm:finite_part_regularization}]
 Put $\Delta_\lambda=x_k^*-m_{\lambda,k}$ and
