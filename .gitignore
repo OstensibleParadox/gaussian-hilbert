@@ -59,3 +59,5 @@ experiments/test_formulas.jl
 experiments/exp6_stuck_log.txt
 paper/temp_finite_rank_section6.tex
 paper/build/
+paper/paper1_numerical_supplement_standalone.*
+

@@ -7,12 +7,14 @@
 \usepackage{mathtools}
 \usepackage{enumitem}
 %\usepackage{thmtools}
+\usepackage{xr-hyper}
 \usepackage{hyperref}
 \hypersetup{hypertexnames=false,hidelinks}
 \usepackage[nameinlink,noabbrev]{cleveref}
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{xcolor}
+\externaldocument{paper1_numerical_supplement_standalone}
 
 
 % ---- Theorem environments ----
@@ -237,36 +239,9 @@
     \texttt{checksums.sha256} and per-experiment
     \texttt{results/validation\_summary.md}.
 
-    \paragraph{Reproducibility statement (Version 1: short).}
-    The reproducibility package is public at
-    \texttt{git@github.com:<anonymous>/gaussian-hilbert.git} at commit
-    \texttt{b8c9d683f1d40d93da2a59cb1cfe0aae141c725d}. Numerical material in this
-    paper is exactly the set tied to
-    \Cref{supp:galerkin_verification,supp:canonical_scaling,supp:three_node,supp:cameron_martin_failure,supp:sparse_precision,supp:precision_audit}.
-    SHA-256 checksums are recorded in repository-level
-    \texttt{checksums.sha256} and per-experiment
-    \texttt{results/validation\_summary.md} files.
-
-    \paragraph{Reproducibility statement (Version 2: reviewer-facing protocol).}
-    Download and run:
-    \begin{enumerate}
-        \item \texttt{git clone git@github.com:<anonymous>/gaussian-hilbert.git}
-        \item \texttt{cd gaussian-hilbert}
-        \item \texttt{git checkout b8c9d683f1d40d93da2a59cb1cfe0aae141c725d}
-        \item \texttt{julia --project=experiments/exp1\_truncation\_convergence -e 'using Pkg; Pkg.instantiate()'}
-        \item \texttt{julia --project=experiments/exp1\_truncation\_convergence experiments/exp1\_truncation\_convergence/validate\_truncation\_convergence.jl}
-        \item \texttt{julia --project=experiments/exp2\_covariance\_calibration -e 'using Pkg; Pkg.instantiate()'}
-        \item \texttt{julia --project=experiments/exp2\_covariance\_calibration experiments/exp2\_covariance\_calibration/gaussian\_clamped\_action\_ablation.jl}
-        \item \texttt{julia --project=experiments/exp3\_three\_node\_chain -e 'using Pkg; Pkg.instantiate()'}
-        \item \texttt{julia --project=experiments/exp3\_three\_node\_chain experiments/exp3\_three\_node\_chain/three\_node\_gaussian\_chain.jl}
-        \item \texttt{julia --project=experiments/exp4\_rough\_observation -e 'using Pkg; Pkg.instantiate()'}
-        \item \texttt{julia --project=experiments/exp4\_rough\_observation experiments/exp4\_rough\_observation/rough\_observation.jl}
-        \item \texttt{julia --project=experiments/exp5\_constant\_diffusion -e 'using Pkg; Pkg.instantiate()'}
-        \item \texttt{julia --project=experiments/exp5\_constant\_diffusion experiments/exp5\_constant\_diffusion/constant\_diffusion.jl}
-        \item \texttt{julia --project=experiments/exp6\_galerkin\_ill\_conditioning experiments/exp6\_galerkin\_ill\_conditioning/galerkin\_ill\_conditioning.jl}
-        \item \texttt{julia experiments/exp6\_sparse\_precision.jl}
-    \item \texttt{sha256sum -c experiments/checksums.sha256}
-    \end{enumerate}
+    \paragraph{Reproducibility statement.}
+    Code repository: \texttt{https://anonymous.4open.science/r/gaussian-hilbert-6CF1.git}, commit
+    \texttt{b8c9d683f1d40d93da2a59cb1cfe0aae141c725d}.
 
     % ============================================================
     %  \S2 Operator Model and Canonical Normalization

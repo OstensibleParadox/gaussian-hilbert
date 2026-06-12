@@ -33,18 +33,15 @@ manifested by \texttt{SHA-256} checksums in
 \texttt{experiments/checksums.sha256} and per-experiment
 \texttt{results/validation\_summary.md}.
 
-\paragraph{Reproducibility statement (Version 1).}
+\paragraph{Reproducibility statement (reviewer protocol).}
 Code and raw outputs are public:
-\texttt{git@github.com:<anonymous>/gaussian-hilbert.git} (commit
-\texttt{b8c9d683f1d40d93da2a59cb1cfe0aae141c725d}).
-Verify repository outputs with:
-\texttt{sha256sum -c experiments/checksums.sha256}.
+\texttt{https://anonymous.4open.science/r/gaussian-hilbert-6CF1.git} at commit
+\texttt{b8c9d683f1d40d93da2a59cb1cfe0aae141c725d}.
 
-\paragraph{Reproducibility statement (Version 2, reviewer protocol).}
 Run the commands below from repository root:
 \begin{enumerate}
-    \item \texttt{git clone git@github.com:<anonymous>/gaussian-hilbert.git}
-    \item \texttt{cd gaussian-hilbert}
+    \item \texttt{git clone https://anonymous.4open.science/r/gaussian-hilbert-6CF1.git}
+    \item \texttt{cd gaussian-hilbert-6CF1}
     \item \texttt{git checkout b8c9d683f1d40d93da2a59cb1cfe0aae141c725d}
     \item \texttt{julia --project=experiments/exp1\_truncation\_convergence -e 'using Pkg; Pkg.instantiate()'}
     \item \texttt{julia --project=experiments/exp1\_truncation\_convergence experiments/exp1\_truncation\_convergence/validate\_truncation\_convergence.jl}
