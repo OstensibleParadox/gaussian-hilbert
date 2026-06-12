@@ -1,7 +1,7 @@
 % Numerical supplement for Paper 1.
 % This fragment is intentionally not input by paper1_blind.tex.
 
-\section{Numerical Supplement for Block Shorting and Galerkin Verification}
+\section{Numerical Diagnostics and Galerkin Verification}
 \label{supp:numerical}
 
 This supplement records numerical diagnostics for the calibrated shorting
@@ -34,26 +34,45 @@ manifested by \texttt{SHA-256} checksums in
 \texttt{results/validation\_summary.md}.
 
 \paragraph{Reproducibility statement (reviewer protocol).}
-Code and raw outputs are public:
-\texttt{https://anonymous.4open.science/r/gaussian-hilbert-6CF1.git} at commit
-\texttt{b8c9d683f1d40d93da2a59cb1cfe0aae141c725d}.
+Code and outputs are public at: \\
+\url{https://github.com/OstensibleParadox/gaussian-hilbert.git} \\
+at commit \texttt{b8c9d683f1d40d93da2a59cb1cfe0aae141c725d}.
 
 Run the commands below from repository root:
 \begin{enumerate}
-    \item \texttt{git clone https://anonymous.4open.science/r/gaussian-hilbert-6CF1.git}
-    \item \texttt{cd gaussian-hilbert-6CF1}
+    \item \texttt{git clone https://github.com/OstensibleParadox/\textbackslash} \\
+          \texttt{\ \ \ \ gaussian-hilbert.git}
+    \item \texttt{cd gaussian-hilbert}
     \item \texttt{git checkout b8c9d683f1d40d93da2a59cb1cfe0aae141c725d}
-    \item \texttt{julia --project=experiments/exp1\_truncation\_convergence -e 'using Pkg; Pkg.instantiate()'}
-    \item \texttt{julia --project=experiments/exp1\_truncation\_convergence experiments/exp1\_truncation\_convergence/validate\_truncation\_convergence.jl}
-    \item \texttt{julia --project=experiments/exp2\_covariance\_calibration -e 'using Pkg; Pkg.instantiate()'}
-    \item \texttt{julia --project=experiments/exp2\_covariance\_calibration experiments/exp2\_covariance\_calibration/gaussian\_clamped\_action\_ablation.jl}
-    \item \texttt{julia --project=experiments/exp3\_three\_node\_chain -e 'using Pkg; Pkg.instantiate()'}
-    \item \texttt{julia --project=experiments/exp3\_three\_node\_chain experiments/exp3\_three\_node\_chain/three\_node\_gaussian\_chain.jl}
-    \item \texttt{julia --project=experiments/exp4\_rough\_observation -e 'using Pkg; Pkg.instantiate()'}
-    \item \texttt{julia --project=experiments/exp4\_rough\_observation experiments/exp4\_rough\_observation/rough\_observation.jl}
-    \item \texttt{julia --project=experiments/exp5\_constant\_diffusion -e 'using Pkg; Pkg.instantiate()'}
-    \item \texttt{julia --project=experiments/exp5\_constant\_diffusion experiments/exp5\_constant\_diffusion/constant\_diffusion.jl}
-    \item \texttt{julia --project=experiments/exp6\_galerkin\_ill\_conditioning experiments/exp6\_galerkin\_ill\_conditioning/galerkin\_ill\_conditioning.jl}
+    \item \texttt{julia --project=experiments/exp1\_truncation\_convergence \textbackslash} \\
+          \texttt{\ \ \ \ -e 'using Pkg; Pkg.instantiate()'}
+    \item \texttt{julia --project=experiments/exp1\_truncation\_convergence \textbackslash} \\
+          \texttt{\ \ \ \ experiments/exp1\_truncation\_convergence/\textbackslash} \\
+          \texttt{\ \ \ \ validate\_truncation\_convergence.jl}
+    \item \texttt{julia --project=experiments/exp2\_covariance\_calibration \textbackslash} \\
+          \texttt{\ \ \ \ -e 'using Pkg; Pkg.instantiate()'}
+    \item \texttt{julia --project=experiments/exp2\_covariance\_calibration \textbackslash} \\
+          \texttt{\ \ \ \ experiments/exp2\_covariance\_calibration/\textbackslash} \\
+          \texttt{\ \ \ \ gaussian\_clamped\_action\_ablation.jl}
+    \item \texttt{julia --project=experiments/exp3\_three\_node\_chain \textbackslash} \\
+          \texttt{\ \ \ \ -e 'using Pkg; Pkg.instantiate()'}
+    \item \texttt{julia --project=experiments/exp3\_three\_node\_chain \textbackslash} \\
+          \texttt{\ \ \ \ experiments/exp3\_three\_node\_chain/\textbackslash} \\
+          \texttt{\ \ \ \ three\_node\_gaussian\_chain.jl}
+    \item \texttt{julia --project=experiments/exp4\_rough\_observation \textbackslash} \\
+          \texttt{\ \ \ \ -e 'using Pkg; Pkg.instantiate()'}
+    \item \texttt{julia --project=experiments/exp4\_rough\_observation \textbackslash} \\
+          \texttt{\ \ \ \ experiments/exp4\_rough\_observation/\textbackslash} \\
+          \texttt{\ \ \ \ rough\_observation.jl}
+    \item \texttt{julia --project=experiments/exp5\_constant\_diffusion \textbackslash} \\
+          \texttt{\ \ \ \ -e 'using Pkg; Pkg.instantiate()'}
+    \item \texttt{julia --project=experiments/exp5\_constant\_diffusion \textbackslash} \\
+          \texttt{\ \ \ \ experiments/exp5\_constant\_diffusion/\textbackslash} \\
+          \texttt{\ \ \ \ constant\_diffusion.jl}
+    \item \texttt{julia \textbackslash} \\
+          \texttt{\ \ \ \ --project=experiments/exp6\_galerkin\_ill\_conditioning \textbackslash} \\
+          \texttt{\ \ \ \ experiments/exp6\_galerkin\_ill\_conditioning/\textbackslash} \\
+          \texttt{\ \ \ \ galerkin\_ill\_conditioning.jl}
     \item \texttt{julia experiments/exp6\_sparse\_precision.jl}
     \item \texttt{sha256sum -c experiments/checksums.sha256}
 \end{enumerate}
@@ -62,18 +81,21 @@ Run the commands below from repository root:
 All runs are deterministic in floating-point and linear-algebra kernels except
 one place:
 \begin{itemize}
-    \item \texttt{experiments/exp6\_galerkin\_ill\_conditioning/galerkin\_ill\_conditioning.jl}:
-    \texttt{Random.seed!(42)}.
-    \item \texttt{experiments/exp2\_covariance\_calibration/gaussian\_clamped\_action\_ablation.jl},
-    \texttt{exp3\_three\_node\_chain/three\_node\_gaussian\_chain.jl},
-    \texttt{exp4\_rough\_observation/rough\_observation.jl},
-    \texttt{exp5\_constant\_diffusion/constant\_diffusion.jl}:
-    \texttt{PRECISION\_BITS = 256}.
-    \item \texttt{validate\_truncation\_convergence.jl} in Experiment 1 uses the
+    \item \texttt{experiments/exp6\_galerkin\_ill\_conditioning/} \\
+          \texttt{\ \ \ \ galerkin\_ill\_conditioning.jl}:
+          \texttt{Random.seed!(42)}.
+    \item The following ablation and diagnostic scripts: \\
+          \texttt{experiments/exp2\_covariance\_calibration/} \\
+          \texttt{\ \ \ \ gaussian\_clamped\_action\_ablation.jl}, \\
+          \texttt{exp3\_three\_node\_chain/}\allowbreak\texttt{three\_node\_gaussian\_chain.jl}, \\
+          \texttt{exp4\_rough\_observation/}\allowbreak\texttt{rough\_observation.jl}, \\
+          \texttt{exp5\_constant\_diffusion/}\allowbreak\texttt{constant\_diffusion.jl}: \\
+          \texttt{PRECISION\_BITS = 256}.
+    \item \texttt{validate\_truncation\_convergence.jl} (Exp. 1) uses the
     fixed numerical grid in constants and default deterministic Julia BLAS/QR path.
 \end{itemize}
 
-\subsection{Galerkin Verification and Ill-Conditioning}
+\subsection{Galerkin Verification and Ill-Con\-di\-tion\-ing}
 \label{supp:galerkin_verification}
 
 We illustrate the Galerkin convergence of
@@ -228,7 +250,7 @@ boundary formalized in \Cref{app:admissibility_boundary}: smoothed observations
 are admissible, while the unsmoothed Dirac point-evaluation limit is not a
 finite-energy channel for the shorting theorem.
 
-\subsection{Sparse Precision-Operator Implementation}
+\subsection{Sparse Pre\-ci\-sion-Op\-er\-a\-tor Implementation}
 \label{supp:sparse_precision}
 
 The experiments also include the OU framework with drift

@@ -163,8 +163,8 @@ which rearranges to the same positive-sign resolvent formula.
 
 \subsection{Cameron--Martin energy}
 
-Let $Q_0\coloneqq\Sigma_{II}^{(0)}$ be the background bulk covariance and
-$H_{Q_0}\coloneqq\Range(Q_0^{1/2})$ with energy norm
+Let $Q_0\coloneqq\Sigma_{II}^{(0)}$ be the background bulk covariance, and let
+$H_{Q_0}\coloneqq\Range(Q_0^{1/2})$ have the energy norm
 $|u|_{Q_0}=\|Q_0^{-1/2}u\|_{\mathcal{H}_I}$.  Assumption~\ref{assum:cm_stability}
 states that $a_{Ik}\in H_{Q_0}$ and that the bulk resolvent is bounded on this
 energy space:
@@ -217,7 +217,10 @@ In particular, with $C=\Sigma_{\lambda,II}$ and $Q=Q_0$,
 
 \begin{proof}
 The Loewner inequality $Q\le C$ is equivalent to
-$Q^{1/2}(Q^{1/2})^*\le C^{1/2}(C^{1/2})^*$.  Douglas' range inclusion theorem
+\[
+  Q^{1/2}(Q^{1/2})^*\le C^{1/2}(C^{1/2})^*.
+\]
+Douglas' range inclusion theorem
 therefore gives a contraction $K$ on the ambient Hilbert space such that
 \begin{equation}
   Q^{1/2}=C^{1/2}K,
@@ -388,10 +391,8 @@ $C=\Sigma_{\lambda,II}$ and $z=\Sigma_{\lambda,Ik}$ gives the exact identity
 \]
 provided the vector lies in $H_{\Sigma_{\lambda,II}}$.
 
-This range statement follows from the previous section.  Namely,
-Lemma~\ref{lem:bulk_domination_convolution} gives
-$\Sigma_{\lambda,II}\succeq Q_0$, and
-Lemma~\ref{lem:form_domain_energy_domination} gives
+This range statement follows from the previous section.  Specifically, Lemma~\ref{lem:bulk_domination_convolution} gives
+$\Sigma_{\lambda,II}\succeq Q_0$, while Lemma~\ref{lem:form_domain_energy_domination} shows that
 $H_{Q_0}\subseteq H_{\Sigma_{\lambda,II}}$ with
 \[
   |v|_{\Sigma_{\lambda,II}}\le |v|_{Q_0},
@@ -485,7 +486,7 @@ $\mathcal{D}_n\to\mathcal{D}$ in $\mathcal{S}_1$.  Dominated convergence for
 Bochner integrals gives the claim.
 \end{proof}
 
-\begin{lemma}[Spectral Galerkin finite-energy monotonicity]
+\begin{lemma}[Spectral truncation energy bound]
 \label{lem:galerkin_finite_energy_monotonicity}
 Assume that the Galerkin projections are spectral truncations of the background
 bulk covariance.  Thus, on $\mathcal{H}_I$,
@@ -526,7 +527,7 @@ for the finite-dimensional Cameron--Martin norm.  The partial sums are monotone
 and bounded by the full sum, giving \eqref{eq:galerkin_uniform_finite_energy}.
 \end{proof}
 
-\begin{lemma}[Galerkin convergence of variational shorting]
+\begin{lemma}[Galerkin covariance residuals and Rayleigh--Ritz shorting]
 \label{lem:galerkin_variational_shorting}
 For every block-preserving Galerkin truncation satisfying the hypotheses of
 Lemma~\ref{lem:galerkin_trace_norm} and the uniform finite-energy condition
@@ -545,14 +546,23 @@ the truncated residual satisfies
 \]
 with $C$ independent of $n$.  Hence
 $m_2^{\mathrm{Schur},(n)}=\varepsilon_0/2$ for every admissible truncation.
-Moreover, for fixed $\lambda$, nested finite-dimensional test spaces in the
-bulk Cameron--Martin space give monotone Rayleigh--Ritz convergence of the
-variational subtraction to $R_\lambda$.
+No monotonicity claim is made for the family $R_{n,\lambda}$.
+
+Separately, for fixed $\lambda$, nested finite-dimensional test spaces in the
+bulk Cameron--Martin space define Rayleigh--Ritz restrictions
+$R_\lambda^{[n]}$ of the fixed infinite-dimensional variational shorting
+problem.  These satisfy
+\[
+  R_\lambda^{[n]}\uparrow R_\lambda,
+  \qquad
+  S_{k,\lambda}^{[n]}\coloneqq\Sigma_{\lambda,kk}-R_\lambda^{[n]}
+  \downarrow S_{k,\lambda}.
+\]
 \end{lemma}
 
 \begin{proof}
-The block-preserving truncation has the same triangular form as
-\eqref{eq:exact_blocks}, so the finite-dimensional Lyapunov blocks give
+The truncated operators have the same triangular form as
+\eqref{eq:exact_blocks}, so the finite-dimensional Lyapunov blocks yield
 \[
   \Sigma_{n,\lambda,kk}=\frac{\varepsilon_0}{2\lambda^2},
   \qquad
@@ -571,7 +581,7 @@ $m_2^{\mathrm{Schur},(n)}$.  For spectral truncations
 $a_{Ik}^{(n)}=\Pi_n^I a_{Ik}$, the required uniform finite-energy condition is
 provided by Lemma~\ref{lem:galerkin_finite_energy_monotonicity}.
 
-For the variational convergence statement, let
+For the fixed-problem Rayleigh--Ritz statement, let
 $C_\lambda=\Sigma_{\lambda,II}$ and let $V_m$ be nested finite-dimensional
 subspaces whose union is dense in $H_{C_\lambda}=\Range(C_\lambda^{1/2})$.
 Then
@@ -583,8 +593,10 @@ Then
        {\langle u,C_\lambda u\rangle}
 \]
 is monotone increasing in $m$ and bounded above by $R_\lambda$.  Density in the
-Cameron--Martin energy norm gives $R_\lambda^{[m]}\uparrow R_\lambda$.  In an
-eigenbasis of $C_\lambda$, this is the Rayleigh--Ritz identity
+Cameron--Martin energy norm gives $R_\lambda^{[m]}\uparrow R_\lambda$ and
+$S_{k,\lambda}^{[m]}=\Sigma_{\lambda,kk}-R_\lambda^{[m]}\downarrow
+S_{k,\lambda}$.  In an eigenbasis of $C_\lambda$, this is the Rayleigh--Ritz
+identity
 \[
   R_\lambda^{[m]}
   =
@@ -650,10 +662,9 @@ $\sigma_j\to0$, so $Q_0$ is injective and compact, while $0$ is a spectral point
 The inverse is defined only on its range as an unbounded operator, equivalently
 as the Cameron--Martin energy form.
 
-For the condition number, the two-sided estimate
-$\sigma_j\asymp j^{-2}$ gives
-$\max_{1\le j\le N}\sigma_j\asymp\sigma_1\asymp1$ and
-$\min_{1\le j\le N}\sigma_j\asymp\sigma_N\asymp N^{-2}$, proving
+For the condition number, the estimate $\sigma_j\asymp j^{-2}$ gives
+$\max_{1\le j\le N}\sigma_j\asymp\sigma_1\asymp1$. Meanwhile, we have
+$\min_{1\le j\le N}\sigma_j\asymp\sigma_N\asymp N^{-2}$, proving that
 $\kappa(Q_0^{(N)})\asymp N^2$.
 
 For the critical mode, the transition of $(\lambda+\mu_j)^{-1}$ occurs when the
@@ -725,7 +736,7 @@ satisfies
 \end{lemma}
 
 \begin{proof}
-The map $\pi_k$ is a continuous one-dimensional linear map and its marginal
+The map $\pi_k$ is a continuous linear map to $\mathbb{R}$, and its marginal
 variance is $\sigma_\lambda>0$.  Regular conditional probabilities therefore
 exist because $\mathcal{H}$ is Polish.  To identify the continuous Gaussian
 version, center the variables and set
