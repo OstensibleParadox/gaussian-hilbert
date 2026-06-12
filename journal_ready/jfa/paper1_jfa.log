@@ -1,0 +1,1267 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.12)  12 JUN 2026 16:47
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**paper1_jfa.tex
+(./paper1_jfa.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/local/texlive/2026/texmf-dist/tex/latex/elsarticle/elsarticle.cls
+Document Class: elsarticle 2026/01/09, 3.5: Elsevier Ltd
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2026-01-19 L3 programming layer (loader) 
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count275
+))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2025-10-09 L3 Experimental document command parser
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count276
+)
+\@bls=\dimen148
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count277
+\c@section=\count278
+\c@subsection=\count279
+\c@subsubsection=\count280
+\c@paragraph=\count281
+\c@subparagraph=\count282
+\c@figure=\count283
+\c@table=\count284
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen149
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen150
+\Gin@req@width=\dimen151
+)
+\c@tnote=\count285
+\c@fnote=\count286
+\c@cnote=\count287
+\c@ead=\count288
+\c@elsarticle@author=\count289
+\@eadauthor=\toks18
+\c@affn=\count290
+\absbox=\box53
+\elsarticlehighlightsbox=\box54
+\elsarticlegrabsbox=\box55
+\keybox=\box56
+\Columnwidth=\dimen152
+\space@left=\dimen153
+\els@boxa=\box57
+\els@boxb=\box58
+\leftMargin=\dimen154
+\@enLab=\toks19
+\@sep=\skip51
+\@@sep=\skip52
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip53
+\bibsep=\skip54
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count291
+)
+\splwrite=\write3
+\openout3 = `paper1_jfa.spl'.
+
+\appnamewidth=\dimen155
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2025/07/09 v2.17z AMS math features
+\@mathmargin=\skip55
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2024/11/17 v2.01 AMS text
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks20
+\ex@=\dimen156
+))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen157
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count292
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count293
+\leftroot@=\count294
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count295
+\DOTSCASE@=\count296
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box59
+\strutbox@=\box60
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen158
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count297
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count298
+\dotsspace@=\muskip17
+\c@parentequation=\count299
+\dspbrk@lvl=\count300
+\tag@help=\toks21
+\row@=\count301
+\column@=\count302
+\maxfields@=\count303
+\andhelp@=\toks22
+\eqnshift@=\dimen159
+\alignsep@=\dimen160
+\tagshift@=\dimen161
+\tagwidth@=\dimen162
+\totwidth@=\dimen163
+\lineht@=\dimen164
+\@envbody=\toks23
+\multlinegap=\skip56
+\multlinetaggap=\skip57
+\mathdisplay@stack=\toks24
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks25
+\thm@bodyfont=\toks26
+\thm@headfont=\toks27
+\thm@notefont=\toks28
+\thm@headpunct=\toks29
+\thm@preskip=\skip58
+\thm@postskip=\skip59
+\thm@headsep=\skip60
+\dth@everypar=\toks30
+LaTeX Info: Redefining \qed on input line 273.
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2024/10/04 v1.31 mathematical typesetting tools
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
+\calc@Acount=\count304
+\calc@Bcount=\count305
+\calc@Adimen=\dimen165
+\calc@Bdimen=\dimen166
+\calc@Askip=\skip61
+\calc@Bskip=\skip62
+LaTeX Info: Redefining \setlength on input line 86.
+LaTeX Info: Redefining \addtolength on input line 87.
+\calc@Ccount=\count306
+\calc@Cskip=\skip63
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
+)
+\g_MT_multlinerow_int=\count307
+\l_MT_multwidth_dim=\dimen167
+\origjot=\skip64
+\l_MT_shortvdotswithinadjustabove_dim=\dimen168
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen169
+\l_MT_above_intertext_sep=\dimen170
+\l_MT_below_intertext_sep=\dimen171
+\l_MT_above_shortintertext_sep=\dimen172
+\l_MT_below_shortintertext_sep=\dimen173
+\xmathstrut@box=\box61
+\xmathstrut@dim=\dimen174
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\labelindent=\skip65
+\enit@outerparindent=\dimen175
+\enit@toks=\toks31
+\enit@inbox=\box62
+\enit@count@id=\count308
+\enitdp@description=\count309
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count310
+)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen176
+\Hy@linkcounter=\count311
+\Hy@pagecounter=\count312
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count313
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4201.
+Package hyperref Info: Link nesting OFF on input line 4206.
+Package hyperref Info: Hyper index ON on input line 4209.
+Package hyperref Info: Plain pages OFF on input line 4216.
+Package hyperref Info: Backreferencing OFF on input line 4221.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4468.
+\c@Hy@tempcnt=\count314
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4807.
+\XeTeXLinkMargin=\dimen177
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count315
+\Field@Width=\dimen178
+\Fld@charsize=\dimen179
+Package hyperref Info: Hyper figures OFF on input line 6084.
+Package hyperref Info: Link nesting OFF on input line 6089.
+Package hyperref Info: Hyper index ON on input line 6092.
+Package hyperref Info: backreferencing OFF on input line 6099.
+Package hyperref Info: Link coloring OFF on input line 6104.
+Package hyperref Info: Link coloring with OCG OFF on input line 6109.
+Package hyperref Info: PDF/A mode OFF on input line 6114.
+\Hy@abspage=\count316
+\c@Item=\count317
+\c@Hfootnote=\count318
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2026-01-29 v7.01p Hyperref driver for pdfTeX
+\Fld@listcount=\count319
+\c@bookmark@seq@number=\count320
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+84.
+)
+\Hy@SectionHShift=\skip66
+)
+Package hyperref Info: Option `hypertexnames' set `false' on input line 11.
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/cleveref/cleveref.sty
+Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
+Package cleveref Info: `hyperref' support loaded on input line 2370.
+LaTeX Info: Redefining \cref on input line 2370.
+LaTeX Info: Redefining \Cref on input line 2370.
+LaTeX Info: Redefining \crefrange on input line 2370.
+LaTeX Info: Redefining \Crefrange on input line 2370.
+LaTeX Info: Redefining \cpageref on input line 2370.
+LaTeX Info: Redefining \Cpageref on input line 2370.
+LaTeX Info: Redefining \cpagerefrange on input line 2370.
+LaTeX Info: Redefining \Cpagerefrange on input line 2370.
+LaTeX Info: Redefining \labelcref on input line 2370.
+LaTeX Info: Redefining \labelcpageref on input line 2370.
+Package cleveref Info: `amsthm' support loaded on input line 3026.
+Package cleveref Info: include cross-reference names in hyperlinks on input lin
+e 7836.
+Package cleveref Info: include cross-reference names in hyperlinks on input lin
+e 7852.
+Package cleveref Info: no abbreviation of names on input line 7852.
+)
+==> First Aid for cleveref.sty applied!
+(/usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen180
+\lightrulewidth=\dimen181
+\cmidrulewidth=\dimen182
+\belowrulesep=\dimen183
+\belowbottomsep=\dimen184
+\aboverulesep=\dimen185
+\abovetopsep=\dimen186
+\cmidrulesep=\dimen187
+\cmidrulekern=\dimen188
+\defaultaddspace=\dimen189
+\@cmidla=\count321
+\@cmidlb=\count322
+\@aboverulesep=\dimen190
+\@belowrulesep=\dimen191
+\@thisruleclass=\count323
+\@lastruleclass=\count324
+\@thisrulewidth=\dimen192
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+\c@theorem=\count325
+
+No file paper1_jfa.aux.
+\openout1 = `paper1_jfa.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+(/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count326
+\scratchdimen=\dimen193
+\scratchbox=\box63
+\nofMPsegments=\count327
+\nofMParguments=\count328
+\everyMPshowfont=\toks32
+\MPscratchCnt=\count329
+\MPscratchDim=\dimen194
+\MPnumerator=\count330
+\makeMPintoPDFobject=\count331
+\everyMPtoPDFconversion=\toks33
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Package hyperref Info: Link coloring OFF on input line 79.
+\@outlinefile=\write4
+\openout4 = `paper1_jfa.out'.
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 97.
+
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 97.
+
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+euf on input line 106
+.
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/ueuf.fd
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+)
+
+Package natbib Warning: Citation `bogachev1998gaussian' on page 1 undefined on 
+input line 133.
+
+
+Package natbib Warning: Citation `simon2005trace' on page 1 undefined on input 
+line 133.
+
+
+Package natbib Warning: Citation `daprato2014stochastic' on page 1 undefined on
+ input line 133.
+
+
+Package natbib Warning: Citation `jorgensentian2024hilbert' on page 1 undefined
+ on input line 133.
+
+[1
+
+
+{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
+al/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
+
+LaTeX Warning: Reference `thm:triple_impossibility' on page 2 undefined on inpu
+t line 139.
+
+
+Package natbib Warning: Citation `krein1947selfadjoint' on page 2 undefined on 
+input line 148.
+
+
+Package natbib Warning: Citation `anderson1975shorted' on page 2 undefined on i
+nput line 148.
+
+
+Package natbib Warning: Citation `douglas1966majorization' on page 2 undefined 
+on input line 148.
+
+
+Package natbib Warning: Citation `contino2021matrix' on page 2 undefined on inp
+ut line 151.
+
+
+Package natbib Warning: Citation `naikjohnson2024complementable' on page 2 unde
+fined on input line 151.
+
+
+Package natbib Warning: Citation `feldman1958equivalence' on page 2 undefined o
+n input line 165.
+
+
+Package natbib Warning: Citation `hajek1958property' on page 2 undefined on inp
+ut line 165.
+
+
+Package natbib Warning: Citation `bogachev1998gaussian' on page 2 undefined on 
+input line 165.
+
+
+Package natbib Warning: Citation `stuart2010inverse' on page 2 undefined on inp
+ut line 165.
+
+
+Package natbib Warning: Citation `carerelie2024covariance' on page 2 undefined 
+on input line 165.
+
+
+Package natbib Warning: Citation `carerelie2025mean' on page 2 undefined on inp
+ut line 165.
+
+[2]
+
+Package natbib Warning: Citation `krein1947selfadjoint' on page 3 undefined on 
+input line 220.
+
+
+Package natbib Warning: Citation `anderson1975shorted' on page 3 undefined on i
+nput line 220.
+
+
+Package natbib Warning: Citation `douglas1966majorization' on page 3 undefined 
+on input line 220.
+
+
+Package natbib Warning: Citation `tretter2008spectral' on page 3 undefined on i
+nput line 220.
+
+
+Package natbib Warning: Citation `contino2018schur' on page 3 undefined on inpu
+t line 220.
+
+
+Package natbib Warning: Citation `friedrich2017generalized' on page 3 undefined
+ on input line 220.
+
+
+Package natbib Warning: Citation `contino2021matrix' on page 3 undefined on inp
+ut line 220.
+
+
+Package natbib Warning: Citation `naikjohnson2024complementable' on page 3 unde
+fined on input line 220.
+
+
+Package natbib Warning: Citation `feldman1958equivalence' on page 3 undefined o
+n input line 223.
+
+
+Package natbib Warning: Citation `hajek1958property' on page 3 undefined on inp
+ut line 223.
+
+
+Package natbib Warning: Citation `bogachev1998gaussian' on page 3 undefined on 
+input line 223.
+
+
+Package natbib Warning: Citation `owhadi2015conditioning' on page 3 undefined o
+n input line 228.
+
+
+Package natbib Warning: Citation `stuart2010inverse' on page 3 undefined on inp
+ut line 228.
+
+
+Package natbib Warning: Citation `steinwart2024conditioning' on page 3 undefine
+d on input line 228.
+
+
+Package natbib Warning: Citation `chen2024gaussian' on page 3 undefined on inpu
+t line 228.
+
+
+Package natbib Warning: Citation `carerelie2024covariance' on page 3 undefined 
+on input line 228.
+
+
+Package natbib Warning: Citation `carerelie2025mean' on page 3 undefined on inp
+ut line 228.
+
+
+Package natbib Warning: Citation `quang2022kl' on page 3 undefined on input lin
+e 228.
+
+
+Package natbib Warning: Citation `daprato2014stochastic' on page 3 undefined on
+ input line 232.
+
+
+Package natbib Warning: Citation `lord2014introduction' on page 3 undefined on 
+input line 232.
+
+
+Package natbib Warning: Citation `simon2005trace' on page 3 undefined on input 
+line 232.
+
+
+Package natbib Warning: Citation `henderson2022sobolev' on page 3 undefined on 
+input line 232.
+
+
+Package natbib Warning: Citation `jorgensentian2024hilbert' on page 3 undefined
+ on input line 232.
+
+[3]
+
+LaTeX Warning: Reference `sec:setup' on page 1 undefined on input line 237.
+
+
+LaTeX Warning: Reference `sec:infdim' on page 1 undefined on input line 238.
+
+
+LaTeX Warning: Reference `sec:gaussian_zero' on page 1 undefined on input line 
+240.
+
+
+LaTeX Warning: Reference `sec:spde' on page 1 undefined on input line 241.
+
+
+LaTeX Warning: Reference `sec:conclusion' on page 1 undefined on input line 242
+.
+
+
+LaTeX Warning: Reference `app:block_identities' on page 4 undefined on input li
+ne 243.
+
+
+LaTeX Warning: Reference `app:shorting_residual' on page 4 undefined on input l
+ine 244.
+
+
+LaTeX Warning: Reference `app:galerkin_shorting' on page 4 undefined on input l
+ine 245.
+
+
+LaTeX Warning: Reference `app:gaussian_fredholm' on page 4 undefined on input l
+ine 246.
+
+
+LaTeX Warning: Reference `app:admissibility_boundary' on page 4 undefined on in
+put line 247.
+
+
+LaTeX Warning: Reference `supp:numerical' on page 4 undefined on input line 248
+.
+
+
+Package natbib Warning: Citation `daprato2014stochastic' on page 4 undefined on
+ input line 266.
+
+
+LaTeX Warning: Reference `eq:stochastic_evolution' on page 4 undefined on input
+ line 280.
+
+[4]
+
+LaTeX Warning: Reference `eq:snr_balancing' on page 5 undefined on input line 3
+40.
+
+
+LaTeX Warning: Reference `eq:snr_balancing' on page 5 undefined on input line 3
+43.
+
+[5]
+
+LaTeX Warning: Reference `eq:target_scalar_lyapunov' on page 6 undefined on inp
+ut line 362.
+
+[6] [7]
+
+Package natbib Warning: Citation `krein1947selfadjoint' on page 8 undefined on 
+input line 479.
+
+
+Package natbib Warning: Citation `anderson1975shorted' on page 8 undefined on i
+nput line 479.
+
+
+LaTeX Warning: Reference `assum:core_analytical' on page 8 undefined on input l
+ine 492.
+
+
+LaTeX Warning: Reference `assum:cm_stability' on page 8 undefined on input line
+ 496.
+
+[8]
+
+LaTeX Warning: Reference `app:block_identities' on page 9 undefined on input li
+ne 498.
+
+
+LaTeX Warning: Reference `eq:variational_schur_subtraction' on page 9 undefined
+ on input line 513.
+
+
+Package natbib Warning: Citation `anderson1975shorted' on page 9 undefined on i
+nput line 519.
+
+
+Package natbib Warning: Citation `owhadi2015conditioning' on page 9 undefined o
+n input line 519.
+
+
+Package natbib Warning: Citation `contino2021matrix' on page 9 undefined on inp
+ut line 519.
+
+
+Package natbib Warning: Citation `naikjohnson2024complementable' on page 9 unde
+fined on input line 519.
+
+
+LaTeX Warning: Reference `assum:core_analytical' on page 9 undefined on input l
+ine 533.
+
+[9]
+
+LaTeX Warning: Reference `eq:main_schur_sharp' on page 10 undefined on input li
+ne 595.
+
+
+LaTeX Warning: Reference `app:shorting_residual' on page 10 undefined on input 
+line 604.
+
+[10]
+
+LaTeX Warning: Reference `assum:core_analytical' on page 11 undefined on input 
+line 629.
+
+
+LaTeX Warning: Reference `lem:galerkin_trace_norm' on page 11 undefined on inpu
+t line 635.
+
+[11]
+
+LaTeX Warning: Reference `lem:galerkin_trace_norm' on page 12 undefined on inpu
+t line 679.
+
+
+LaTeX Warning: Reference `lem:galerkin_finite_energy_monotonicity' on page 12 u
+ndefined on input line 680.
+
+
+LaTeX Warning: Reference `lem:galerkin_variational_shorting' on page 12 undefin
+ed on input line 681.
+
+
+LaTeX Warning: Reference `sec:infdim:variational' on page 1 undefined on input 
+line 692.
+
+
+Package natbib Warning: Citation `sheffield2007gaussian' on page 12 undefined o
+n input line 695.
+
+
+Package natbib Warning: Citation `henderson2022sobolev' on page 12 undefined on
+ input line 695.
+
+[12]
+
+LaTeX Warning: Reference `sec:infdim:variational' on page 1 undefined on input 
+line 751.
+
+
+LaTeX Warning: Reference `item:algebraic_impossibility' on page 13 undefined on
+ input line 759.
+
+
+LaTeX Warning: Reference `item:numerical_impossibility' on page 13 undefined on
+ input line 766.
+
+
+LaTeX Warning: Reference `eq:spectral_ill_conditioning' on page 13 undefined on
+ input line 771.
+
+
+LaTeX Warning: Reference `item:asymptotic_impossibility' on page 13 undefined o
+n input line 773.
+
+
+LaTeX Warning: Reference `eq:gff_critical_mode' on page 13 undefined on input l
+ine 776.
+
+[13]
+
+LaTeX Warning: Reference `assum:core_analytical' on page 14 undefined on input 
+line 799.
+
+
+LaTeX Warning: Reference `app:gaussian_fredholm' on page 14 undefined on input 
+line 811.
+
+
+LaTeX Warning: Reference `app:gaussian_fredholm' on page 14 undefined on input 
+line 826.
+
+[14] [15]
+
+LaTeX Warning: Reference `prop:mollification_limit' on page 16 undefined on inp
+ut line 922.
+
+
+LaTeX Warning: Reference `app:gaussian_fredholm' on page 16 undefined on input 
+line 926.
+
+
+LaTeX Warning: Reference `app:gaussian_fredholm' on page 16 undefined on input 
+line 946.
+
+
+LaTeX Warning: Reference `prop:mollification_limit' on page 16 undefined on inp
+ut line 948.
+
+
+LaTeX Warning: Reference `assum:gaussian_clamp' on page 16 undefined on input l
+ine 959.
+
+[16]
+
+LaTeX Warning: Reference `app:gaussian_fredholm' on page 17 undefined on input 
+line 970.
+
+
+LaTeX Warning: Reference `assum:gaussian_clamp' on page 17 undefined on input l
+ine 975.
+
+
+LaTeX Warning: Reference `eq:unified_action' on page 17 undefined on input line
+ 981.
+
+
+Package natbib Warning: Citation `daprato2014stochastic' on page 17 undefined o
+n input line 990.
+
+
+Package natbib Warning: Citation `lord2014introduction' on page 17 undefined on
+ input line 990.
+
+
+Package natbib Warning: Citation `stuart2010inverse' on page 17 undefined on in
+put line 990.
+
+
+Package natbib Warning: Citation `henderson2022sobolev' on page 17 undefined on
+ input line 990.
+
+
+Package natbib Warning: Citation `bogachev1998gaussian' on page 17 undefined on
+ input line 1006.
+
+
+Package natbib Warning: Citation `simon2005trace' on page 17 undefined on input
+ line 1006.
+
+
+Package natbib Warning: Citation `henderson2022sobolev' on page 17 undefined on
+ input line 1006.
+
+[17]
+
+Package natbib Warning: Citation `bogachev1998gaussian' on page 18 undefined on
+ input line 1020.
+
+
+Package natbib Warning: Citation `stuart2010inverse' on page 18 undefined on in
+put line 1020.
+
+
+Package natbib Warning: Citation `henderson2022sobolev' on page 18 undefined on
+ input line 1020.
+
+
+LaTeX Warning: Reference `sec:infdim' on page 1 undefined on input line 1039.
+
+[18]
+No file paper1_jfa.bbl.
+(./paper1_jfa_appendix.tex [19]
+
+LaTeX Warning: Reference `eq:bulk_stationary_convolution' on page 20 undefined 
+on input line 77.
+
+
+LaTeX Warning: Reference `eq:background_stationary_convolution' on page 20 unde
+fined on input line 77.
+
+
+LaTeX Warning: Reference `eq:Q0_convolution' on page 20 undefined on input line
+ 91.
+
+
+LaTeX Warning: Reference `eq:bulk_domination' on page 20 undefined on input lin
+e 93.
+
+[20]
+
+LaTeX Warning: Reference `eq:SigmaIk_exact_vector' on page 21 undefined on inpu
+t line 111.
+
+
+LaTeX Warning: Reference `assum:cm_stability' on page 21 undefined on input lin
+e 112.
+
+
+LaTeX Warning: Reference `eq:Sigmakk_exact' on page 21 undefined on input line 
+121.
+
+
+LaTeX Warning: Reference `assum:cm_stability' on page 21 undefined on input lin
+e 132.
+
+
+LaTeX Warning: Reference `lem:bulk_domination_convolution' on page 21 undefined
+ on input line 137.
+
+
+LaTeX Warning: Reference `assum:cm_stability' on page 21 undefined on input lin
+e 168.
+
+[21]
+
+LaTeX Warning: Reference `eq:cm_resolvent' on page 22 undefined on input line 1
+91.
+
+
+LaTeX Warning: Reference `eq:SigmaIk_exact_vector' on page 22 undefined on inpu
+t line 192.
+
+
+LaTeX Warning: Reference `eq:range_inclusion_CQ' on page 22 undefined on input 
+line 230.
+
+
+LaTeX Warning: Reference `eq:douglas_factorization' on page 22 undefined on inp
+ut line 232.
+
+
+LaTeX Warning: Reference `lem:bulk_domination_convolution' on page 22 undefined
+ on input line 239.
+
+
+LaTeX Warning: Reference `eq:Sigma_energy_dominated_by_Q0' on page 22 undefined
+ on input line 240.
+
+[22]
+
+LaTeX Warning: Reference `eq:short_shadow' on page 23 undefined on input line 2
+85.
+
+[23]
+
+LaTeX Warning: Reference `eq:rayleigh_equals_energy' on page 24 undefined on in
+put line 329.
+
+
+LaTeX Warning: Reference `assum:core_analytical' on page 24 undefined on input 
+line 349.
+
+
+LaTeX Warning: Reference `lem:rayleigh_covariance_energy' on page 24 undefined 
+on input line 387.
+
+[24]
+
+LaTeX Warning: Reference `lem:bulk_domination_convolution' on page 25 undefined
+ on input line 394.
+
+
+LaTeX Warning: Reference `lem:form_domain_energy_domination' on page 25 undefin
+ed on input line 395.
+
+
+LaTeX Warning: Reference `lem:finite_energy_leakage' on page 25 undefined on in
+put line 401.
+
+
+LaTeX Warning: Reference `eq:Sigmakk_exact' on page 25 undefined on input line 
+410.
+
+
+LaTeX Warning: Reference `eq:Schur_asympt' on page 25 undefined on input line 4
+11.
+
+[25]
+
+Package natbib Warning: Citation `simon2005trace' on page 26 undefined on input
+ line 478.
+
+
+Package natbib Warning: Citation `daprato2014stochastic' on page 26 undefined o
+n input line 478.
+
+
+LaTeX Warning: Reference `eq:galerkin_energy_monotone' on page 26 undefined on 
+input line 525.
+
+
+LaTeX Warning: Reference `eq:galerkin_uniform_finite_energy' on page 26 undefin
+ed on input line 527.
+
+[26]
+
+LaTeX Warning: Reference `lem:galerkin_trace_norm' on page 27 undefined on inpu
+t line 533.
+
+
+LaTeX Warning: Reference `eq:exact_blocks' on page 27 undefined on input line 5
+65.
+
+
+LaTeX Warning: Reference `prop:rank_one_shorted_residual' on page 27 undefined 
+on input line 578.
+
+
+LaTeX Warning: Reference `lem:galerkin_finite_energy_monotonicity' on page 27 u
+ndefined on input line 582.
+
+[27] [28] [29]
+
+Package natbib Warning: Citation `bogachev1998gaussian' on page 30 undefined on
+ input line 768.
+
+
+Package natbib Warning: Citation `lagatta2013continuous' on page 30 undefined o
+n input line 768.
+
+
+Package natbib Warning: Citation `steinwart2024conditioning' on page 30 undefin
+ed on input line 768.
+
+
+Package natbib Warning: Citation `chen2024gaussian' on page 30 undefined on inp
+ut line 768.
+
+
+LaTeX Warning: Reference `lem:form_domain_energy_domination' on page 30 undefin
+ed on input line 803.
+
+
+LaTeX Warning: Reference `eq:cross_energy' on page 30 undefined on input line 8
+05.
+
+
+Package natbib Warning: Citation `bogachev1998gaussian' on page 30 undefined on
+ input line 808.
+
+
+Package natbib Warning: Citation `steinwart2024conditioning' on page 30 undefin
+ed on input line 808.
+
+
+LaTeX Warning: Reference `prop:rank_one_shorted_residual' on page 30 undefined 
+on input line 809.
+
+[30]
+
+LaTeX Warning: Reference `eq:bulk_conditional_covariance' on page 31 undefined 
+on input line 847.
+
+
+LaTeX Warning: Reference `prop:rank_one_shorted_residual' on page 31 undefined 
+on input line 862.
+
+[31]
+
+Package natbib Warning: Citation `carerelie2024covariance' on page 32 undefined
+ on input line 877.
+
+
+Package natbib Warning: Citation `carerelie2025mean' on page 32 undefined on in
+put line 877.
+
+
+LaTeX Warning: Reference `eq:bulk_KL_rank_one' on page 32 undefined on input li
+ne 888.
+
+
+Package natbib Warning: Citation `quang2022kl' on page 32 undefined on input li
+ne 888.
+
+
+Package natbib Warning: Citation `carerelie2024covariance' on page 32 undefined
+ on input line 888.
+
+
+LaTeX Warning: Reference `lem:feldman_hajek' on page 32 undefined on input line
+ 908.
+
+
+LaTeX Warning: Reference `def:unified_action' on page 32 undefined on input lin
+e 939.
+
+[32]
+
+LaTeX Warning: Reference `eq:bulk_KL_t_algebra' on page 33 undefined on input l
+ine 974.
+
+
+LaTeX Warning: Reference `eq:bulk_KL_rank_one' on page 33 undefined on input li
+ne 975.
+
+
+Package natbib Warning: Citation `bogachev1998gaussian' on page 33 undefined on
+ input line 975.
+
+
+Package natbib Warning: Citation `quang2022kl' on page 33 undefined on input li
+ne 975.
+
+
+LaTeX Warning: Reference `eq:residual_t_algebra' on page 33 undefined on input 
+line 1007.
+
+
+LaTeX Warning: Reference `eq:bulk_KL_t_algebra' on page 33 undefined on input l
+ine 1008.
+
+
+LaTeX Warning: Reference `eq:residual_t_algebra' on page 33 undefined on input 
+line 1008.
+
+
+LaTeX Warning: Reference `eq:finite_part_exact_rank_one' on page 33 undefined o
+n input line 1015.
+
+
+LaTeX Warning: Reference `prop:mollification_limit' on page 33 undefined on inp
+ut line 1028.
+
+
+LaTeX Warning: Reference `eq:finite_part_exact_rank_one' on page 33 undefined o
+n input line 1035.
+
+
+LaTeX Warning: Reference `prop:mollification_limit' on page 33 undefined on inp
+ut line 1039.
+
+[33]
+
+LaTeX Warning: Reference `thm:finite_part_regularization' on page 34 undefined 
+on input line 1044.
+
+
+LaTeX Warning: Reference `lem:kl_finite_part_algebra' on page 34 undefined on i
+nput line 1045.
+
+
+LaTeX Warning: Reference `assum:gaussian_clamp' on page 34 undefined on input l
+ine 1046.
+
+
+LaTeX Warning: Reference `lem:feldman_hajek' on page 34 undefined on input line
+ 1054.
+
+
+LaTeX Warning: Reference `eq:finite_part_exact_rank_one' on page 34 undefined o
+n input line 1058.
+
+
+LaTeX Warning: Reference `def:unified_action' on page 34 undefined on input lin
+e 1068.
+
+[34]
+
+LaTeX Warning: Reference `sec:spde' on page 1 undefined on input line 1081.
+
+)
+
+Package natbib Warning: There were undefined citations.
+
+[35] (./paper1_jfa.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+ ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `paper1_jfa.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `paper1_jfa.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  2ADA54EF3D3F3007457900C95DED4AE5;8014.
+ ) 
+Here is how much of TeX's memory you used:
+ 14390 strings out of 467525
+ 234660 string characters out of 5418982
+ 671736 words of memory out of 5000000
+ 42942 multiletter control sequences out of 15000+600000
+ 641117 words of font info for 72 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 75i,13n,79p,790b,723s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
+</usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></
+usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
+r/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
+local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/loc
+al/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/
+texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
+exlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/tex
+live/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texli
+ve/2026/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/tex
+live/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local
+/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbi1200.pfb></usr/local/t
+exlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/tex
+live/2026/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texli
+ve/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive
+/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2
+026/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/202
+6/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on paper1_jfa.pdf (35 pages, 412137 bytes).
+PDF statistics:
+ 453 PDF objects out of 1000 (max. 8388607)
+ 374 compressed objects within 4 object streams
+ 196 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
