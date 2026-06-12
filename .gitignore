@@ -46,3 +46,8 @@ Thumbs.db
 *.vrb
 *.nav
 *.snm
+
+# Private journal packages / submission templates (containing personal details/cover letters)
+journal_packages/
+.antigravity/
+.antigravityignore
