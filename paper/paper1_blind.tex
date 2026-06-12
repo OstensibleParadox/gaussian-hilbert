@@ -231,7 +231,42 @@
     (\Cref{app:galerkin_shorting}), Gaussian Fredholm analysis
     (\Cref{app:gaussian_fredholm}), and admissibility geometry
     (\Cref{app:admissibility_boundary}). Numerical diagnostics are collected
-    in the supplementary material and are not proof dependencies.
+    in the supplementary material and are not proof dependencies. All experiment
+    code, scripts, and raw outputs are included with this repository; reproducibility
+    is documented via \texttt{SHA-256} checksums in repository-level
+    \texttt{checksums.sha256} and per-experiment
+    \texttt{results/validation\_summary.md}.
+
+    \paragraph{Reproducibility statement (Version 1: short).}
+    The reproducibility package is public at
+    \texttt{git@github.com:OstensibleParadox/gaussian-hilbert.git} at commit
+    \texttt{b8c9d683f1d40d93da2a59cb1cfe0aae141c725d}. Numerical material in this
+    paper is exactly the set tied to
+    \Cref{supp:galerkin_verification,supp:canonical_scaling,supp:three_node,supp:cameron_martin_failure,supp:sparse_precision,supp:precision_audit}.
+    SHA-256 checksums are recorded in repository-level
+    \texttt{checksums.sha256} and per-experiment
+    \texttt{results/validation\_summary.md} files.
+
+    \paragraph{Reproducibility statement (Version 2: reviewer-facing protocol).}
+    Download and run:
+    \begin{enumerate}
+        \item \texttt{git clone git@github.com:OstensibleParadox/gaussian-hilbert.git}
+        \item \texttt{cd gaussian-hilbert}
+        \item \texttt{git checkout b8c9d683f1d40d93da2a59cb1cfe0aae141c725d}
+        \item \texttt{julia --project=experiments/exp1\_truncation\_convergence -e 'using Pkg; Pkg.instantiate()'}
+        \item \texttt{julia --project=experiments/exp1\_truncation\_convergence experiments/exp1\_truncation\_convergence/validate\_truncation\_convergence.jl}
+        \item \texttt{julia --project=experiments/exp2\_covariance\_calibration -e 'using Pkg; Pkg.instantiate()'}
+        \item \texttt{julia --project=experiments/exp2\_covariance\_calibration experiments/exp2\_covariance\_calibration/gaussian\_clamped\_action\_ablation.jl}
+        \item \texttt{julia --project=experiments/exp3\_three\_node\_chain -e 'using Pkg; Pkg.instantiate()'}
+        \item \texttt{julia --project=experiments/exp3\_three\_node\_chain experiments/exp3\_three\_node\_chain/three\_node\_gaussian\_chain.jl}
+        \item \texttt{julia --project=experiments/exp4\_rough\_observation -e 'using Pkg; Pkg.instantiate()'}
+        \item \texttt{julia --project=experiments/exp4\_rough\_observation experiments/exp4\_rough\_observation/rough\_observation.jl}
+        \item \texttt{julia --project=experiments/exp5\_constant\_diffusion -e 'using Pkg; Pkg.instantiate()'}
+        \item \texttt{julia --project=experiments/exp5\_constant\_diffusion experiments/exp5\_constant\_diffusion/constant\_diffusion.jl}
+        \item \texttt{julia --project=experiments/exp6\_galerkin\_ill\_conditioning experiments/exp6\_galerkin\_ill\_conditioning/galerkin\_ill\_conditioning.jl}
+        \item \texttt{julia experiments/exp6\_sparse\_precision.jl}
+    \item \texttt{sha256sum -c experiments/checksums.sha256}
+    \end{enumerate}
 
     % ============================================================
     %  \S2 Operator Model and Canonical Normalization
@@ -304,7 +339,17 @@
         =
         \frac{b_k^2/\lambda^2}{2\Sigma_{\lambda,kk}}.
     \end{equation}
-    Consequently the target covariance must decay at the same order as the squared deterministic displacement.  If $\Sigma_{\lambda,kk}=O(\lambda^{-1})$, as for the slow family $d_\lambda=\varepsilon_0$, then \eqref{eq:snr_balancing} is $O(\lambda^{-1})$ and the finite target contribution collapses to zero.  If $\Sigma_{\lambda,kk}=O(\lambda^{-3})$, as for the fast family $d_\lambda=\varepsilon_0/\lambda^2$, then \eqref{eq:snr_balancing} is $O(\lambda)$ and the target contribution diverges.  The numerical supplement reports these slow and fast scaling diagnostics, but the conclusion already follows from the exact scalar identity.  A nonzero finite limit therefore forces the critical covariance scale
+    Consequently the target covariance must decay at the same order as the squared
+    deterministic displacement.  If $\Sigma_{\lambda,kk}=O(\lambda^{-1})$, as for
+    the slow family $d_\lambda=\varepsilon_0$, then \eqref{eq:snr_balancing} is
+    $O(\lambda^{-1})$ and the finite target contribution collapses to zero.  If
+    $\Sigma_{\lambda,kk}=O(\lambda^{-3})$, as for the fast family
+    $d_\lambda=\varepsilon_0/\lambda^2$, then \eqref{eq:snr_balancing} is
+    $O(\lambda)$ and the target contribution diverges.  The numerical
+    supplement reports these slow and fast scaling diagnostics, including
+    SHA-verified outputs; the conclusion already follows from the exact scalar
+    identity.  A nonzero finite limit therefore forces the critical covariance
+    scale
     \begin{equation}
         \label{eq:critical_covariance_scale}
         \Sigma_{\lambda,kk}\asymp\lambda^{-2}.

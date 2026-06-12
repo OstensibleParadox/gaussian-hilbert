@@ -5,7 +5,76 @@
 \label{supp:numerical}
 
 This supplement records numerical diagnostics for the calibrated shorting
-mechanism.  The proof appendix does not depend on these computations.
+mechanism and includes only the experiments that are directly tied to the main
+theorems and claims in this paper.
+The proof appendix does not depend on these computations.
+Reproducibility snapshot is repository commit
+\texttt{b8c9d683f1d40d93da2a59cb1cfe0aae141c725d}.
+
+\subsection*{Reproducibility mapping}
+\label{supp:repro_mapping}
+The experiments below map one-to-one to claims:
+\begin{itemize}
+    \item \textbf{Supp \ref{supp:galerkin_verification}}: Galerkin truncation
+    and variational shorting consistency.
+    \item \textbf{Supp \ref{supp:canonical_scaling}}: canonical variance scaling.
+    \item \textbf{Supp \ref{supp:three_node}}: finite-part regime separation in
+    Proposition and Theorem checks.
+    \item \textbf{Supp \ref{supp:cameron_martin_failure}}: admissibility
+    boundary and stress-test.
+    \item \textbf{Supp \ref{supp:sparse_precision}}: sparse OU/GFF implementation
+    and comparison.
+    \item \textbf{Supp \ref{supp:precision_audit}}: BigFloat/Float64 agreement
+    audit for residual magnitudes.
+\end{itemize}
+
+All relevant source files, outputs, and figures are in this repository and
+manifested by \texttt{SHA-256} checksums in
+\texttt{experiments/checksums.sha256} and per-experiment
+\texttt{results/validation\_summary.md}.
+
+\paragraph{Reproducibility statement (Version 1).}
+Code and raw outputs are public:
+\texttt{git@github.com:OstensibleParadox/gaussian-hilbert.git} (commit
+\texttt{b8c9d683f1d40d93da2a59cb1cfe0aae141c725d}).
+Verify repository outputs with:
+\texttt{sha256sum -c experiments/checksums.sha256}.
+
+\paragraph{Reproducibility statement (Version 2, reviewer protocol).}
+Run the commands below from repository root:
+\begin{enumerate}
+    \item \texttt{git clone git@github.com:OstensibleParadox/gaussian-hilbert.git}
+    \item \texttt{cd gaussian-hilbert}
+    \item \texttt{git checkout b8c9d683f1d40d93da2a59cb1cfe0aae141c725d}
+    \item \texttt{julia --project=experiments/exp1\_truncation\_convergence -e 'using Pkg; Pkg.instantiate()'}
+    \item \texttt{julia --project=experiments/exp1\_truncation\_convergence experiments/exp1\_truncation\_convergence/validate\_truncation\_convergence.jl}
+    \item \texttt{julia --project=experiments/exp2\_covariance\_calibration -e 'using Pkg; Pkg.instantiate()'}
+    \item \texttt{julia --project=experiments/exp2\_covariance\_calibration experiments/exp2\_covariance\_calibration/gaussian\_clamped\_action\_ablation.jl}
+    \item \texttt{julia --project=experiments/exp3\_three\_node\_chain -e 'using Pkg; Pkg.instantiate()'}
+    \item \texttt{julia --project=experiments/exp3\_three\_node\_chain experiments/exp3\_three\_node\_chain/three\_node\_gaussian\_chain.jl}
+    \item \texttt{julia --project=experiments/exp4\_rough\_observation -e 'using Pkg; Pkg.instantiate()'}
+    \item \texttt{julia --project=experiments/exp4\_rough\_observation experiments/exp4\_rough\_observation/rough\_observation.jl}
+    \item \texttt{julia --project=experiments/exp5\_constant\_diffusion -e 'using Pkg; Pkg.instantiate()'}
+    \item \texttt{julia --project=experiments/exp5\_constant\_diffusion experiments/exp5\_constant\_diffusion/constant\_diffusion.jl}
+    \item \texttt{julia --project=experiments/exp6\_galerkin\_ill\_conditioning experiments/exp6\_galerkin\_ill\_conditioning/galerkin\_ill\_conditioning.jl}
+    \item \texttt{julia experiments/exp6\_sparse\_precision.jl}
+    \item \texttt{sha256sum -c experiments/checksums.sha256}
+\end{enumerate}
+
+\paragraph{Deterministic settings used.}
+All runs are deterministic in floating-point and linear-algebra kernels except
+one place:
+\begin{itemize}
+    \item \texttt{experiments/exp6\_galerkin\_ill\_conditioning/galerkin\_ill\_conditioning.jl}:
+    \texttt{Random.seed!(42)}.
+    \item \texttt{experiments/exp2\_covariance\_calibration/gaussian\_clamped\_action\_ablation.jl},
+    \texttt{exp3\_three\_node\_chain/three\_node\_gaussian\_chain.jl},
+    \texttt{exp4\_rough\_observation/rough\_observation.jl},
+    \texttt{exp5\_constant\_diffusion/constant\_diffusion.jl}:
+    \texttt{PRECISION\_BITS = 256}.
+    \item \texttt{validate\_truncation\_convergence.jl} in Experiment 1 uses the
+    fixed numerical grid in constants and default deterministic Julia BLAS/QR path.
+\end{itemize}
 
 \subsection{Galerkin Verification and Ill-Conditioning}
 \label{supp:galerkin_verification}
