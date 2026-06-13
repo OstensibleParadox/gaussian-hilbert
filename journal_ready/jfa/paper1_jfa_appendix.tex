@@ -193,6 +193,71 @@ Apply \eqref{eq:cm_resolvent} to the resolvent identity
 energy bound.
 \end{proof}
 
+\begin{lemma}[Relative form bound for the target-driven bulk covariance]
+\label{lem:relative_form_bound}
+Let
+\[
+  C_\lambda=\Sigma_{\lambda,II}=Q_0+\Theta_\lambda,
+  \qquad
+  \Theta_\lambda\coloneqq\operatorname{Cov}(Y_{\lambda,I}),
+\]
+with $Y_{\lambda,I}$ as in \eqref{eq:bulk_stationary_convolution}.  Under
+Assumption~\ref{assum:core_analytical} with the $C_0$-semigroup strengthening,
+\begin{equation}
+  0\preceq Q_0^{-1/2}\Theta_\lambda Q_0^{-1/2}\preceq \eta_\lambda I
+  \quad\text{as forms on }H_{Q_0},
+  \qquad
+  \eta_\lambda
+  =\frac{\varepsilon_0 M^2}{2\omega\,\lambda^2(\lambda+\omega)}\,|a_{Ik}|_{Q_0}^2
+  =O(\lambda^{-3}).
+  \label{eq:relative_form_bound}
+\end{equation}
+Consequently
+\begin{equation}
+  Q_0\preceq C_\lambda\preceq (1+\eta_\lambda)Q_0 .
+  \label{eq:two_sided_loewner}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+By stationarity of the target Ornstein--Uhlenbeck process,
+$\mathbb{E}[X_k(t-r)X_k(t-s)]=\Sigma_{\lambda,kk}e^{-\lambda|r-s|}$, so
+\eqref{eq:bulk_stationary_convolution} gives the absolutely convergent
+representation
+\[
+  \Theta_\lambda
+  =\Sigma_{\lambda,kk}
+   \int_0^\infty\!\!\int_0^\infty
+   e^{-\lambda|r-s|}\,
+   (e^{r\mathcal{A}_{II}}a_{Ik})\otimes(e^{s\mathcal{A}_{II}}a_{Ik})
+   \,dr\,ds .
+\]
+Fix $w\in\mathcal{H}_I$ and set $h_r=Q_0^{-1/2}e^{r\mathcal{A}_{II}}a_{Ik}$,
+which is well defined in $\mathcal{H}_I$ because the restricted semigroup is a
+$C_0$-semigroup on $H_{Q_0}$ and satisfies
+$\|h_r\|=|e^{r\mathcal{A}_{II}}a_{Ik}|_{Q_0}\le Me^{-\omega r}|a_{Ik}|_{Q_0}$.
+Then
+\[
+  \langle w,Q_0^{-1/2}\Theta_\lambda Q_0^{-1/2}w\rangle
+  =\Sigma_{\lambda,kk}
+   \int_0^\infty\!\!\int_0^\infty
+   e^{-\lambda|r-s|}
+   \langle w,h_r\rangle\overline{\langle w,h_s\rangle}\,dr\,ds .
+\]
+The form is non-negative, and by Cauchy--Schwarz
+$|\langle w,h_r\rangle|\le\|w\|\,\|h_r\|$, so
+\[
+  \langle w,Q_0^{-1/2}\Theta_\lambda Q_0^{-1/2}w\rangle
+  \le \Sigma_{\lambda,kk}\,M^2|a_{Ik}|_{Q_0}^2\,\|w\|^2
+      \int_0^\infty\!\!\int_0^\infty e^{-\lambda|r-s|}e^{-\omega(r+s)}\,dr\,ds .
+\]
+The double integral evaluates to $[\omega(\lambda+\omega)]^{-1}$, and
+$\Sigma_{\lambda,kk}=\varepsilon_0/(2\lambda^2)$, which gives
+\eqref{eq:relative_form_bound}.  Adding $Q_0$ yields
+\eqref{eq:two_sided_loewner}; the lower bound is
+Lemma~\ref{lem:bulk_domination_convolution}.
+\end{proof}
+
 \begin{lemma}[Form-domain energy domination]
 \label{lem:form_domain_energy_domination}
 Let $C$ and $Q$ be bounded non-negative self-adjoint operators on a Hilbert
@@ -344,30 +409,30 @@ The null directions of the denominator do not change the supremum for a
 non-negative block covariance: positivity of the full block forces the
 cross-vector to annihilate those null directions.
 
-\begin{proposition}[Rank-one shorted residual]
+\begin{proposition}[Sharp rank-one shorted residual]
 \label{prop:rank_one_shorted_residual}
-Under Assumption~\ref{assum:core_analytical},
+Under Assumption~\ref{assum:core_analytical}, writing
+$z_\lambda\coloneqq\Sigma_{\lambda,Ik}$,
 \begin{equation}
   S_{k,\lambda}
   =\Sigma_{\lambda,kk}-R_\lambda,
   \qquad
   R_\lambda
-  =|\Sigma_{\lambda,Ik}|_{\Sigma_{\lambda,II}}^2
-  =\|\Sigma_{\lambda,Ik}\|_{H_{\Sigma_{\lambda,II}}}^2,
+  =|z_\lambda|_{\Sigma_{\lambda,II}}^2
+  =\|z_\lambda\|_{H_{\Sigma_{\lambda,II}}}^2,
   \label{eq:shorting_residual_energy_identity}
 \end{equation}
-and
+and, with $\eta_\lambda=O(\lambda^{-3})$ from
+Lemma~\ref{lem:relative_form_bound},
 \begin{equation}
-  0\le R_\lambda
-  \le |\Sigma_{\lambda,Ik}|_{Q_0}^2
-  =O(\lambda^{-6}).
+  \frac{1}{1+\eta_\lambda}\,|z_\lambda|_{Q_0}^2
+  \le R_\lambda
+  \le |z_\lambda|_{Q_0}^2 .
   \label{eq:shorted_residual_bound}
 \end{equation}
-Consequently
+Consequently $R_\lambda$ has the sharp singular-path limit
 \begin{equation}
-  S_{k,\lambda}
-  =
-  \frac{\varepsilon_0}{2\lambda^2}-O(\lambda^{-6}),
+  \lambda^6 R_\lambda\longrightarrow\frac{\varepsilon_0^2}{4}\,|a_{Ik}|_{Q_0}^2,
   \qquad
   m_2^{\mathrm{Schur}}=\frac{\varepsilon_0}{2},
   \label{eq:Schur_asympt}
@@ -376,8 +441,10 @@ and
 \[
   S_{k,\lambda}^{-1}
   =
-  \frac{2}{\varepsilon_0}\lambda^2+O(\lambda^{-2}).
+  \frac{2}{\varepsilon_0}\lambda^2
+  +|a_{Ik}|_{Q_0}^2\,\lambda^{-2}+o(\lambda^{-2}).
 \]
+In particular $0\le R_\lambda=O(\lambda^{-6})$.
 \end{proposition}
 
 \begin{proof}
@@ -385,38 +452,48 @@ The first identity $S_{k,\lambda}=\Sigma_{\lambda,kk}-R_\lambda$ is the
 one-dimensional Anderson--Trapp short of the positive block covariance
 $\Sigma_\lambda$ to the target coordinate.  Applying
 Lemma~\ref{lem:rayleigh_covariance_energy} with
-$C=\Sigma_{\lambda,II}$ and $z=\Sigma_{\lambda,Ik}$ gives the exact identity
-\[
-  R_\lambda=|\Sigma_{\lambda,Ik}|_{\Sigma_{\lambda,II}}^2,
-\]
-provided the vector lies in $H_{\Sigma_{\lambda,II}}$.
+$C=\Sigma_{\lambda,II}$ and $z=z_\lambda$ gives the exact identity
+$R_\lambda=|z_\lambda|_{\Sigma_{\lambda,II}}^2$, provided the vector lies in
+$H_{\Sigma_{\lambda,II}}$.
 
-This range statement follows from the previous section.  Specifically, Lemma~\ref{lem:bulk_domination_convolution} gives
-$\Sigma_{\lambda,II}\succeq Q_0$, while Lemma~\ref{lem:form_domain_energy_domination} shows that
-$H_{Q_0}\subseteq H_{\Sigma_{\lambda,II}}$ with
+Lemma~\ref{lem:relative_form_bound} gives the two-sided Loewner bound
+$Q_0\preceq\Sigma_{\lambda,II}\preceq(1+\eta_\lambda)Q_0$.  Applying
+Lemma~\ref{lem:form_domain_energy_domination} to $Q_0\preceq\Sigma_{\lambda,II}$
+gives $H_{Q_0}\subseteq H_{\Sigma_{\lambda,II}}$ and the upper bound
+$|v|_{\Sigma_{\lambda,II}}^2\le|v|_{Q_0}^2$; applying it to
+$\Sigma_{\lambda,II}\preceq(1+\eta_\lambda)Q_0$ gives
+$|v|_{(1+\eta_\lambda)Q_0}^2\le|v|_{\Sigma_{\lambda,II}}^2$, i.e.
+$\tfrac{1}{1+\eta_\lambda}|v|_{Q_0}^2\le|v|_{\Sigma_{\lambda,II}}^2$.  Since
+Lemma~\ref{lem:finite_energy_leakage} gives $z_\lambda\in H_{Q_0}$, taking
+$v=z_\lambda$ proves \eqref{eq:shorted_residual_bound}.
+
+For the sharp constant, \eqref{eq:SigmaIk_exact_vector} gives
+$z_\lambda=\tfrac{\varepsilon_0}{2\lambda^2}(\lambda I-\mathcal{A}_{II})^{-1}a_{Ik}$,
+so the strong-resolvent normalization \eqref{eq:resolvent_strong_limit} yields
 \[
-  |v|_{\Sigma_{\lambda,II}}\le |v|_{Q_0},
-  \qquad v\in H_{Q_0}.
+  \lambda^3|z_\lambda|_{Q_0}
+  =\frac{\varepsilon_0}{2}\,
+   \bigl|\lambda(\lambda I-\mathcal{A}_{II})^{-1}a_{Ik}\bigr|_{Q_0}
+  \longrightarrow\frac{\varepsilon_0}{2}\,|a_{Ik}|_{Q_0}.
 \]
-Since Lemma~\ref{lem:finite_energy_leakage} gives
-$\Sigma_{\lambda,Ik}\in H_{Q_0}$ and
-$|\Sigma_{\lambda,Ik}|_{Q_0}=O(\lambda^{-3})$, we obtain
+Hence $\lambda^6|z_\lambda|_{Q_0}^2\to\tfrac{\varepsilon_0^2}{4}|a_{Ik}|_{Q_0}^2$,
+and since $\eta_\lambda\to0$ the bound \eqref{eq:shorted_residual_bound} forces
+$\lambda^6R_\lambda\to\tfrac{\varepsilon_0^2}{4}|a_{Ik}|_{Q_0}^2$, which is
+\eqref{eq:Schur_asympt}.  Combining with \eqref{eq:Sigmakk_exact} gives
+$m_2^{\mathrm{Schur}}=\varepsilon_0/2$.  Finally, with
 \[
-  0\le R_\lambda
-  =|\Sigma_{\lambda,Ik}|_{\Sigma_{\lambda,II}}^2
-  \le |\Sigma_{\lambda,Ik}|_{Q_0}^2
-  =O(\lambda^{-6}).
+  u_\lambda\coloneqq\frac{2\lambda^2}{\varepsilon_0}R_\lambda
+  =\frac{\varepsilon_0}{2}\,|a_{Ik}|_{Q_0}^2\,\lambda^{-4}+o(\lambda^{-4}),
 \]
-Combining this with \eqref{eq:Sigmakk_exact} proves
-\eqref{eq:Schur_asympt}.  Finally,
+the scalar Neumann expansion of
+$S_{k,\lambda}^{-1}=\tfrac{2\lambda^2}{\varepsilon_0}(1-u_\lambda)^{-1}$ gives
 \[
-  S_{k,\lambda}
-  =\frac{\varepsilon_0}{2\lambda^2}
-   \left(1-\frac{2\lambda^2}{\varepsilon_0}R_\lambda\right),
-  \qquad
-  \frac{2\lambda^2}{\varepsilon_0}R_\lambda=O(\lambda^{-4}),
+  S_{k,\lambda}^{-1}
+  =\frac{2}{\varepsilon_0}\lambda^2
+   +|a_{Ik}|_{Q_0}^2\,\lambda^{-2}+o(\lambda^{-2}).
 \]
-so the reciprocal expansion follows from the scalar Neumann expansion.
+The crude rate $R_\lambda=O(\lambda^{-6})$ follows from the upper bound in
+\eqref{eq:shorted_residual_bound} and \eqref{eq:cross_energy}.
 \end{proof}
 
 \section{Galerkin Approximation and the Failure of Direct Inversion}
@@ -1051,15 +1128,32 @@ $\sigma_\lambda=\varepsilon_0/(2\lambda^2)$,
   \frac{\Delta_\lambda^2}{2\sigma_\lambda}
   =\frac{b_k^2}{\varepsilon_0}.
 \]
-By Lemma~\ref{lem:feldman_hajek}, $\rho_\lambda=O(\lambda^{-4})$, and therefore
-\[
-  -\frac12\log(1-\rho_\lambda)=O(\lambda^{-4}).
-\]
-The exact finite-part identity \eqref{eq:finite_part_exact_rank_one} gives
+so the exact finite-part identity \eqref{eq:finite_part_exact_rank_one} reads
 \[
   \mathfrak{J}_\lambda(\mu_{\mathrm{obs}};\mu_\lambda)
-  =
-  \frac{b_k^2}{\varepsilon_0}+O(\lambda^{-4}).
+  =\frac{b_k^2}{\varepsilon_0}-\frac12\log(1-\rho_\lambda),
+  \qquad
+  \rho_\lambda=\frac{R_\lambda}{\sigma_\lambda}=\frac{2\lambda^2}{\varepsilon_0}R_\lambda .
+\]
+Since $0\le\rho_\lambda<1$ for $\lambda\ge\lambda_0$ and
+$-\log(1-\rho)\ge\rho$ there, this gives the lower bound
+$\mathfrak{J}_\lambda\ge b_k^2/\varepsilon_0+\tfrac12\rho_\lambda\ge b_k^2/\varepsilon_0$.
+For the sharp constant, Proposition~\ref{prop:rank_one_shorted_residual} gives
+$\lambda^6R_\lambda\to\tfrac{\varepsilon_0^2}{4}|a_{Ik}|_{Q_0}^2$, hence
+\[
+  \lambda^4\rho_\lambda
+  =\frac{2\lambda^6}{\varepsilon_0}R_\lambda
+  \longrightarrow\frac{\varepsilon_0}{2}\,|a_{Ik}|_{Q_0}^2 .
+\]
+Because $-\tfrac12\log(1-\rho_\lambda)=\tfrac12\rho_\lambda+O(\rho_\lambda^2)$ and
+$\lambda^4\rho_\lambda^2=O(\lambda^{-4})\to0$,
+\[
+  \lambda^4\!\left(
+    \mathfrak{J}_\lambda(\mu_{\mathrm{obs}};\mu_\lambda)
+    -\frac{b_k^2}{\varepsilon_0}
+  \right)
+  =\frac12\lambda^4\rho_\lambda+o(1)
+  \longrightarrow\frac{\varepsilon_0}{4}\,|a_{Ik}|_{Q_0}^2 .
 \]
 \end{proof}
 

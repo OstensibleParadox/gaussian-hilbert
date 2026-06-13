@@ -17,20 +17,21 @@ The manuscript is about positive block operators and inverse-free Schur compleme
 \[
 A - B D^{-1} B^*.
 \]
-For compact trace-class Hilbert covariance blocks, this expression is not a valid ambient operator formula: the complementary block has no bounded inverse on the full state space.  This paper shows that the correct surviving Schur object is the Anderson--Trapp shorted operator, understood as an inverse-free Schur construction on the Cameron--Martin range.
+For compact trace-class Hilbert covariance blocks, this expression is not a valid ambient operator formula: the complementary block has no bounded inverse on the full state space.  The inverse-free Schur object is then the classical Krein--Anderson--Trapp shorted operator on the Cameron--Martin range; taking this framework as background, the manuscript determines the sharp quantitative behaviour of the short along the singular path and its Gaussian finite-part consequence.
 
 Our results provide:
 \begin{enumerate}
   \item a rigorous shorting reformulation of the block-triangular OU regularization and rank-one block-operator setup;
-  \item the affine finite-part scaling law $\Sigma_{\lambda,kk}=\varepsilon_0/(2\lambda^2)$ and residual estimate
+  \item the affine finite-part scaling law $\Sigma_{\lambda,kk}=\varepsilon_0/(2\lambda^2)$ and the sharp singular-path constant of the shorted residual,
   \[
-  S_{k,\lambda}=\frac{\varepsilon_0}{2\lambda^2}-R_\lambda,\qquad R_\lambda=O(\lambda^{-6}),
+  S_{k,\lambda}=\frac{\varepsilon_0}{2\lambda^2}-R_\lambda,\qquad
+  \lambda^6 R_\lambda\to\frac{\varepsilon_0^2}{4}\,|a_{Ik}|_{Q_0}^2,
   \]
-  which separates the singular and finite parts;
+  obtained from a two-sided Cameron--Martin energy bound;
   \item a Galerkin consistency theory via nested Rayleigh--Ritz truncations, avoiding direct matrix inversion;
-  \item downstream Gaussian finite-part asymptotics for rank-one disintegration,
+  \item downstream Gaussian finite-part asymptotics for rank-one disintegration, namely the exact identity $\mathfrak{J}_\lambda=\frac{b_k^2}{\varepsilon_0}-\frac12\log(1-\rho_\lambda)$ and the sharp correction
   \[
-  \mathfrak{J}_\lambda(\mu_{\mathrm{obs}};\mu_\lambda)=\frac{b_k^2}{\varepsilon_0}+O(\lambda^{-4}),
+  \lambda^4\!\left(\mathfrak{J}_\lambda(\mu_{\mathrm{obs}};\mu_\lambda)-\frac{b_k^2}{\varepsilon_0}\right)\to\frac{\varepsilon_0}{4}\,|a_{Ik}|_{Q_0}^2,
   \]
   obtained from disintegration and Fredholm determinant/trace cancellations.
 \end{enumerate}

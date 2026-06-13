@@ -91,23 +91,26 @@
     %  ABSTRACT
     % ============================================================
 \begin{abstract}
-        Schur complementation for compact trace-class Hilbert covariance blocks
-        is not an inversion problem but a shorting problem.  The surviving Schur
-        object is Anderson--Trapp shorting, while the finite-dimensional formula
-        $A-BD^{-1}B^*$ is only its invertible-block shadow.  In trace-class
-        Hilbert problems, compact covariance blocks lack bounded ambient inverses,
-        so shorting replaces direct inversion through a variational principle on
-        the Cameron--Martin range.  For the affine finite-part normalization at rank one, the calibrated scaling is
-        $\Sigma_{\lambda,kk}=\varepsilon_0/(2\lambda^2)$ and the shorting
-        subtraction gives $S_{k,\lambda}=\frac{\varepsilon_0}{2\lambda^2}-R_\lambda$
-        with $R_\lambda=O(\lambda^{-6})$.
-        For Gaussian Radon laws, this yields the finite-part functional expansion
+        For compact trace-class Hilbert covariance blocks the Schur complement
+        $A-BD^{-1}B^*$ has no bounded-inverse form, and the inverse-free Schur
+        object is the classical Krein--Anderson--Trapp shorted operator: a
+        variational short on the Cameron--Martin range.  Working inside this
+        framework for the calibrated rank-one family
+        $\Sigma_{\lambda,kk}=\varepsilon_0/(2\lambda^2)$, we determine the sharp
+        singular-path constant of the shorted residual,
         \[
-        \mathfrak{J}_\lambda(\mu_{\mathrm{obs}};\mu_\lambda)
-        =
-        \frac{b_k^2}{\varepsilon_0}+O(\lambda^{-4}),
+        \lambda^6 R_\lambda\longrightarrow\frac{\varepsilon_0^2}{4}\,|a_{Ik}|_{Q_0}^2,
         \]
-        with a canonical evidence-dependent finite part at rank one.
+        upgrading the crude rate $R_\lambda=O(\lambda^{-6})$ to a two-sided
+        Cameron--Martin energy bound.  For Gaussian Radon laws this gives the
+        exact rank-one Fredholm finite-part identity
+        $\mathfrak{J}_\lambda=\frac{b_k^2}{\varepsilon_0}-\frac12\log(1-\rho_\lambda)$
+        together with the sharp correction
+        \[
+        \lambda^4\!\left(\mathfrak{J}_\lambda(\mu_{\mathrm{obs}};\mu_\lambda)
+        -\frac{b_k^2}{\varepsilon_0}\right)
+        \longrightarrow\frac{\varepsilon_0}{4}\,|a_{Ik}|_{Q_0}^2 .
+        \]
     \end{abstract}
 
     \begin{keyword}
@@ -122,18 +125,19 @@ Block operators; Anderson--Trapp shorting; Schur complementation; Cameron--Marti
     \section{Introduction}
     \label{sec:intro}
 
-    The starting point is a functional-analytic identification, not a
-    probabilistic regularization.  In finite dimensions, the Schur complement
-    of a positive block matrix is written as $A-BD^{-1}B^*$.  This formula is
-    not the primitive operation: it is the invertible-block coordinate
-    expression of Anderson--Trapp shorting.  For compact trace-class covariance
-    blocks on a separable Hilbert space, Anderson--Trapp shorting is the Schur
-    object that survives when the free block $D$ has no bounded inverse on the
-    ambient space
-    \cite{bogachev1998gaussian,simon2005trace,daprato2014stochastic,jorgensentian2024hilbert}.  Singular
-    conditioning therefore does not repair the Schur formula.  It exposes that
-    Schur complementation was the finite-dimensional shadow of shorting all
-    along.
+    For compact trace-class covariance blocks on a separable Hilbert space the
+    finite-dimensional Schur complement $A-BD^{-1}B^*$ has no bounded-inverse
+    form, because the free block $D$ has no bounded inverse on the ambient space
+    \cite{bogachev1998gaussian,simon2005trace,daprato2014stochastic,jorgensentian2024hilbert}.
+    The inverse-free Schur object is then the classical Krein--Anderson--Trapp
+    shorted operator, the variational short of a positive block operator to the
+    target subspace
+    \cite{krein1947selfadjoint,anderson1975shorted,douglas1966majorization}; in
+    the covariance setting it is well defined exactly on the Cameron--Martin
+    range \cite{owhadi2015conditioning}.  We take this framework as background
+    and study the quantitative behaviour of the short for a calibrated rank-one
+    family: the size of the shorted residual along the singular path
+    $\lambda\to\infty$, and the resulting Gaussian finite part.
 
     A systematic spectral obstruction result
     (Theorem~\ref{thm:triple_impossibility}) shows that direct inversion fails
@@ -152,12 +156,13 @@ Block operators; Anderson--Trapp shorting; Schur complementation; Cameron--Marti
     In the covariance setting, its admissibility condition is exactly a
     Cameron--Martin range condition: cross-covariance vectors must have finite
     covariance energy rather than lie in the domain of a non-existent bounded
-    inverse.  This paper uses that range condition to define the shorted
-    residual as an energy projection, proves its $\lambda^{-6}$ scale, and
-    shows that Galerkin approximation is Rayleigh--Ritz restriction of the same
-    supremum to nested finite-dimensional test spaces.
+    inverse.  Using that range condition we control the shorted residual by a
+    two-sided Cameron--Martin energy bound and extract its sharp singular-path
+    constant $\lambda^6R_\lambda\to\frac{\varepsilon_0^2}{4}|a_{Ik}|_{Q_0}^2$,
+    and we show that Galerkin approximation is Rayleigh--Ritz restriction of the
+    same supremum to nested finite-dimensional test spaces.
 
-    Gaussian conditioning enters after this operator identification is in
+    Gaussian conditioning enters after this operator analysis is in
     place.  Singular coordinate conditioning reaches the Feldman--H\'{a}jek
     measure-class boundary: exact evidence is supported on a hyperplane of
     prior measure zero, while positive-noise Gaussian inverse-problem formulas may remain in
@@ -167,25 +172,24 @@ Block operators; Anderson--Trapp shorting; Schur complementation; Cameron--Marti
     normalization terms.  Fredholm determinant identities and
     determinant-and-trace cancellation then extract a canonical finite part.
 
-    Thus the paper's logical order is:
-    shorting first, Gaussian disintegration second.  The stochastic terminology
-    is an application layer.  The structural object is Anderson--Trapp shorting;
-    the familiar Schur formula is its finite-dimensional invertible-block
-    expression.
+    The paper's logical order is shorting first, Gaussian disintegration
+    second: the shorted residual is a purely covariance-theoretic quantity, and
+    the Gaussian finite part is its Radon-law consequence.
 
-    In the rank-one case, the residual has the exact asymptotic form
+    For the calibrated rank-one family the shorted residual has the sharp
+    singular-path expansion
     \[
     S_{k,\lambda}=\frac{\varepsilon_0}{2\lambda^2}-R_\lambda,
     \qquad
-    R_\lambda=O(\lambda^{-6}),
+    \lambda^6R_\lambda\to\frac{\varepsilon_0^2}{4}|a_{Ik}|_{Q_0}^2,
     \]
     hence
     \[
-    S_{k,\lambda}^{-1}=\frac{2}{\varepsilon_0}\lambda^2+O(\lambda^{-2}).
+    S_{k,\lambda}^{-1}=\frac{2}{\varepsilon_0}\lambda^2
+    +|a_{Ik}|_{Q_0}^2\lambda^{-2}+o(\lambda^{-2}).
     \]
-    These are the powers used in the finite-part cancellation: the target
-    block contributes the $\lambda^2$ pole, while the shorted residual is too
-    small to alter the finite part.
+    The target block contributes the $\lambda^2$ pole, while the second-order
+    term is the sharp Cameron--Martin energy of the leakage channel.
 
     The paper has four main contributions:
     \begin{enumerate}
@@ -193,22 +197,25 @@ Block operators; Anderson--Trapp shorting; Schur complementation; Cameron--Marti
         rank-one block normalization that places the target variance in the
         affine finite-part regime and matches the balanced target scale
         $\Sigma_{\lambda,kk}=\varepsilon_0/(2\lambda^2)$.
-        \item \textbf{Core operator shorting theorem.} We identify the formal
-        inverse expression $A-BD^{-1}B^*$ as the invertible-block expression of
-        Anderson--Trapp shorting, define the residual by the variational short
-        on the Cameron--Martin range, and prove the $O(\lambda^{-6})$
-        shorted-residual estimate.
+        \item \textbf{Sharp shorted-residual asymptotics.} Within the classical
+        Krein--Anderson--Trapp shorted-operator framework, we control the
+        rank-one shorted residual by a two-sided Cameron--Martin energy bound and
+        prove the sharp singular-path constant
+        $\lambda^6R_\lambda\to\frac{\varepsilon_0^2}{4}|a_{Ik}|_{Q_0}^2$, with the
+        crude rate $R_\lambda=O(\lambda^{-6})$ as a consequence.
         \item \textbf{Galerkin and Rayleigh--Ritz consistency.} Truncated
         Lyapunov covariances converge in trace norm and preserve the exact
         invariant under the finite-energy hypotheses.  Separately, fixed
         infinite-dimensional Rayleigh--Ritz restrictions satisfy
         $R_\lambda^{[n]}\uparrow R_\lambda$ and
         $S_{k,\lambda}^{[n]}\downarrow S_{k,\lambda}$.
-        \item \textbf{Downstream Gaussian finite part.} For Gaussian
-        Radon laws, disintegration applies the shorted covariance to the
-        exact-evidence measure, while a rank-one Fredholm determinant identity
-        cancels the trace anomaly and reduces the finite part to the invariant
-        quadratic form.
+        \item \textbf{Sharp Gaussian finite part.} For Gaussian Radon laws,
+        disintegration and a rank-one Fredholm determinant identity give the
+        exact finite part
+        $\mathfrak{J}_\lambda=\frac{b_k^2}{\varepsilon_0}-\frac12\log(1-\rho_\lambda)$,
+        with lower bound $\mathfrak{J}_\lambda\ge b_k^2/\varepsilon_0$ and sharp
+        correction
+        $\lambda^4(\mathfrak{J}_\lambda-b_k^2/\varepsilon_0)\to\frac{\varepsilon_0}{4}|a_{Ik}|_{Q_0}^2$.
     \end{enumerate}
 
     \subsection{Positioning in the literature}
@@ -415,13 +422,24 @@ Block operators; Anderson--Trapp shorting; Schur complementation; Cameron--Marti
             $H_{Q_0}=\operatorname{Range}(Q_0^{1/2})$ and
             $|u|_{Q_0}=\|Q_0^{-1/2}u\|_{\mathcal{H}_I}$. The leakage vector
             $a_{Ik}=\mathcal{A}_{Ik}\phi_k$ belongs to $H_{Q_0}$, and
-            on $H_{Q_0}$ the restricted drift semigroup is exponentially stable:
+            on $H_{Q_0}$ the restricted drift semigroup is a
+            $C_0$-semigroup and is exponentially stable:
             \begin{equation}
                 \|e^{t\mathcal{A}_{II}}\|_{\mathcal{L}(H_{Q_0})} \le M e^{-\omega t},\qquad t\ge0,
             \end{equation}
             for some $M\ge1$ and $\omega>0$ independent of $\lambda$.
         \end{enumerate}
     \end{assumption}
+
+    The $C_0$ property on $H_{Q_0}$ is what makes the leading constant sharp: it
+    yields the strong-resolvent normalization
+    \begin{equation}
+        \label{eq:resolvent_strong_limit}
+        \lambda(\lambda I-\mathcal{A}_{II})^{-1}a_{Ik}\longrightarrow a_{Ik}
+        \qquad\text{in }H_{Q_0}\ \text{as }\lambda\to\infty,
+    \end{equation}
+    which fixes the leading coefficient of the cross-covariance energy and hence
+    of the shorted residual.
 
     \begin{remark}[Finite-Energy Outgoing Covariance Coupling and Finite-Dimensional Calibration]
         \label{rem:cm_information_flow}
@@ -517,9 +535,10 @@ Block operators; Anderson--Trapp shorting; Schur complementation; Cameron--Marti
     \end{equation}
     The restriction to vectors with $\langle u,\Sigma_{\lambda,II}u\rangle>0$ simply removes null directions of the denominator; for a non-negative block operator, such directions do not change the supremum. Thus $R_\lambda$ is the energy removed by shorting to the target coordinate \cite{anderson1975shorted,owhadi2015conditioning,contino2021matrix,naikjohnson2024complementable}.
 
-    Since the target noise channel and bulk noise channel are independent, the bulk state decomposes into independent background and target-driven components, meaning the bulk covariance dominates the background covariance ($\Sigma_{\lambda,II} = Q_0 + \operatorname{Cov}(Y_I) \succeq Q_0$). Douglas range inclusion then guarantees that the variational subtraction is bounded:
+    Since the target noise channel and bulk noise channel are independent, the bulk state decomposes into independent background and target-driven components. This gives the two-sided Loewner bound $Q_0 \preceq \Sigma_{\lambda,II} = Q_0 + \operatorname{Cov}(Y_I) \preceq (1+\eta_\lambda)Q_0$ with $\eta_\lambda = O(\lambda^{-3})$ (the relative form bound of \ref{app:block_identities}). Douglas range inclusion applied to both inequalities then traps the variational subtraction between two Cameron--Martin energies:
     \begin{equation}
-        0 \le R_\lambda \le |\Sigma_{\lambda,Ik}|_{Q_0}^2 = O(\lambda^{-6}).
+        \label{eq:variational_subtraction_two_sided}
+        \frac{1}{1+\eta_\lambda}\,|\Sigma_{\lambda,Ik}|_{Q_0}^2 \le R_\lambda \le |\Sigma_{\lambda,Ik}|_{Q_0}^2 .
     \end{equation}
 
     \subsection{Shorted Schur Residual Scaling}
@@ -527,25 +546,47 @@ Block operators; Anderson--Trapp shorting; Schur complementation; Cameron--Marti
 
     The main scaling theorem for the shorted Schur residual follows. The $L^2$ projection interpretation is secondary and follows from covariance geometry.
 
-    \begin{theorem}[Hilbert Shorted Schur Invariant]
+    \begin{theorem}[Sharp rank-one shorted-residual asymptotics]
         \label{thm:inf_cancellation}
         Under Assumption~\ref{assum:core_analytical}, the $L^2$-projection residual satisfies:
         \begin{equation}
             \label{eq:main_schur_sharp}
             S_{k,\lambda} \coloneqq \|X_k - P_{\mathcal{M}_I} X_k\|_{L^2}^2 = \frac{\varepsilon_0}{2\lambda^2} - R_\lambda,
         \end{equation}
-        where the remainder satisfies $0 \le R_\lambda = O(\lambda^{-6})$. In particular, the shorted Schur invariant is:
+        where, writing $z_\lambda\coloneqq\Sigma_{\lambda,Ik}$, the shorted residual
+        obeys the two-sided form bound
+        \begin{equation}
+            \label{eq:shorted_residual_two_sided}
+            \frac{1}{1+\eta_\lambda}\,|z_\lambda|_{Q_0}^2
+            \le R_\lambda \le |z_\lambda|_{Q_0}^2,
+            \qquad \eta_\lambda=O(\lambda^{-3}),
+        \end{equation}
+        with $\eta_\lambda$ the relative form bound of
+        \ref{app:block_identities}, and has the sharp singular-path limit
+        \begin{equation}
+            \label{eq:sharp_residual_limit}
+            \lambda^6 R_\lambda \longrightarrow \frac{\varepsilon_0^2}{4}\,|a_{Ik}|_{Q_0}^2.
+        \end{equation}
+        In particular, the shorted Schur invariant is
         \begin{equation}
             \label{eq:m2_schur_value}
             m_2^{\mathrm{Schur}} = \lim_{\lambda\to\infty} \lambda^2 S_{k,\lambda} = \frac{\varepsilon_0}{2},
         \end{equation}
-        and the reciprocal projection-residual scaling satisfies:
+        and the reciprocal projection-residual scaling has the sharp two-term
+        expansion
         \begin{equation}
             \label{eq:schur_scaling_inverse}
-            S_{k,\lambda}^{-1} = \frac{2}{\varepsilon_0}\lambda^2 + O(\lambda^{-2}).
+            S_{k,\lambda}^{-1} = \frac{2}{\varepsilon_0}\lambda^2
+            + |a_{Ik}|_{Q_0}^2\,\lambda^{-2} + o(\lambda^{-2}).
         \end{equation}
         This result depends only on covariance and orthogonal projection; it holds for any linear stationary model satisfying these assumptions, without Gaussianity.
     \end{theorem}
+
+    \begin{corollary}[Crude residual rate]
+        \label{cor:crude_residual_rate}
+        Under the same hypotheses, $0\le R_\lambda=O(\lambda^{-6})$ and
+        $S_{k,\lambda}=\varepsilon_0/(2\lambda^2)-O(\lambda^{-6})$.
+    \end{corollary}
     \begin{proof}
         The block Lyapunov identities for the triangular family give
         \[
@@ -556,21 +597,6 @@ Block operators; Anderson--Trapp shorting; Schur complementation; Cameron--Marti
             \frac{\varepsilon_0}{2\lambda^2}
             (\lambda I-\mathcal{A}_{II})^{-1}a_{Ik}.
         \]
-        Since $a_{Ik}\in H_{Q_0}$ and the restricted resolvent is uniformly
-        stable on $H_{Q_0}$,
-        \[
-            |\Sigma_{\lambda,Ik}|_{Q_0}
-            \le
-            \frac{\varepsilon_0 M}{2\lambda^2(\lambda+\omega)}
-            |a_{Ik}|_{Q_0}
-            =
-            O(\lambda^{-3}).
-        \]
-        The independent stationary-convolution decomposition gives
-        $\Sigma_{\lambda,II}\succeq Q_0$.  Douglas' range inclusion theorem
-        therefore yields $H_{Q_0}\subseteq H_{\Sigma_{\lambda,II}}$ and
-        $|v|_{\Sigma_{\lambda,II}}\le |v|_{Q_0}$ for $v\in H_{Q_0}$.
-
         The rank-one An\-der\-son--Trapp shorting subtraction is the
         Rayleigh quotient
         \[
@@ -580,28 +606,44 @@ Block operators; Anderson--Trapp shorting; Schur complementation; Cameron--Marti
             \frac{|\langle u,\Sigma_{\lambda,Ik}\rangle|^2}
                  {\langle u,\Sigma_{\lambda,II}u\rangle}
             =
-            |\Sigma_{\lambda,Ik}|_{\Sigma_{\lambda,II}}^2.
+            |z_\lambda|_{\Sigma_{\lambda,II}}^2,
+            \qquad z_\lambda=\Sigma_{\lambda,Ik}.
         \]
-        Hence
+        The relative form bound of \ref{app:block_identities} gives
+        $Q_0\preceq\Sigma_{\lambda,II}\preceq(1+\eta_\lambda)Q_0$ with
+        $\eta_\lambda=O(\lambda^{-3})$.  Applying the energy-norm monotonicity of
+        Lemma~\ref{lem:form_domain_energy_domination} on both sides yields
+        \eqref{eq:shorted_residual_two_sided}:
         \[
-            0\le R_\lambda
-            \le |\Sigma_{\lambda,Ik}|_{Q_0}^2
-            =
-            O(\lambda^{-6}).
+            \frac{1}{1+\eta_\lambda}\,|z_\lambda|_{Q_0}^2
+            \le R_\lambda \le |z_\lambda|_{Q_0}^2 .
         \]
-        Shorting gives
+        For the leading constant, the strong-resolvent normalization
+        \eqref{eq:resolvent_strong_limit} gives
+        $\lambda(\lambda I-\mathcal{A}_{II})^{-1}a_{Ik}\to a_{Ik}$ in $H_{Q_0}$,
+        so
+        \[
+            \lambda^3|z_\lambda|_{Q_0}
+            =\frac{\varepsilon_0}{2}\,
+             \bigl|\lambda(\lambda I-\mathcal{A}_{II})^{-1}a_{Ik}\bigr|_{Q_0}
+            \longrightarrow \frac{\varepsilon_0}{2}\,|a_{Ik}|_{Q_0},
+        \]
+        hence $\lambda^6|z_\lambda|_{Q_0}^2\to\tfrac{\varepsilon_0^2}{4}|a_{Ik}|_{Q_0}^2$.
+        Since $\eta_\lambda\to0$, the two-sided bound forces
+        $\lambda^6R_\lambda\to\tfrac{\varepsilon_0^2}{4}|a_{Ik}|_{Q_0}^2$, which is
+        \eqref{eq:sharp_residual_limit}.  Shorting gives
         $S_{k,\lambda}=\Sigma_{\lambda,kk}-R_\lambda$, proving
-        \eqref{eq:main_schur_sharp} and
-        $m_2^{\mathrm{Schur}}=\varepsilon_0/2$.  Finally,
+        \eqref{eq:main_schur_sharp} and $m_2^{\mathrm{Schur}}=\varepsilon_0/2$.
+        Finally, with $u_\lambda\coloneqq\tfrac{2\lambda^2}{\varepsilon_0}R_\lambda
+        =\tfrac{\varepsilon_0}{2}|a_{Ik}|_{Q_0}^2\lambda^{-4}+o(\lambda^{-4})$,
         \[
             S_{k,\lambda}^{-1}
-            =
-            \left(\frac{\varepsilon_0}{2\lambda^2}-O(\lambda^{-6})\right)^{-1}
-            =
-            \frac{2}{\varepsilon_0}\lambda^2+O(\lambda^{-2}).
+            =\frac{2\lambda^2}{\varepsilon_0}(1-u_\lambda)^{-1}
+            =\frac{2}{\varepsilon_0}\lambda^2
+             +|a_{Ik}|_{Q_0}^2\lambda^{-2}+o(\lambda^{-2}),
         \]
-        \ref{app:shorting_residual} gives the full block-operator
-        derivation.
+        which is \eqref{eq:schur_scaling_inverse}.  \ref{app:shorting_residual}
+        gives the full block-operator derivation.
     \end{proof}
 
     \subsection{Galerkin Covariances and Rayleigh--Ritz Shorting}
@@ -953,17 +995,40 @@ Block operators; Anderson--Trapp shorting; Schur complementation; Cameron--Marti
 
     We present the main Fredholm regularization and cancellation theorems below.
 
-    \begin{theorem}[Gaussian Fredholm Finite-Part Regularization]
+    \begin{theorem}[Sharp Gaussian Fredholm finite-part asymptotics]
         \label{thm:finite_part_regularization}
-        Under Assumption~\ref{assum:gaussian_clamp}, there exists $\lambda_0>0$ such that, for $\lambda\ge\lambda_0$, the Gaussian Fredholm finite-part functional under the conditioned law $\mu_{\mathrm{obs}}$ is well-defined and satisfies:
+        Under Assumption~\ref{assum:gaussian_clamp}, there exists $\lambda_0>0$
+        such that, for $\lambda\ge\lambda_0$, the Gaussian Fredholm finite-part
+        functional under the conditioned law $\mu_{\mathrm{obs}}$ is well-defined
+        and admits the exact rank-one identity
         \begin{equation}
             \label{eq:unified_regularization}
-            \mathfrak{J}_\lambda(\mu_{\mathrm{obs}}; \mu_\lambda) = \frac{b_k^2}{\varepsilon_0} + O(\lambda^{-4}).
+            \mathfrak{J}_\lambda(\mu_{\mathrm{obs}}; \mu_\lambda)
+            = \frac{b_k^2}{\varepsilon_0}
+              -\frac12\log(1-\rho_\lambda),
+            \qquad
+            \rho_\lambda=\frac{2\lambda^2}{\varepsilon_0}R_\lambda .
         \end{equation}
-        In particular, the functional remains bounded at $O(1)$ and converges to:
+        In particular the functional satisfies the lower bound
         \begin{equation}
-            \lim_{\lambda\to\infty} \mathfrak{J}_\lambda(\mu_{\mathrm{obs}}; \mu_\lambda) = \frac{b_k^2}{\varepsilon_0}.
+            \label{eq:finite_part_lower_bound}
+            \mathfrak{J}_\lambda(\mu_{\mathrm{obs}}; \mu_\lambda)
+            \ge \frac{b_k^2}{\varepsilon_0}+\tfrac12\rho_\lambda
+            \ge \frac{b_k^2}{\varepsilon_0},
         \end{equation}
+        and the sharp correction asymptotics
+        \begin{equation}
+            \label{eq:finite_part_sharp}
+            \lambda^4\rho_\lambda\longrightarrow\frac{\varepsilon_0}{2}\,|a_{Ik}|_{Q_0}^2,
+            \qquad
+            \lambda^4\!\left(
+                \mathfrak{J}_\lambda(\mu_{\mathrm{obs}}; \mu_\lambda)
+                -\frac{b_k^2}{\varepsilon_0}
+            \right)
+            \longrightarrow
+            \frac{\varepsilon_0}{4}\,|a_{Ik}|_{Q_0}^2 .
+        \end{equation}
+        Hence $\lim_{\lambda\to\infty}\mathfrak{J}_\lambda(\mu_{\mathrm{obs}}; \mu_\lambda)=b_k^2/\varepsilon_0$.
     \end{theorem}
     \begin{proof}
         See \ref{app:gaussian_fredholm} for the full derivation.
@@ -1033,9 +1098,12 @@ Block operators; Anderson--Trapp shorting; Schur complementation; Cameron--Marti
     \Sigma_{\lambda,kk}=\frac{\varepsilon_0}{2\lambda^2},
     \qquad
     S_{k,\lambda}=\frac{\varepsilon_0}{2\lambda^2}-R_\lambda,
-    \qquad R_\lambda=O(\lambda^{-6}),
+    \qquad
+    \lambda^6R_\lambda\to\frac{\varepsilon_0^2}{4}\,|a_{Ik}|_{Q_0}^2,
     \]
-    under the block assumptions of \Cref{sec:infdim}. Off-diagonal bounded perturbations of the drift operator generate the cross-covariance vector entering the variational Schur residual. The resulting subtraction is evaluated by the Cameron--Martin energy form above, not by a global inverse on $L^2(0,1)$.
+    under the block assumptions of \Cref{sec:infdim}, where the leakage energy
+    $|a_{Ik}|_{Q_0}^2=\int_0^1(|a_{Ik}'|^2+\kappa^2|a_{Ik}|^2)\,dx$ is the
+    $H_0^1(0,1)$ Sobolev energy of the off-diagonal drift channel. Off-diagonal bounded perturbations of the drift operator generate the cross-covariance vector entering the variational Schur residual. The resulting subtraction is evaluated by the Cameron--Martin energy form above, not by a global inverse on $L^2(0,1)$.
 
     This example shows that the abstract theorem applies to a genuine Gaussian field. The residual is controlled by a Sobolev energy on $H_0^1(0,1)$ while the ambient covariance remains compact.
 
@@ -1045,18 +1113,20 @@ Block operators; Anderson--Trapp shorting; Schur complementation; Cameron--Marti
     \section{Conclusion}
     \label{sec:conclusion}
 
-    Inverse-free Schur complementation for compact trace-class covariance blocks
-    is Anderson--Trapp shorting, not ambient inversion.  The formal Schur algebra
-    $A-BD^{-1}B^*$ is only its finite-dimensional invertible-block shadow.
-    When the free covariance block is compact and trace class, the shadow
-    disappears but the short remains: the residual is defined by variational
-    shorting on the Cameron--Martin range, and Galerkin convergence follows
-    from nested variational suprema rather than algebraic inversion.  Gaussian
-    conditioning then follows as a Radon-measure consequence:
-    disintegration supplies the exact-evidence law, and Fredholm
-    determinant/trace identities cancel the finite-rank anomalies, leaving the
-    canonical finite residual.  The paper does not treat infinite-rank
-    observation operators or non-Gaussian conditioning theory.
+    For compact trace-class covariance blocks the inverse-free Schur object is
+    the classical Krein--Anderson--Trapp short on the Cameron--Martin range.
+    Within this framework, the rank-one shorted residual admits a two-sided
+    Cameron--Martin energy bound and the sharp singular-path constant
+    $\lambda^6R_\lambda\to\frac{\varepsilon_0^2}{4}|a_{Ik}|_{Q_0}^2$, and Galerkin
+    convergence follows from nested variational suprema rather than algebraic
+    inversion.  Gaussian conditioning then follows as a Radon-measure
+    consequence: disintegration supplies the exact-evidence law, and a rank-one
+    Fredholm determinant identity yields the exact finite part
+    $\mathfrak{J}_\lambda=\frac{b_k^2}{\varepsilon_0}-\frac12\log(1-\rho_\lambda)$
+    with sharp correction
+    $\lambda^4(\mathfrak{J}_\lambda-b_k^2/\varepsilon_0)\to\frac{\varepsilon_0}{4}|a_{Ik}|_{Q_0}^2$.
+    The paper does not treat infinite-rank observation operators or non-Gaussian
+    conditioning theory.
 
     \section*{Declaration of generative AI and AI-assisted technologies in the writing process}
 
